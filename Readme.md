@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Yulia Karpova](https://up.htmlacademy.ru/react/4/user/34438).
-* Наставник: `Неизвестно`.
+* Наставник: [`Алексей Елисеев`](https://htmlacademy.ru/profile/id60200).
 
 ---
 
