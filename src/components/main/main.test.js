@@ -15,7 +15,7 @@ const offerTitles = [
 ];
 
 describe(`src/Main.jsx`, () => {
-  describe(`when offersCount is not zero and the title is non-empty array`, () => {
+  describe(`when the offersCount is not zero and the offerTitles is non-empty array`, () => {
     it(`should render with data`, () => {
       const tree = renderer.create(
           <Main
@@ -29,7 +29,7 @@ describe(`src/Main.jsx`, () => {
       expect(tree).toMatchSnapshot();
     });
   });
-  describe(`when offersCount is zero and the title empty array`, () => {
+  describe(`when the offersCount is zero and the offerTitles empty array`, () => {
     it(`should render without data`, () => {
       const tree = renderer.create(
           <Main
