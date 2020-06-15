@@ -20,6 +20,7 @@ describe(`Render Main`, () => {
         <Main
           offersCount={Settings.OFFERS_COUNT}
           offerTitles={offerTitles}
+          onCardHeaderClick={() => {}}
         />
     )
     .toJSON();
@@ -32,6 +33,7 @@ describe(`Render Main`, () => {
         <Main
           offersCount={0}
           offerTitles={[]}
+          onCardHeaderClick={() => {}}
         />
     )
     .toJSON();
