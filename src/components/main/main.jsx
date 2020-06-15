@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Main = (props) => {
-  const {offersCount, offerTitles, onCardHeaderClick} = props;
+  const {offersCount, offerTitles, onOfferDetailsOpen} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -127,7 +127,7 @@ const Main = (props) => {
                       </div>
                       <h2 className="place-card__name">
                         <a
-                          onClick={onCardHeaderClick}
+                          onClick={onOfferDetailsOpen}
                           href="#"
                         >
                           {title}
@@ -154,7 +154,7 @@ Main.propTypes = {
   offerTitles: PropTypes.arrayOf(
       PropTypes.string
   ).isRequired,
-  onCardHeaderClick: PropTypes.func.isRequired,
+  onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
 export default Main;

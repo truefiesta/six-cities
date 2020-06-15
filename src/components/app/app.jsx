@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
-const onCardHeaderClick = () => {};
+const onOfferDetailsOpen = () => {};
 
 const App = (props) => {
   const {offersCount, offerTitles} = props;
@@ -11,7 +11,7 @@ const App = (props) => {
     <Main
       offersCount={offersCount}
       offerTitles={offerTitles}
-      onCardHeaderClick={onCardHeaderClick}
+      onOfferDetailsOpen={onOfferDetailsOpen}
     />
   );
 };

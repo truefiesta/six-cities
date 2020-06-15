@@ -21,13 +21,13 @@ Enzyme.configure({
 
 describe(`Main cards`, () => {
   it(`Card header should be pressed`, () => {
-    const onCardHeaderClick = jest.fn();
+    const onOfferDetailsOpen = jest.fn();
 
     const main = shallow(
         <Main
           offersCount={Settings.OFFERS_COUNT}
           offerTitles={offerTitles}
-          onCardHeaderClick={onCardHeaderClick}
+          onOfferDetailsOpen={onOfferDetailsOpen}
         />
     );
 
@@ -39,6 +39,6 @@ describe(`Main cards`, () => {
 
     const cardsCount = offerTitles.length;
 
-    expect(onCardHeaderClick.mock.calls.length).toBe(cardsCount);
+    expect(onOfferDetailsOpen.mock.calls.length).toBe(cardsCount);
   });
 });

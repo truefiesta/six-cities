@@ -14,30 +14,33 @@ const offerTitles = [
   `Wood and stone place`
 ];
 
-describe(`Render Main`, () => {
-  it(`with data`, () => {
-    const tree = renderer.create(
-        <Main
-          offersCount={Settings.OFFERS_COUNT}
-          offerTitles={offerTitles}
-          onCardHeaderClick={() => {}}
-        />
-    )
-    .toJSON();
+describe(`src/Main.jsx`, () => {
+  describe(`when offersCount is not zero and the title is non-empty array`, () => {
+    it(`should render with data`, () => {
+      const tree = renderer.create(
+          <Main
+            offersCount={Settings.OFFERS_COUNT}
+            offerTitles={offerTitles}
+            onOfferDetailsOpen={() => {}}
+          />
+      )
+      .toJSON();
 
-    expect(tree).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
+    });
   });
+  describe(`when offersCount is zero and the title empty array`, () => {
+    it(`should render without data`, () => {
+      const tree = renderer.create(
+          <Main
+            offersCount={0}
+            offerTitles={[]}
+            onOfferDetailsOpen={() => {}}
+          />
+      )
+      .toJSON();
 
-  it(`without data`, () => {
-    const tree = renderer.create(
-        <Main
-          offersCount={0}
-          offerTitles={[]}
-          onCardHeaderClick={() => {}}
-        />
-    )
-    .toJSON();
-
-    expect(tree).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
+    });
   });
 });

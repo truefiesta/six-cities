@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Main with data 1`] = `
+exports[`src/Main.jsx when offersCount is not zero and the title is non-empty array should render with data 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -749,7 +749,7 @@ exports[`Render Main with data 1`] = `
 </div>
 `;
 
-exports[`Render Main without data 1`] = `
+exports[`src/Main.jsx when offersCount is zero and the title empty array should render without data 1`] = `
 <div
   className="page page--gray page--main"
 >
