@@ -17,7 +17,7 @@ const OfferCard = (props) => {
 
   return (
     <article
-      onMouseOver={onMouseOver}
+      onMouseOver={() => onMouseOver(offer)}
       className="cities__place-card place-card"
     >
       {premiumTag}

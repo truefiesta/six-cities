@@ -6,13 +6,13 @@ class OffersList extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeCardId: null,
+      activeCard: null,
     };
-    this._setActiveCard = this._setActiveCard.bind(this);
+    this._handleCardMouseOver = this._handleCardMouseOver.bind(this);
   }
 
-  _setActiveCard(id) {
-    this.setState({activeCardId: id});
+  _handleCardMouseOver(offer) {
+    this.setState({activeCard: offer});
   }
 
   render() {
@@ -25,9 +25,7 @@ class OffersList extends PureComponent {
             <OfferCard
               key={offer.id}
               offer={offer}
-              onMouseOver={() => {
-                this._setActiveCard(offer.id);
-              }}
+              onMouseOver={this._handleCardMouseOver}
               onOfferDetailsOpen={onOfferDetailsOpen}
             />
           );
