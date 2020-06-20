@@ -11,7 +11,7 @@ const PremiumTag = () => {
 
 const OfferCard = (props) => {
   const {offer, onOfferDetailsOpen, onMouseOver} = props;
-  const {id, image, price, name, type, rating, isPremium} = offer;
+  const {image, price, name, type, rating, isPremium} = offer;
   const premiumTag = isPremium ? <PremiumTag/> : ``;
   // const activeBookmark = isBookmarked ? `place-card__bookmark-button--active` : ``;
 
@@ -49,7 +49,7 @@ const OfferCard = (props) => {
           <a
             onClick={(evt) => {
               evt.preventDefault();
-              onOfferDetailsOpen(id);
+              onOfferDetailsOpen();
             }}
             href="#"
           >
@@ -64,7 +64,6 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
