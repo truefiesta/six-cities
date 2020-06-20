@@ -1,5 +1,6 @@
 export default [
   {
+    id: `offer-1`,
     image: `http://lorempixel.com/400/200/`,
     price: 120,
     rating: 80,
@@ -9,6 +10,7 @@ export default [
     isPremium: true,
   },
   {
+    id: `offer-2`,
     image: `http://lorempixel.com/400/200/`,
     price: 80,
     rating: 80,
@@ -18,6 +20,7 @@ export default [
     isPremium: false,
   },
   {
+    id: `offer-3`,
     image: `http://lorempixel.com/400/200/`,
     price: 132,
     rating: 80,
@@ -27,6 +30,7 @@ export default [
     isPremium: false,
   },
   {
+    id: `offer-4`,
     image: `http://lorempixel.com/400/200/`,
     price: 180,
     rating: 100,

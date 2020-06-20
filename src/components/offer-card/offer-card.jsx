@@ -10,7 +10,7 @@ const PremiumTag = () => {
 };
 
 const OfferCard = (props) => {
-  const {image, price, name, type, rating, isPremium, onOfferDetailsOpen} = props;
+  const {id, image, price, name, type, rating, isPremium, onOfferDetailsOpen} = props;
   const premiumTag = isPremium ? <PremiumTag/> : ``;
   // const activeBookmark = isBookmarked ? `place-card__bookmark-button--active` : ``;
 
@@ -43,7 +43,10 @@ const OfferCard = (props) => {
         </div>
         <h2 className="place-card__name">
           <a
-            onClick={onOfferDetailsOpen}
+            onClick={(evt) => {
+              evt.preventDefault();
+              onOfferDetailsOpen(id);
+            }}
             href="#"
           >
             {name}
@@ -56,6 +59,7 @@ const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
+  id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
