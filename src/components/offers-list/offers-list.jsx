@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import OfferCard from "../offer-card/offer-card";
+import OfferCard from "../offer-card/offer-card.jsx";
 
 class OffersList extends PureComponent {
   constructor(props) {
@@ -16,7 +16,8 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, onOfferDetailsOpen} = this.props;
+
     return (
       <React.Fragment>
         {offers.map((offer) => {
@@ -27,6 +28,7 @@ class OffersList extends PureComponent {
               onMouseOver={() => {
                 this._setActiveCard(offer.id);
               }}
+              onOfferDetailsOpen={onOfferDetailsOpen}
             />
           );
         })};
@@ -37,6 +39,7 @@ class OffersList extends PureComponent {
 
 OffersList.propTypes = {
   offers: PropTypes.array.isRequired,
+  onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
 export default OffersList;

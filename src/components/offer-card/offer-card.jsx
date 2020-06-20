@@ -10,12 +10,16 @@ const PremiumTag = () => {
 };
 
 const OfferCard = (props) => {
-  const {id, image, price, name, type, rating, isPremium, onOfferDetailsOpen} = props;
+  const {offer, onOfferDetailsOpen, onMouseOver} = props;
+  const {id, image, price, name, type, rating, isPremium} = offer;
   const premiumTag = isPremium ? <PremiumTag/> : ``;
   // const activeBookmark = isBookmarked ? `place-card__bookmark-button--active` : ``;
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      onMouseOver={onMouseOver}
+      className="cities__place-card place-card"
+    >
       {premiumTag}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
@@ -59,13 +63,16 @@ const OfferCard = (props) => {
 };
 
 OfferCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  isPremium: PropTypes.bool.isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+  }).isRequired,
+  onMouseOver: PropTypes.func.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
