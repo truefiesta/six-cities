@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
 const OfferCard = (props) => {
   const {offer, onOfferDetailsOpen, onMouseOver} = props;
@@ -35,7 +36,7 @@ const OfferCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}}></span>
+            <span style={{width: `${convertStarRatingToWidthPercent(rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -43,14 +44,14 @@ const OfferCard = (props) => {
           <a
             onClick={(evt) => {
               evt.preventDefault();
-              onOfferDetailsOpen();
+              onOfferDetailsOpen(offer);
             }}
             href="#"
           >
             {name}
           </a>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{capitalize(type)}</p>
       </div>
     </article>
   );

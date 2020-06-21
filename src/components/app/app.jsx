@@ -4,21 +4,37 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 
-const onOfferDetailsOpen = () => {};
-
 class App extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      clickedOffer: null,
+    };
+    this._handleCardHeaderClick = this._handleCardHeaderClick.bind(this);
+  }
+
+  _handleCardHeaderClick(offer) {
+    this.setState({clickedOffer: offer});
   }
 
   _renderApp() {
     const {offersCount, offers} = this.props;
+    const {clickedOffer} = this.state;
+
+    if (clickedOffer) {
+      return (
+        <OfferDetails
+          offer={clickedOffer}
+        />
+      );
+    }
 
     return (
       <Main
         offersCount={offersCount}
         offers={offers}
-        onOfferDetailsOpen={onOfferDetailsOpen}
+        onOfferDetailsOpen={this._handleCardHeaderClick}
       />
     );
   }
