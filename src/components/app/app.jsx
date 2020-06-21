@@ -24,6 +24,8 @@ class App extends PureComponent {
   }
 
   render() {
+    const {offers} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -31,7 +33,9 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-offer-details">
-            <OfferDetails />
+            <OfferDetails
+              offer={offers[0]}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

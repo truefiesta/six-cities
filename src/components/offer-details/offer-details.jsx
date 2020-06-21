@@ -1,38 +1,45 @@
 import React from "react";
+import PropTypes from "prop-types";
+import {PropertyType} from "../../const.js";
+import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
-const OfferDetails = () => {
+
+const MAX_PHOTOS = 6;
+
+const PremiumTag = () => {
+  return (
+    <div className="property__mark">
+      <span>Premium</span>
+    </div>
+  );
+};
+
+const OfferDetails = (props) => {
+  const {offer} = props;
+  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
+  const premiumTag = isPremium ? <PremiumTag/> : ``;
+  const bedroomsText = bedrooms > 1 ? `${bedrooms} Bedrooms` : `${bedrooms} Bedroom`;
+  const guestsText = guests > 1 ? `Max ${guests} adults` : `Max ${guests} adult`;
+
   return (
     <section className="property">
       <div className="property__gallery-container container">
         <div className="property__gallery">
-          <div className="property__image-wrapper">
-            <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-          </div>
-          <div className="property__image-wrapper">
-            <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-          </div>
-          <div className="property__image-wrapper">
-            <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-          </div>
-          <div className="property__image-wrapper">
-            <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-          </div>
-          <div className="property__image-wrapper">
-            <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-          </div>
-          <div className="property__image-wrapper">
-            <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-          </div>
+          {photos.slice(0, MAX_PHOTOS).map((photo, i) => {
+            return (
+              <div key={`${i}-${photo.src}`} className="property__image-wrapper">
+                <img className="property__image" src={photo.src} alt={photo.alt}/>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="property__container container">
         <div className="property__wrapper">
-          <div className="property__mark">
-            <span>Premium</span>
-          </div>
+          {premiumTag}
           <div className="property__name-wrapper">
             <h1 className="property__name">
-              Beautiful &amp; luxurious studio at great location
+              {name}
             </h1>
             <button className="property__bookmark-button button" type="button">
               <svg className="property__bookmark-icon" width="31" height="33">
@@ -43,78 +50,56 @@ const OfferDetails = () => {
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
-              <span style={{width: `80%`}}></span>
+              <span style={{width: `${convertStarRatingToWidthPercent(rating)}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
-            <span className="property__rating-value rating__value">4.8</span>
+            <span className="property__rating-value rating__value">{rating}</span>
           </div>
           <ul className="property__features">
             <li className="property__feature property__feature--entire">
-              Apartment
+              {capitalize(type)}
             </li>
             <li className="property__feature property__feature--bedrooms">
-              3 Bedrooms
+              {bedroomsText}
             </li>
             <li className="property__feature property__feature--adults">
-              Max 4 adults
+              {guestsText}
             </li>
           </ul>
           <div className="property__price">
-            <b className="property__price-value">&euro;120</b>
+            <b className="property__price-value">&euro;{price}</b>
             <span className="property__price-text">&nbsp;night</span>
           </div>
           <div className="property__inside">
             <h2 className="property__inside-title">What&apos;s inside</h2>
             <ul className="property__inside-list">
-              <li className="property__inside-item">
-                Wi-Fi
-              </li>
-              <li className="property__inside-item">
-                Washing machine
-              </li>
-              <li className="property__inside-item">
-                Towels
-              </li>
-              <li className="property__inside-item">
-                Heating
-              </li>
-              <li className="property__inside-item">
-                Coffee machine
-              </li>
-              <li className="property__inside-item">
-                Baby seat
-              </li>
-              <li className="property__inside-item">
-                Kitchen
-              </li>
-              <li className="property__inside-item">
-                Dishwasher
-              </li>
-              <li className="property__inside-item">
-                Cabel TV
-              </li>
-              <li className="property__inside-item">
-                Fridge
-              </li>
+              {equipment.map((item, i) => {
+                return (
+                  <li key={`${i}-${item}`} className="property__inside-item">
+                    {item}
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="property__host">
             <h2 className="property__host-title">Meet the host</h2>
             <div className="property__host-user user">
               <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
+                <img className="property__avatar user__avatar" src={host.avatar} width="74" height="74" alt="Host avatar"/>
               </div>
               <span className="property__user-name">
-                Angelina
+                {host.name}
               </span>
             </div>
             <div className="property__description">
-              <p className="property__text">
-                A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-              </p>
-              <p className="property__text">
-                An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-              </p>
+              {description.map((parapraph, i) => {
+                return (
+                  <p key={`${i}-p${Math.random}`} className="property__text">
+                    {parapraph}
+                  </p>
+                );
+              })}
             </div>
           </div>
           <section className="property__reviews reviews">
@@ -195,6 +180,31 @@ const OfferDetails = () => {
       <section className="property__map map"></section>
     </section>
   );
+};
+
+OfferDetails.propTypes = {
+  offer: PropTypes.shape({
+    photos: PropTypes.arrayOf(
+        PropTypes.shape({
+          src: PropTypes.string.isRequired,
+          alt: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    type: PropTypes.oneOf([PropertyType.APARTMENT, PropertyType.ROOM, PropertyType.HOTEL, PropertyType.HOUSE]).isRequired,
+    rating: PropTypes.number.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    guests: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    equipment: PropTypes.arrayOf(PropTypes.string).isRequired,
+    host: PropTypes.shape({
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+    }).isRequired,
+    isPremium: PropTypes.bool.isRequired,
+  }),
 };
 
 export default OfferDetails;
