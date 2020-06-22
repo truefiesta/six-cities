@@ -14,6 +14,7 @@ const OfferCard = (props) => {
     <article
       onMouseOver={() => onMouseOver(offer)}
       className="cities__place-card place-card"
+      id={id}
     >
       {premiumTag}
       <div className="cities__image-wrapper place-card__image-wrapper">
@@ -59,6 +60,7 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
