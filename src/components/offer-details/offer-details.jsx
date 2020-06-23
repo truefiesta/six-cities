@@ -3,21 +3,14 @@ import PropTypes from "prop-types";
 import {PropertyType} from "../../const.js";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
-
 const MAX_PHOTOS = 6;
-
-const PremiumTag = () => {
-  return (
-    <div className="property__mark">
-      <span>Premium</span>
-    </div>
-  );
-};
 
 const OfferDetails = (props) => {
   const {offer} = props;
   const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
-  const premiumTag = isPremium ? <PremiumTag/> : ``;
+  const premiumTag = isPremium
+    ? (<div className="property__mark"><span>Premium</span></div>)
+    : null;
   const bedroomsText = bedrooms > 1 ? `${bedrooms} Bedrooms` : `${bedrooms} Bedroom`;
   const guestsText = guests > 1 ? `Max ${guests} adults` : `Max ${guests} adult`;
 
