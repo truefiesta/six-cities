@@ -5,12 +5,12 @@ import Main from "../main/main.jsx";
 const onOfferDetailsOpen = () => {};
 
 const App = (props) => {
-  const {offersCount, offerTitles} = props;
+  const {offersCount, offers} = props;
 
   return (
     <Main
       offersCount={offersCount}
-      offerTitles={offerTitles}
+      offers={offers}
       onOfferDetailsOpen={onOfferDetailsOpen}
     />
   );
@@ -18,9 +18,7 @@ const App = (props) => {
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offerTitles: PropTypes.arrayOf(
-      PropTypes.string
-  ).isRequired,
+  offers: PropTypes.array.isRequired,
 };
 
 export default App;

@@ -1,10 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-
-const Settings = {
-  OFFERS_COUNT: 312
-};
+import OffersList from "./offers-list.jsx";
 
 const offers = [
   {
@@ -49,22 +45,13 @@ const offers = [
   }
 ];
 
-// const offerTitles = [
-//   `Beautiful & luxurious apartment at great location`,
-//   `Wood and stone place`,
-//   `Canal View Prinsengracht`,
-//   `Nice, cozy, warm big bed apartment`,
-//   `Wood and stone place`
-// ];
-
-describe(`src/Main.jsx`, () => {
-  describe(`when the offersCount is not zero and the offerTitles is non-empty array`, () => {
+describe(`src/offers-list.jsx`, () => {
+  describe(`when the offers is a non-empty array`, () => {
     it(`should render with data`, () => {
       const tree = renderer.create(
-          <Main
-            offersCount={Settings.OFFERS_COUNT}
+          <OffersList
             offers={offers}
-            onOfferDetailsOpen={() => {}}
+            onOfferDetailsOpen={() => null}
           />
       )
       .toJSON();
@@ -72,13 +59,13 @@ describe(`src/Main.jsx`, () => {
       expect(tree).toMatchSnapshot();
     });
   });
-  describe(`when the offersCount is zero and the offerTitles empty array`, () => {
-    it(`should render without data`, () => {
+
+  describe(`when the offers is an empty array`, () => {
+    it(`should render with no data`, () => {
       const tree = renderer.create(
-          <Main
-            offersCount={0}
+          <OffersList
             offers={[]}
-            onOfferDetailsOpen={() => {}}
+            onOfferDetailsOpen={() => null}
           />
       )
       .toJSON();
