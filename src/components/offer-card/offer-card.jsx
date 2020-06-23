@@ -4,7 +4,7 @@ import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
 const OfferCard = (props) => {
   const {offer, onOfferDetailsOpen, onMouseOver} = props;
-  const {image, price, name, type, rating, isPremium} = offer;
+  const {id, image, price, name, type, rating, isPremium} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
     : null;
