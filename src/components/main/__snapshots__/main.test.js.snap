@@ -333,7 +333,6 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
               className="cities__place-card place-card"
               onMouseOver={[Function]}
             >
-              
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
@@ -432,7 +431,6 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
               className="cities__place-card place-card"
               onMouseOver={[Function]}
             >
-              
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
