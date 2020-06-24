@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {EstateType} from "../../const.js";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
+import {nanoid} from 'nanoid';
 
 const MAX_PHOTOS = 6;
 
@@ -18,9 +19,9 @@ const OfferDetails = (props) => {
     <section className="property">
       <div className="property__gallery-container container">
         <div className="property__gallery">
-          {photos.slice(0, MAX_PHOTOS).map((photo, i) => {
+          {photos.slice(0, MAX_PHOTOS).map((photo) => {
             return (
-              <div key={`${i}-${photo.src}`} className="property__image-wrapper">
+              <div key={nanoid()} className="property__image-wrapper">
                 <img className="property__image" src={photo.src} alt={photo.alt}/>
               </div>
             );
@@ -66,9 +67,9 @@ const OfferDetails = (props) => {
           <div className="property__inside">
             <h2 className="property__inside-title">What&apos;s inside</h2>
             <ul className="property__inside-list">
-              {equipment.map((item, i) => {
+              {equipment.map((item) => {
                 return (
-                  <li key={`${i}-${item}`} className="property__inside-item">
+                  <li key={nanoid()} className="property__inside-item">
                     {item}
                   </li>
                 );
@@ -86,9 +87,9 @@ const OfferDetails = (props) => {
               </span>
             </div>
             <div className="property__description">
-              {description.map((parapraph, i) => {
+              {description.map((parapraph) => {
                 return (
-                  <p key={`${i}-p${Math.random}`} className="property__text">
+                  <p key={nanoid()} className="property__text">
                     {parapraph}
                   </p>
                 );
