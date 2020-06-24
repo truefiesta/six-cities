@@ -1,8 +1,5 @@
 export const convertStarRatingToWidthPercent = (rating) => {
-  const starRatingPercents = [0, 20, 40, 60, 80, 100];
-  const percentIndex = Math.round(rating);
-
-  return starRatingPercents[percentIndex];
+  return Math.round(rating) * 20;
 };
 
 export const capitalize = (text) => {
