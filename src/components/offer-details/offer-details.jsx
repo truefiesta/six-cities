@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {PropertyType} from "../../const.js";
+import {EstateType} from "../../const.js";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
 const MAX_PHOTOS = 6;
@@ -185,7 +185,7 @@ OfferDetails.propTypes = {
     ).isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(PropTypes.string).isRequired,
-    type: PropTypes.oneOf([PropertyType.APARTMENT, PropertyType.ROOM, PropertyType.HOTEL, PropertyType.HOUSE]).isRequired,
+    type: PropTypes.oneOf([EstateType.APARTMENT, EstateType.ROOM, EstateType.HOTEL, EstateType.HOUSE]).isRequired,
     rating: PropTypes.number.isRequired,
     bedrooms: PropTypes.number.isRequired,
     guests: PropTypes.number.isRequired,

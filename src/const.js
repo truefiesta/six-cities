@@ -1,4 +1,4 @@
-export const PropertyType = {
+export const EstateType = {
   APARTMENT: `apartment`,
   HOUSE: `house`,
   HOTEL: `hotel`,
