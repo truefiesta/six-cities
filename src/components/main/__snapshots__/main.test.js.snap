@@ -226,6 +226,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
           >
             <article
               className="cities__place-card place-card"
+              id="offer-1"
               onMouseOver={[Function]}
             >
               <div
@@ -331,6 +332,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
             </article>
             <article
               className="cities__place-card place-card"
+              id="offer-2"
               onMouseOver={[Function]}
             >
               <div
@@ -423,12 +425,13 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
                 <p
                   className="place-card__type"
                 >
-                  Private room
+                  Room
                 </p>
               </div>
             </article>
             <article
               className="cities__place-card place-card"
+              id="offer-3"
               onMouseOver={[Function]}
             >
               <div
@@ -527,6 +530,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
             </article>
             <article
               className="cities__place-card place-card"
+              id="offer-4"
               onMouseOver={[Function]}
             >
               <div

@@ -1,6 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import Enzyme, {mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import App from "./app.jsx";
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const Settings = {
   OFFERS_COUNT: 312
@@ -221,41 +226,20 @@ const offers = [
   }
 ];
 
-// const offerTitles = [
-//   `Beautiful & luxurious apartment at great location`,
-//   `Wood and stone place`,
-//   `Canal View Prinsengracht`,
-//   `Nice, cozy, warm big bed apartment`,
-//   `Wood and stone place`
-// ];
+describe(`App`, () => {
+  it(`should update offer in the state when an offer header clicked`, () => {
+    const app = mount(
+        <App
+          offersCount={Settings.OFFERS_COUNT}
+          offers={offers}
+        />
+    );
 
-describe(`src/Main.jsx`, () => {
-  describe(`when the offersCount is not zero and the offerTitles is non-empty array`, () => {
-    it(`should render with data`, () => {
-      const tree = renderer.create(
-          <Main
-            offersCount={Settings.OFFERS_COUNT}
-            offers={offers}
-            onOfferDetailsOpen={() => {}}
-          />
-      )
-      .toJSON();
+    const offer = offers[2];
+    const card = app.find(`#${offer.id}`);
+    const cardHeader = card.find(`h2.place-card__name a`);
+    cardHeader.simulate(`click`);
 
-      expect(tree).toMatchSnapshot();
-    });
-  });
-  describe(`when the offersCount is zero and the offerTitles empty array`, () => {
-    it(`should render without data`, () => {
-      const tree = renderer.create(
-          <Main
-            offersCount={0}
-            offers={[]}
-            onOfferDetailsOpen={() => {}}
-          />
-      )
-      .toJSON();
-
-      expect(tree).toMatchSnapshot();
-    });
+    expect(app.state().clickedOffer).toBe(offer);
   });
 });

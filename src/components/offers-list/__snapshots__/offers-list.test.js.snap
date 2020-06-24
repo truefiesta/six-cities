@@ -4,6 +4,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
 Array [
   <article
     className="cities__place-card place-card"
+    id="offer-1"
     onMouseOver={[Function]}
   >
     <div
@@ -109,6 +110,7 @@ Array [
   </article>,
   <article
     className="cities__place-card place-card"
+    id="offer-2"
     onMouseOver={[Function]}
   >
     <div
@@ -201,12 +203,13 @@ Array [
       <p
         className="place-card__type"
       >
-        Private room
+        Room
       </p>
     </div>
   </article>,
   <article
     className="cities__place-card place-card"
+    id="offer-3"
     onMouseOver={[Function]}
   >
     <div
@@ -305,6 +308,7 @@ Array [
   </article>,
   <article
     className="cities__place-card place-card"
+    id="offer-4"
     onMouseOver={[Function]}
   >
     <div

@@ -1,10 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import Enzyme, {mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import OffersList from "./offers-list.jsx";
 
-const Settings = {
-  OFFERS_COUNT: 312
-};
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const offers = [
   {
@@ -221,41 +222,19 @@ const offers = [
   }
 ];
 
-// const offerTitles = [
-//   `Beautiful & luxurious apartment at great location`,
-//   `Wood and stone place`,
-//   `Canal View Prinsengracht`,
-//   `Nice, cozy, warm big bed apartment`,
-//   `Wood and stone place`
-// ];
+describe(`OffersList`, () => {
+  it(`should update offer in the state when mouse cursor is over the offer card`, () => {
+    const offersList = mount(
+        <OffersList
+          offers={offers}
+          onOfferDetailsOpen={() => null}
+        />
+    );
 
-describe(`src/Main.jsx`, () => {
-  describe(`when the offersCount is not zero and the offerTitles is non-empty array`, () => {
-    it(`should render with data`, () => {
-      const tree = renderer.create(
-          <Main
-            offersCount={Settings.OFFERS_COUNT}
-            offers={offers}
-            onOfferDetailsOpen={() => {}}
-          />
-      )
-      .toJSON();
+    const offer = offers[2];
+    const offercard = offersList.find(`#${offer.id}`);
+    offercard.simulate(`mouseover`);
 
-      expect(tree).toMatchSnapshot();
-    });
-  });
-  describe(`when the offersCount is zero and the offerTitles empty array`, () => {
-    it(`should render without data`, () => {
-      const tree = renderer.create(
-          <Main
-            offersCount={0}
-            offers={[]}
-            onOfferDetailsOpen={() => {}}
-          />
-      )
-      .toJSON();
-
-      expect(tree).toMatchSnapshot();
-    });
+    expect(offersList.state().activeCard).toBe(offer);
   });
 });

@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
 const OfferCard = (props) => {
   const {offer, onOfferDetailsOpen, onMouseOver} = props;
-  const {image, price, name, type, rating, isPremium} = offer;
+  const {id, image, price, name, type, rating, isPremium} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
     : null;
@@ -13,6 +14,7 @@ const OfferCard = (props) => {
     <article
       onMouseOver={() => onMouseOver(offer)}
       className="cities__place-card place-card"
+      id={id}
     >
       {premiumTag}
       <div className="cities__image-wrapper place-card__image-wrapper">
@@ -35,7 +37,7 @@ const OfferCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}}></span>
+            <span style={{width: `${convertStarRatingToWidthPercent(rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -43,14 +45,14 @@ const OfferCard = (props) => {
           <a
             onClick={(evt) => {
               evt.preventDefault();
-              onOfferDetailsOpen();
+              onOfferDetailsOpen(offer);
             }}
             href="#"
           >
             {name}
           </a>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{capitalize(type)}</p>
       </div>
     </article>
   );
@@ -58,6 +60,7 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

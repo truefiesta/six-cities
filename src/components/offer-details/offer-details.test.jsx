@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import OfferCard from "./offer-card.jsx";
+import OfferDetails from "./offer-details.jsx";
 
 const offer = {
   id: `offer-1`,
@@ -55,14 +55,12 @@ const offer = {
   isPremium: true,
 };
 
-describe(`src/offer-card.jsx`, () => {
-  describe(`when the offer contains data`, () => {
+describe(`src/offers-details.jsx`, () => {
+  describe(`when the offers is a non-empty array`, () => {
     it(`should render with data`, () => {
       const tree = renderer.create(
-          <OfferCard
+          <OfferDetails
             offer={offer}
-            onMouseOver={() => null}
-            onOfferDetailsOpen={() => null}
           />
       )
       .toJSON();
