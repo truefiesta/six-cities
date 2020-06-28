@@ -47,6 +47,8 @@ const offers = [
     ],
     price: 120,
     rating: 4.1,
+    city: `Amsterdam`,
+    coordinates: [52.3909553943508, 4.85309666406198],
     name: `Beautiful & luxurious apartment at great location`,
     description: [
       `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -103,6 +105,8 @@ const offers = [
     ],
     price: 80,
     rating: 4.2,
+    city: `Amsterdam`,
+    coordinates: [52.369553943508, 4.85309666406198],
     name: `Wood and stone place`,
     description: [
       `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -155,6 +159,8 @@ const offers = [
     ],
     price: 132,
     rating: 4.3,
+    city: `Amsterdam`,
+    coordinates: [52.3909553943508, 4.929309666406198],
     name: `Canal view Prinsengracht`,
     description: [
       `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -207,6 +213,8 @@ const offers = [
     ],
     price: 180,
     rating: 5,
+    city: `Amsterdam`,
+    coordinates: [52.3809553943508, 4.939309666406198],
     name: `Nice, cozy, warm big bed apartment`,
     description: [
       `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
