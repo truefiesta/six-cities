@@ -229,13 +229,13 @@ const offers = [
   }
 ];
 
-// const offerTitles = [
-//   `Beautiful & luxurious apartment at great location`,
-//   `Wood and stone place`,
-//   `Canal View Prinsengracht`,
-//   `Nice, cozy, warm big bed apartment`,
-//   `Wood and stone place`
-// ];
+jest.mock(`../map/map.jsx`, () => () => {
+  return (
+    <div className="cities__right-section">
+      <section className="cities__map map"/>
+    </div>
+  );
+});
 
 describe(`src/App.jsx`, () => {
   describe(`when the offersCount is not zero and the offers is non-empty array`, () => {
