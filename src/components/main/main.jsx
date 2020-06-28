@@ -104,7 +104,9 @@ const Main = (props) => {
                 />
               </div>
             </section>
-            <Map/>
+            <Map
+              offers={offers}
+            />
           </div>
         </div>
       </main>

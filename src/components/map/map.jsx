@@ -1,39 +1,47 @@
 import React, {PureComponent, createRef} from "react";
 import leaflet from "leaflet";
-// import PropTypes from "prop-types";
+import {CityCoordinates, CityName} from "../../const.js";
+import PropTypes from "prop-types";
 
-const cityAmsterdam = [52.38333, 4.9];
 const zoom = 12;
 const icon = leaflet.icon({
   iconUrl: `img/pin.svg`,
   iconSize: [27, 39],
 });
-const offerCords = [52.3709553943508, 4.89309666406198];
 
 class Map extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._currentCity = CityName.AMSTERDAM;
     this._mapRef = createRef();
   }
 
   _addMarkers(map) {
-    leaflet
-      .marker(offerCords, {icon})
-      .addTo(map);
+    const {offers} = this.props;
+
+    offers.filter((offer) => {
+      const {city, coordinates} = offer;
+
+      if (city === this._currentCity) {
+        leaflet
+        .marker(coordinates, {icon})
+        .addTo(map);
+      }
+    });
   }
 
   componentDidMount() {
     const mapRef = this._mapRef.current;
 
     const map = leaflet.map(mapRef, {
-      center: cityAmsterdam,
+      center: CityCoordinates[this._currentCity],
       zoom,
       zoomControl: false,
       marker: true,
     });
 
-    map.setView(cityAmsterdam, zoom);
+    map.setView(CityCoordinates[this._currentCity], zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -56,7 +64,14 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        city: PropTypes.string.isRequired,
+        coordinates: PropTypes.arrayOf(
+            PropTypes.number
+        ).isRequired,
+      }).isRequired
+  ).isRequired,
 };
 
 export default Map;
