@@ -642,7 +642,11 @@ exports[`src/App.jsx when the offersCount is not zero and the offers is non-empt
         >
           <section
             className="cities__map map"
-          />
+          >
+            <div
+              id="map"
+            />
+          </section>
         </div>
       </div>
     </div>
@@ -882,7 +886,11 @@ exports[`src/App.jsx when the offersCount is zero and the offerTitles empty arra
         >
           <section
             className="cities__map map"
-          />
+          >
+            <div
+              id="map"
+            />
+          </section>
         </div>
       </div>
     </div>
