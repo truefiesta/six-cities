@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import {EstateType} from "../../const.js";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
+import Map from "../map/map.jsx";
 
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
   const {offer} = props;
-  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews} = offer;
+  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews, offersNearby} = offer;
   const reviewsCount = reviews.length;
   const premiumTag = isPremium
     ? (<div className="property__mark"><span>Premium</span></div>)
@@ -151,7 +152,11 @@ const OfferDetails = (props) => {
           </section>
         </div>
       </div>
-      <section className="property__map map"></section>
+      <section className="property__map map">
+        <Map
+          offers={offersNearby}
+        />
+      </section>
     </section>
   );
 };
@@ -187,6 +192,15 @@ OfferDetails.propTypes = {
             name: PropTypes.string.isRequired,
           }).isRequired,
           date: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    offersNearby: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          city: PropTypes.string.isRequired,
+          coordinates: PropTypes.arrayOf(
+              PropTypes.number
+          ).isRequired,
         })
     ).isRequired,
   }),

@@ -63,6 +63,23 @@ export default [
         date: `2019-04-24`,
       },
     ],
+    offersNearby: [
+      {
+        id: `offer-2`,
+        city: `Amsterdam`,
+        coordinates: [52.369553943508, 4.85309666406198],
+      },
+      {
+        id: `offer-3`,
+        city: `Amsterdam`,
+        coordinates: [52.3909553943508, 4.929309666406198],
+      },
+      {
+        id: `offer-4`,
+        city: `Amsterdam`,
+        coordinates: [52.3809553943508, 4.939309666406198],
+      },
+    ],
   },
   {
     id: `offer-2`,
@@ -139,6 +156,23 @@ export default [
           name: `Taylor`,
         },
         date: `2019-03-17`,
+      },
+    ],
+    offersNearby: [
+      {
+        id: `offer-1`,
+        city: `Amsterdam`,
+        coordinates: [52.3909553943508, 4.85309666406198],
+      },
+      {
+        id: `offer-3`,
+        city: `Amsterdam`,
+        coordinates: [52.3909553943508, 4.929309666406198],
+      },
+      {
+        id: `offer-4`,
+        city: `Amsterdam`,
+        coordinates: [52.3809553943508, 4.939309666406198],
       },
     ],
   },
@@ -222,6 +256,23 @@ export default [
           name: `Dani`,
         },
         date: `2019-06-14`,
+      },
+    ],
+    offersNearby: [
+      {
+        id: `offer-1`,
+        city: `Amsterdam`,
+        coordinates: [52.3909553943508, 4.85309666406198],
+      },
+      {
+        id: `offer-2`,
+        city: `Amsterdam`,
+        coordinates: [52.369553943508, 4.85309666406198],
+      },
+      {
+        id: `offer-4`,
+        city: `Amsterdam`,
+        coordinates: [52.3809553943508, 4.939309666406198],
       },
     ],
   },
@@ -386,6 +437,23 @@ export default [
           name: `Amanda`,
         },
         date: `2019-05-07`,
+      },
+    ],
+    offersNearby: [
+      {
+        id: `offer-1`,
+        city: `Amsterdam`,
+        coordinates: [52.3909553943508, 4.85309666406198],
+      },
+      {
+        id: `offer-2`,
+        city: `Amsterdam`,
+        coordinates: [52.369553943508, 4.85309666406198],
+      },
+      {
+        id: `offer-3`,
+        city: `Amsterdam`,
+        coordinates: [52.3909553943508, 4.929309666406198],
       },
     ],
   }
