@@ -1,15 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import App from "./app.jsx";
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-const Settings = {
-  OFFERS_COUNT: 312
-};
+import Map from "./map.jsx";
 
 const offers = [
   {
@@ -234,20 +226,25 @@ const offers = [
   }
 ];
 
-describe(`App`, () => {
-  it(`should update offer in the state when an offer header clicked`, () => {
-    const app = mount(
-        <App
-          offersCount={Settings.OFFERS_COUNT}
-          offers={offers}
-        />
-    );
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
-    const offer = offers[2];
-    const card = app.find(`#${offer.id}`);
-    const cardHeader = card.find(`h2.place-card__name a`);
-    cardHeader.simulate(`click`);
+describe(`src/Map.jsx`, () => {
+  describe(`when offers is a non-empty array`, () => {
+    it(`should render with markers`, () => {
 
-    expect(app.state().clickedOffer).toBe(offer);
+      const div = global.document.createElement(`div`);
+      global.document.body.appendChild(div);
+
+      const tree = mount(
+          <Map
+            offers={offers}
+          />,
+          {attachTo: div}
+      );
+
+      expect(tree.getDOMNode()).toMatchSnapshot();
+    });
   });
 });
