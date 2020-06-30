@@ -1,7 +1,7 @@
 export default [
   {
     id: `offer-1`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/room.jpg`,
     photos: [
       {
         src: `img/room.jpg`,
@@ -63,10 +63,13 @@ export default [
         date: `2019-04-24`,
       },
     ],
+    offersNearbyIds: [
+      `offer-2`, `offer-3`, `offer-4`
+    ],
   },
   {
     id: `offer-2`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/apartment-02.jpg`,
     photos: [
       {
         src: `img/apartment-03.jpg`,
@@ -141,10 +144,13 @@ export default [
         date: `2019-03-17`,
       },
     ],
+    offersNearbyIds: [
+      `offer-1`, `offer-3`, `offer-4`
+    ],
   },
   {
     id: `offer-3`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/apartment-03.jpg`,
     photos: [
       {
         src: `img/room.jpg`,
@@ -224,10 +230,13 @@ export default [
         date: `2019-06-14`,
       },
     ],
+    offersNearbyIds: [
+      `offer-2`, `offer-1`, `offer-4`
+    ],
   },
   {
     id: `offer-4`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/apartment-01.jpg`,
     photos: [
       {
         src: `img/room.jpg`,
@@ -387,6 +396,9 @@ export default [
         },
         date: `2019-05-07`,
       },
+    ],
+    offersNearbyIds: [
+      `offer-2`, `offer-3`, `offer-1`
     ],
   }
 ];

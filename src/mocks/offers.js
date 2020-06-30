@@ -1,7 +1,7 @@
 export default [
   {
     id: `offer-1`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/room.jpg`,
     photos: [
       {
         src: `img/room.jpg`,
@@ -63,27 +63,13 @@ export default [
         date: `2019-04-24`,
       },
     ],
-    offersNearby: [
-      {
-        id: `offer-2`,
-        city: `Amsterdam`,
-        coordinates: [52.369553943508, 4.85309666406198],
-      },
-      {
-        id: `offer-3`,
-        city: `Amsterdam`,
-        coordinates: [52.3909553943508, 4.929309666406198],
-      },
-      {
-        id: `offer-4`,
-        city: `Amsterdam`,
-        coordinates: [52.3809553943508, 4.939309666406198],
-      },
+    offersNearbyIds: [
+      `offer-2`, `offer-3`, `offer-4`
     ],
   },
   {
     id: `offer-2`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/apartment-02.jpg`,
     photos: [
       {
         src: `img/apartment-03.jpg`,
@@ -158,27 +144,13 @@ export default [
         date: `2019-03-17`,
       },
     ],
-    offersNearby: [
-      {
-        id: `offer-1`,
-        city: `Amsterdam`,
-        coordinates: [52.3909553943508, 4.85309666406198],
-      },
-      {
-        id: `offer-3`,
-        city: `Amsterdam`,
-        coordinates: [52.3909553943508, 4.929309666406198],
-      },
-      {
-        id: `offer-4`,
-        city: `Amsterdam`,
-        coordinates: [52.3809553943508, 4.939309666406198],
-      },
+    offersNearbyIds: [
+      `offer-1`, `offer-3`, `offer-4`
     ],
   },
   {
     id: `offer-3`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/apartment-03.jpg`,
     photos: [
       {
         src: `img/room.jpg`,
@@ -258,27 +230,13 @@ export default [
         date: `2019-06-14`,
       },
     ],
-    offersNearby: [
-      {
-        id: `offer-1`,
-        city: `Amsterdam`,
-        coordinates: [52.3909553943508, 4.85309666406198],
-      },
-      {
-        id: `offer-2`,
-        city: `Amsterdam`,
-        coordinates: [52.369553943508, 4.85309666406198],
-      },
-      {
-        id: `offer-4`,
-        city: `Amsterdam`,
-        coordinates: [52.3809553943508, 4.939309666406198],
-      },
+    offersNearbyIds: [
+      `offer-2`, `offer-1`, `offer-4`
     ],
   },
   {
     id: `offer-4`,
-    image: `http://lorempixel.com/400/200/`,
+    image: `img/apartment-01.jpg`,
     photos: [
       {
         src: `img/room.jpg`,
@@ -439,22 +397,8 @@ export default [
         date: `2019-05-07`,
       },
     ],
-    offersNearby: [
-      {
-        id: `offer-1`,
-        city: `Amsterdam`,
-        coordinates: [52.3909553943508, 4.85309666406198],
-      },
-      {
-        id: `offer-2`,
-        city: `Amsterdam`,
-        coordinates: [52.369553943508, 4.85309666406198],
-      },
-      {
-        id: `offer-3`,
-        city: `Amsterdam`,
-        coordinates: [52.3909553943508, 4.929309666406198],
-      },
+    offersNearbyIds: [
+      `offer-2`, `offer-3`, `offer-1`
     ],
   }
 ];
