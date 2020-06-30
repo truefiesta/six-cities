@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list.jsx";
 import Map from "../map/map.jsx";
+import {OfferClassNamesForPageType} from "../../const.js";
 
 const Main = (props) => {
   const {offersCount, offers, onOfferDetailsOpen} = props;
@@ -97,16 +98,19 @@ const Main = (props) => {
                 </select>
                 --> */}
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <OffersList
-                  offers={offers}
-                  onOfferDetailsOpen={onOfferDetailsOpen}
-                />
-              </div>
+              <OffersList
+                offers={offers}
+                onOfferDetailsOpen={onOfferDetailsOpen}
+                cardStyle={OfferClassNamesForPageType.main}
+              />
             </section>
-            <Map
-              offers={offers}
-            />
+            <div className="cities__right-section">
+              <section className="cities__map map">
+                <Map
+                  offers={offers}
+                />
+              </section>
+            </div>
           </div>
         </div>
       </main>

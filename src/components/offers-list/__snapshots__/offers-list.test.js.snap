@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/offers-list.jsx when the offers is a non-empty array should render with data 1`] = `
-Array [
+<div
+  className="cities__places-list tabs__content places__list"
+>
   <article
     className="cities__place-card place-card"
     id="offer-1"
@@ -107,7 +109,7 @@ Array [
         Apartment
       </p>
     </div>
-  </article>,
+  </article>
   <article
     className="cities__place-card place-card"
     id="offer-2"
@@ -206,7 +208,7 @@ Array [
         Room
       </p>
     </div>
-  </article>,
+  </article>
   <article
     className="cities__place-card place-card"
     id="offer-3"
@@ -305,7 +307,7 @@ Array [
         Apartment
       </p>
     </div>
-  </article>,
+  </article>
   <article
     className="cities__place-card place-card"
     id="offer-4"
@@ -411,9 +413,15 @@ Array [
         Apartment
       </p>
     </div>
-  </article>,
-  ";",
-]
+  </article>
+  ;
+</div>
 `;
 
-exports[`src/offers-list.jsx when the offers is an empty array should render with no data 1`] = `";"`;
+exports[`src/offers-list.jsx when the offers is an empty array should render with no data 1`] = `
+<div
+  className="cities__places-list tabs__content places__list"
+>
+  ;
+</div>
+`;

@@ -60,6 +60,14 @@ const offer = {
   isPremium: true,
 };
 
+const cardStyle = {
+  main: {
+    article: `cities__place-card`,
+    image: `cities__image-wrapper`,
+    list: `cities__places-list tabs__content`,
+  },
+};
+
 describe(`OfferCard`, () => {
   it(`Handler gets offer id on mouse over`, () => {
     const onOfferDetailsOpen = () => null;
@@ -70,6 +78,7 @@ describe(`OfferCard`, () => {
           offer={offer}
           onMouseOver={onMouseOver}
           onOfferDetailsOpen={onOfferDetailsOpen}
+          cardStyle={cardStyle.main}
         />
     );
 

@@ -222,12 +222,21 @@ const offers = [
   }
 ];
 
+const cardStyle = {
+  main: {
+    article: `cities__place-card`,
+    image: `cities__image-wrapper`,
+    list: `cities__places-list tabs__content`,
+  },
+};
+
 describe(`OffersList`, () => {
   it(`should update offer in the state when mouse cursor is over the offer card`, () => {
     const offersList = mount(
         <OffersList
           offers={offers}
           onOfferDetailsOpen={() => null}
+          cardStyle={cardStyle.main}
         />
     );
 

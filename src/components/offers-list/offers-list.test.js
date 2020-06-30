@@ -217,6 +217,14 @@ const offers = [
   }
 ];
 
+const cardStyle = {
+  main: {
+    article: `cities__place-card`,
+    image: `cities__image-wrapper`,
+    list: `cities__places-list tabs__content`,
+  },
+};
+
 describe(`src/offers-list.jsx`, () => {
   describe(`when the offers is a non-empty array`, () => {
     it(`should render with data`, () => {
@@ -224,6 +232,7 @@ describe(`src/offers-list.jsx`, () => {
           <OffersList
             offers={offers}
             onOfferDetailsOpen={() => null}
+            cardStyle={cardStyle.main}
           />
       )
       .toJSON();
@@ -238,6 +247,7 @@ describe(`src/offers-list.jsx`, () => {
           <OffersList
             offers={[]}
             onOfferDetailsOpen={() => null}
+            cardStyle={cardStyle.main}
           />
       )
       .toJSON();

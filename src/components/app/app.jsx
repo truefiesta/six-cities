@@ -25,7 +25,9 @@ class App extends PureComponent {
     if (clickedOffer) {
       return (
         <OfferDetails
+          offers={offers}
           offer={clickedOffer}
+          onOfferDetailsOpen={this._handleCardHeaderClick}
         />
       );
     }
@@ -50,7 +52,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-offer-details">
             <OfferDetails
+              offers={offers}
               offer={offers[0]}
+              onOfferDetailsOpen={this._handleCardHeaderClick}
             />
           </Route>
         </Switch>
