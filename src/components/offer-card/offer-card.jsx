@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
 const OfferCard = (props) => {
-  const {offer, onOfferDetailsOpen, onMouseOver} = props;
+  const {offer, onOfferDetailsOpen, onMouseOver, cardStyle} = props;
   const {id, image, price, name, type, rating, isPremium} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
@@ -13,11 +13,11 @@ const OfferCard = (props) => {
   return (
     <article
       onMouseOver={() => onMouseOver(offer)}
-      className="cities__place-card place-card"
+      className={`${cardStyle.article} place-card`}
       id={id}
     >
       {premiumTag}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${cardStyle.image} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
         </a>
@@ -70,6 +70,10 @@ OfferCard.propTypes = {
   }).isRequired,
   onMouseOver: PropTypes.func.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
+  cardStyle: PropTypes.shape({
+    article: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired
 };
 
 export default OfferCard;

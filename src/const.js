@@ -17,3 +17,16 @@ export const CityName = {
 export const CityCoordinates = {
   [CityName.AMSTERDAM]: [52.38333, 4.9],
 };
+
+export const OfferClassNamesForPageType = {
+  main: {
+    article: `cities__place-card`,
+    image: `cities__image-wrapper`,
+    list: `cities__places-list tabs__content`,
+  },
+  details: {
+    article: `near-places__card`,
+    image: `near-places__image-wrapper`,
+    list: `near-places__list`,
+  }
+};

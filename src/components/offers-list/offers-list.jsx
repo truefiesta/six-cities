@@ -16,10 +16,10 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferDetailsOpen} = this.props;
+    const {offers, onOfferDetailsOpen, cardStyle} = this.props;
 
     return (
-      <React.Fragment>
+      <div className={`${cardStyle.list} places__list`}>
         {offers.map((offer) => {
           return (
             <OfferCard
@@ -27,10 +27,11 @@ class OffersList extends PureComponent {
               offer={offer}
               onMouseOver={this._handleCardMouseOver}
               onOfferDetailsOpen={onOfferDetailsOpen}
+              cardStyle={cardStyle}
             />
           );
         })};
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -48,6 +49,11 @@ OffersList.propTypes = {
       }).isRequired
   ).isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
+  cardStyle: PropTypes.shape({
+    article: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    list: PropTypes.string.isRequired,
+  }).isRequired
 };
 
 export default OffersList;

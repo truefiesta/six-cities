@@ -4,6 +4,7 @@ import {EstateType} from "../../const.js";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
+import {OfferClassNamesForPageType} from "../../const.js";
 
 const MAX_PHOTOS = 6;
 
