@@ -55,6 +55,14 @@ const offer = {
   isPremium: true,
 };
 
+const cardStyle = {
+  main: {
+    article: `cities__place-card`,
+    image: `cities__image-wrapper`,
+    list: `cities__places-list tabs__content`,
+  },
+};
+
 describe(`src/offer-card.jsx`, () => {
   describe(`when the offer contains data`, () => {
     it(`should render with data`, () => {
@@ -63,6 +71,7 @@ describe(`src/offer-card.jsx`, () => {
             offer={offer}
             onMouseOver={() => null}
             onOfferDetailsOpen={() => null}
+            cardStyle={cardStyle.main}
           />
       )
       .toJSON();

@@ -222,7 +222,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
             </ul>
           </form>
           <div
-            className="cities__places-list places__list tabs__content"
+            className="cities__places-list tabs__content places__list"
           >
             <article
               className="cities__place-card place-card"
@@ -246,7 +246,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="http://lorempixel.com/400/200/"
+                    src="img/room.jpg"
                     width="260"
                   />
                 </a>
@@ -345,7 +345,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="http://lorempixel.com/400/200/"
+                    src="img/apartment-02.jpg"
                     width="260"
                   />
                 </a>
@@ -444,7 +444,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="http://lorempixel.com/400/200/"
+                    src="img/apartment-03.jpg"
                     width="260"
                   />
                 </a>
@@ -550,7 +550,7 @@ exports[`src/Main.jsx when the offersCount is not zero and the offerTitles is no
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="http://lorempixel.com/400/200/"
+                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -876,7 +876,7 @@ exports[`src/Main.jsx when the offersCount is zero and the offerTitles empty arr
             </ul>
           </form>
           <div
-            className="cities__places-list places__list tabs__content"
+            className="cities__places-list tabs__content places__list"
           >
             ;
           </div>
