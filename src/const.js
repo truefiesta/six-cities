@@ -16,6 +16,7 @@ export const CityName = {
 
 export const CityCoordinates = {
   [CityName.AMSTERDAM]: [52.38333, 4.9],
+  [CityName.PARIS]: [48.864716, 2.35],
 };
 
 export const OfferClassNamesForPageType = {
