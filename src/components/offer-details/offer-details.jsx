@@ -20,7 +20,7 @@ const getOffersNearby = (allOffers, offersIds) => {
 };
 
 const OfferDetails = (props) => {
-  const {offers, offer, onOfferDetailsOpen} = props;
+  const {city, offers, offer, onOfferDetailsOpen} = props;
   const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews, offersNearbyIds} = offer;
   const reviewsCount = reviews.length;
   const premiumTag = isPremium
@@ -169,6 +169,7 @@ const OfferDetails = (props) => {
         <section className="property__map map">
           <Map
             offers={offersNearby}
+            city={city}
           />
         </section>
       </section>
@@ -187,6 +188,7 @@ const OfferDetails = (props) => {
 };
 
 OfferDetails.propTypes = {
+  city: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     photos: PropTypes.arrayOf(
