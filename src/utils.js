@@ -14,3 +14,7 @@ export const capitalize = (text) => {
 export const formatDate = (date) => {
   return moment(date, `YYYY-MM-DD`).format(`MMMM D, YYYY`);
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
