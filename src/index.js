@@ -1,24 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import {reducer, ActionCreator} from "./reducer.js";
 import offers from "./mocks/offers.js";
 
-const Settings = {
-  OFFERS_COUNT: 312
-};
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
-// const offerTitles = [
-//   `Beautiful & luxurious apartment at great location`,
-//   `Wood and stone place`,
-//   `Canal View Prinsengracht`,
-//   `Nice, cozy, warm big bed apartment`,
-//   `Wood and stone place`
-// ];
+store.dispatch(ActionCreator.changeCity(offers[0].city));
+store.dispatch(ActionCreator.setAllOffers(offers));
 
 ReactDOM.render(
-    <App
-      offersCount={Settings.OFFERS_COUNT}
-      offers={offers}
-    />,
+    <Provider store={store}>
+      <App/>
+    </Provider>,
     document.querySelector(`#root`)
 );
