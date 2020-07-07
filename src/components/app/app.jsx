@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
+import {connect} from "react-redux";
 
 class App extends PureComponent {
   constructor(props) {
@@ -19,12 +20,13 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {offersCount, offers} = this.props;
+    const {city, offers} = this.props;
     const {clickedOffer} = this.state;
 
     if (clickedOffer) {
       return (
         <OfferDetails
+          city={city}
           offers={offers}
           offer={clickedOffer}
           onOfferDetailsOpen={this._handleCardHeaderClick}
@@ -34,7 +36,7 @@ class App extends PureComponent {
 
     return (
       <Main
-        offersCount={offersCount}
+        city={city}
         offers={offers}
         onOfferDetailsOpen={this._handleCardHeaderClick}
       />
@@ -42,7 +44,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {city, offers} = this.props;
 
     return (
       <BrowserRouter>
@@ -52,6 +54,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-offer-details">
             <OfferDetails
+              city={city}
               offers={offers}
               offer={offers[0]}
               onOfferDetailsOpen={this._handleCardHeaderClick}
@@ -61,12 +64,17 @@ class App extends PureComponent {
       </BrowserRouter>
     );
   }
-
 }
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
+  city: PropTypes.string.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  city: state.city,
+});
+
+export {App};
+export default connect(mapStateToProps, null)(App);
