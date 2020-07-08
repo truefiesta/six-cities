@@ -1,13 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import testMocks from "../../test-mocks/test-mocks.js";
-
-const Settings = {
-  OFFERS_COUNT: 312
-};
+import {CityName} from "../../const.js";
 
 const offers = testMocks;
+
+const mockStore = configureStore([]);
 
 jest.mock(`../map/map.jsx`, () => () => {
   return (
@@ -16,26 +17,17 @@ jest.mock(`../map/map.jsx`, () => () => {
 });
 
 describe(`src/App.jsx`, () => {
-  describe(`when the offersCount is not zero and the offers is non-empty array`, () => {
+  describe(`when the city is chosen and the offers is non-empty array`, () => {
     it(`should render with data`, () => {
-      const tree = renderer.create(
-          <App
-            offersCount={Settings.OFFERS_COUNT}
-            offers={offers}
-          />
-      )
-      .toJSON();
+      const store = mockStore({
+        city: CityName.AMSTERDAM,
+        offers,
+      });
 
-      expect(tree).toMatchSnapshot();
-    });
-  });
-  describe(`when the offersCount is zero and the offerTitles empty array`, () => {
-    it(`should render without data`, () => {
       const tree = renderer.create(
-          <App
-            offersCount={0}
-            offers={[]}
-          />
+          <Provider store={store}>
+            <App/>
+          </Provider>
       )
       .toJSON();
 

@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import OfferDetails from "./offer-details.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
+import {CityName} from "../../const.js";
 
 const offers = testMocks;
 
@@ -47,6 +48,7 @@ describe(`src/offers-details.jsx`, () => {
     it(`should render with data`, () => {
       const tree = renderer.create(
           <OfferDetails
+            city={CityName.AMSTERDAM}
             offers={offers}
             offer={offer}
             onOfferDetailsOpen={() => null}

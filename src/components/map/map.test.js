@@ -3,6 +3,7 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Map from "./map.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
+import {CityName} from "../../const.js";
 
 const offers = testMocks;
 
@@ -19,6 +20,7 @@ describe(`src/Map.jsx`, () => {
 
       const tree = mount(
           <Map
+            city={CityName.AMSTERDAM}
             offers={offers}
           />,
           {attachTo: div}
