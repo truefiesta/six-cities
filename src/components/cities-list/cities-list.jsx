@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer";
 
-const ACTIVE_CLASS = `tabs__item--active`;
-
 const CitiesList = ({city, cities, onCityClick}) => {
   const sixCities = cities.slice(0, 6);
 
@@ -18,7 +16,7 @@ const CitiesList = ({city, cities, onCityClick}) => {
                 evt.preventDefault();
                 onCityClick(it);
               }}
-              className={`locations__item-link tabs__item ${city === it ? ACTIVE_CLASS : `` }`}
+              className={`locations__item-link tabs__item ${city === it ? `tabs__item--active` : `` }`}
               href="#"
             >
               <span>{it}</span>
