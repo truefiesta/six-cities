@@ -4,12 +4,14 @@ import OffersList from "../offers-list/offers-list.jsx";
 import Map from "../map/map.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
-import {getCities, getCityOffers} from "../../utils.js";
+// import {getCities, getCityOffers} from "../../utils.js";
+import {connect} from "react-redux";
+import {getCityOffers, getCities} from "../../selector.js";
 
 const Main = (props) => {
-  const {city, offers, onOfferDetailsOpen} = props;
-  const cities = getCities(offers);
-  const cityOffers = getCityOffers(city, offers);
+  const {city, cities, cityOffers, onOfferDetailsOpen} = props;
+  // const cities = getCities(offers);
+  // const cityOffers = getCityOffers(city, offers);
   const offersCount = cityOffers.length;
 
   return (
@@ -98,8 +100,16 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
+  // offers: PropTypes.array.isRequired,
+  cities: PropTypes.array.isRequired,
+  cityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  cityOffers: getCityOffers(state),
+  cities: getCities(state),
+});
+
+export {Main};
+export default connect(mapStateToProps, null)(Main);

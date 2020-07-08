@@ -4,6 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import {connect} from "react-redux";
+import {getOffers, getCity} from "../../selector.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -37,7 +38,7 @@ class App extends PureComponent {
     return (
       <Main
         city={city}
-        offers={offers}
+        // offers={offers}
         onOfferDetailsOpen={this._handleCardHeaderClick}
       />
     );
@@ -72,8 +73,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  city: state.city,
+  offers: getOffers(state),
+  city: getCity(state),
 });
 
 export {App};

@@ -19,17 +19,17 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-export const getCityOffers = (city, allOffers) => {
-  return allOffers.filter((offer) => {
-    return offer.city === city;
-  });
-};
+// export const getCityOffers = (city, allOffers) => {
+//   return allOffers.filter((offer) => {
+//     return offer.city === city;
+//   });
+// };
 
-export const getCities = (allOffers) => {
-  const cities = allOffers.reduce((accumulator, offer) => {
-    accumulator[offer.city] = true;
-    return accumulator;
-  }, {});
+// export const getCities = (allOffers) => {
+//   const cities = allOffers.reduce((accumulator, offer) => {
+//     accumulator[offer.city] = true;
+//     return accumulator;
+//   }, {});
 
-  return Object.keys(cities);
-};
+//   return Object.keys(cities);
+// };
