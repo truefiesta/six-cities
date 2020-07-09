@@ -36,7 +36,6 @@ describe(`App`, () => {
   it(`should update offer in the state when an offer header clicked`, () => {
     const app = mount(
         <App
-          // city={CityName.AMSTERDAM}
           offers={offers}
         />,
         {
