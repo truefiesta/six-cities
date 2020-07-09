@@ -23,3 +23,14 @@ export const getCities = (state) => {
 
   return [...new Set(cities)];
 };
+
+export const getOffersNearby = (state, props) => {
+  const offers = getOffers(state);
+  const {offer} = props;
+  const {offersNearbyIds} = offer;
+  const offersNearbyIdsSet = new Set(offersNearbyIds);
+
+  return offers.filter((offerItem) => {
+    return offersNearbyIdsSet.has(offerItem.id);
+  });
+};

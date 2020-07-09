@@ -6,18 +6,9 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
+import {getOffersNearby, getCity} from "../../selectors.js";
 
 const MAX_PHOTOS = 6;
-
-const getOffersNearby = (allOffers, offersIds) => {
-  let offersNearby = [];
-  for (const offerId of offersIds) {
-    const result = allOffers.filter((it) => it.id === offerId);
-    offersNearby = offersNearby.concat(result);
-  }
-
-  return offersNearby;
-};
 
 const OfferDetails = (props) => {
   const {city, offers, offer, onOfferDetailsOpen} = props;
@@ -28,7 +19,6 @@ const OfferDetails = (props) => {
     : null;
   const bedroomsText = bedrooms > 1 ? `${bedrooms} Bedrooms` : `${bedrooms} Bedroom`;
   const guestsText = guests > 1 ? `Max ${guests} adults` : `Max ${guests} adult`;
-  const offersNearby = getOffersNearby(offers, offersNearbyIds);
 
   return (
     <main className="page__main page__main--property">
@@ -189,7 +179,7 @@ const OfferDetails = (props) => {
 
 OfferDetails.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
+  offersNearby: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     photos: PropTypes.arrayOf(
         PropTypes.shape({
