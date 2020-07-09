@@ -4,7 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import {connect} from "react-redux";
-import {getOffers, getCity} from "../../selectors.js";
+import {getOffers} from "../../selectors.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -21,14 +21,11 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {city, offers} = this.props;
     const {clickedOffer} = this.state;
 
     if (clickedOffer) {
       return (
         <OfferDetails
-          city={city}
-          offers={offers}
           offer={clickedOffer}
           onOfferDetailsOpen={this._handleCardHeaderClick}
         />
@@ -43,7 +40,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {city, offers} = this.props;
+    const {offers} = this.props;
 
     return (
       <BrowserRouter>
@@ -53,8 +50,6 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-offer-details">
             <OfferDetails
-              city={city}
-              offers={offers}
               offer={offers[0]}
               onOfferDetailsOpen={this._handleCardHeaderClick}
             />
@@ -67,12 +62,10 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.array.isRequired,
-  city: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
-  city: getCity(state),
 });
 
 export {App};

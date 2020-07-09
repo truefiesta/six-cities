@@ -7,12 +7,13 @@ import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
 import {getOffersNearby, getCity} from "../../selectors.js";
+import {connect} from "react-redux";
 
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {city, offers, offer, onOfferDetailsOpen} = props;
-  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews, offersNearbyIds} = offer;
+  const {city, offersNearby, offer, onOfferDetailsOpen} = props;
+  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews} = offer;
   const reviewsCount = reviews.length;
   const premiumTag = isPremium
     ? (<div className="property__mark"><span>Premium</span></div>)
@@ -219,4 +220,10 @@ OfferDetails.propTypes = {
   onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
-export default OfferDetails;
+const mapStateToProps = (state, ownProps) => ({
+  offersNearby: getOffersNearby(state, ownProps),
+  city: getCity(state),
+});
+
+export {OfferDetails};
+export default connect(mapStateToProps, null)(OfferDetails);
