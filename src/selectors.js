@@ -17,11 +17,9 @@ export const getCityOffers = (state) => {
 
 export const getCities = (state) => {
   const offers = getOffers(state);
+  const cities = offers.map((offer) => {
+    return offer.city;
+  });
 
-  const cities = offers.reduce((accumulator, offer) => {
-    accumulator[offer.city] = true;
-    return accumulator;
-  }, {});
-
-  return Object.keys(cities);
+  return [...new Set(cities)];
 };
