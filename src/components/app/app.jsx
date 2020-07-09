@@ -37,8 +37,6 @@ class App extends PureComponent {
 
     return (
       <Main
-        // city={city}
-        // offers={offers}
         onOfferDetailsOpen={this._handleCardHeaderClick}
       />
     );
