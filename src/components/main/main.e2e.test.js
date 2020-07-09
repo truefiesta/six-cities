@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
 import {CityName} from "../../const.js";
 import {Provider} from "react-redux";
@@ -28,14 +28,18 @@ Wrapper.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+const cities = Object.values(CityName);
+const cityOffers = offers.slice(0, 4);
+
 describe(`Main cards`, () => {
   it(`Card header should be pressed`, () => {
     const onOfferDetailsOpen = jest.fn();
 
     const main = mount(
         <Main
+          cityOffers={cityOffers}
+          cities={cities}
           city={CityName.AMSTERDAM}
-          offers={offers}
           onOfferDetailsOpen={onOfferDetailsOpen}
         />,
         {

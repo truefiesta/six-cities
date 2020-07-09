@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
 import {CityName} from "../../const.js";
 import {Provider} from "react-redux";
@@ -51,6 +51,9 @@ jest.mock(``, () => () => {
   );
 });
 
+const cities = Object.values(CityName);
+const cityOffers = offers.slice(0, 4);
+
 const mockStore = configureStore([]);
 const store = mockStore({});
 
@@ -60,8 +63,9 @@ describe(`src/Main.jsx`, () => {
       const tree = renderer.create(
           <Provider store={store}>
             <Main
+              cityOffers={cityOffers}
+              cities={cities}
               city={CityName.AMSTERDAM}
-              offers={offers}
               onOfferDetailsOpen={() => {}}
             />
           </Provider>

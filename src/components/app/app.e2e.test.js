@@ -12,8 +12,14 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const offers = testMocks;
 const mockStore = configureStore([]);
-const store = mockStore({});
+
+const store = mockStore({
+  city: CityName.AMSTERDAM,
+  offers,
+});
+
 const Wrapper = ({children}) => {
   return (
     <Provider store={store}>
@@ -25,8 +31,6 @@ const Wrapper = ({children}) => {
 Wrapper.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-const offers = testMocks;
 
 describe(`App`, () => {
   it(`should update offer in the state when an offer header clicked`, () => {
