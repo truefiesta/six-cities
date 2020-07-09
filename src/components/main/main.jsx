@@ -6,7 +6,7 @@ import CitiesList from "../cities-list/cities-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
 // import {getCities, getCityOffers} from "../../utils.js";
 import {connect} from "react-redux";
-import {getCityOffers, getCities} from "../../selector.js";
+import {getCityOffers, getCities, getCity} from "../../selectors.js";
 
 const Main = (props) => {
   const {city, cities, cityOffers, onOfferDetailsOpen} = props;
@@ -107,6 +107,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  city: getCity(state),
   cityOffers: getCityOffers(state),
   cities: getCities(state),
 });
