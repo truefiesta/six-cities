@@ -1,3 +1,5 @@
+import {createSelector} from "reselect";
+
 export const getOffers = (state) => {
   return state.offers;
 };
@@ -6,14 +8,14 @@ export const getCity = (state) => {
   return state.city;
 };
 
-export const getCityOffers = (state) => {
-  const offers = getOffers(state);
-  const city = getCity(state);
+export const getCityOffers = createSelector(
+    getOffers,
+    getCity,
 
-  return offers.filter((offer) => {
-    return offer.city === city;
-  });
-};
+    (offers, city) => offers.filter((offer) => {
+      return offer.city === city;
+    })
+);
 
 export const getCities = (state) => {
   const offers = getOffers(state);
