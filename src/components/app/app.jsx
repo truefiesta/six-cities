@@ -5,6 +5,8 @@ import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import {connect} from "react-redux";
 import {getOffers} from "../../selectors.js";
+import {ActionCreator} from "../../reducer.js";
+import mockOffers from "../../mocks/offers.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -39,6 +41,10 @@ class App extends PureComponent {
     );
   }
 
+  componentDidMount() {
+    this.props.onLoad(mockOffers[0].city, mockOffers);
+  }
+
   render() {
     const {offers} = this.props;
 
@@ -62,11 +68,19 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.array.isRequired,
+  onLoad: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(city, offers) {
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.setAllOffers(offers));
+  }
+});
+
 export {App};
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

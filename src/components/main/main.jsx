@@ -9,6 +9,11 @@ import {getCityOffers, getCities, getCity} from "../../selectors.js";
 
 const Main = (props) => {
   const {city, cities, cityOffers, onOfferDetailsOpen} = props;
+
+  if (!city) {
+    return null;
+  }
+
   const offersCount = cityOffers.length;
 
   return (
@@ -96,7 +101,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   cities: PropTypes.array.isRequired,
   cityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
