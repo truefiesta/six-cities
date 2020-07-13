@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
+import {connect} from "react-redux";
+import {getOffers} from "../../selectors.js";
+import {ActionCreator} from "../../reducer.js";
+import mockOffers from "../../mocks/offers.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -19,13 +23,11 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {offersCount, offers} = this.props;
     const {clickedOffer} = this.state;
 
     if (clickedOffer) {
       return (
         <OfferDetails
-          offers={offers}
           offer={clickedOffer}
           onOfferDetailsOpen={this._handleCardHeaderClick}
         />
@@ -34,11 +36,13 @@ class App extends PureComponent {
 
     return (
       <Main
-        offersCount={offersCount}
-        offers={offers}
         onOfferDetailsOpen={this._handleCardHeaderClick}
       />
     );
+  }
+
+  componentDidMount() {
+    this.props.onLoad(mockOffers[0].city, mockOffers);
   }
 
   render() {
@@ -52,7 +56,6 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-offer-details">
             <OfferDetails
-              offers={offers}
               offer={offers[0]}
               onOfferDetailsOpen={this._handleCardHeaderClick}
             />
@@ -61,12 +64,23 @@ class App extends PureComponent {
       </BrowserRouter>
     );
   }
-
 }
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
+  onLoad: PropTypes.func.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(city, offers) {
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.setAllOffers(offers));
+  }
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

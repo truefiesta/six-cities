@@ -1,18 +1,35 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
-
-const Settings = {
-  OFFERS_COUNT: 312
-};
-
-const offers = testMocks;
+import {CityName} from "../../const.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import PropTypes from "prop-types";
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
+
+const offers = testMocks;
+
+const mockStore = configureStore([]);
+const store = mockStore({});
+const Wrapper = ({children}) => {
+  return (
+    <Provider store={store}>
+      {children}
+    </Provider>
+  );
+};
+
+Wrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const cities = Object.values(CityName);
+const cityOffers = offers.slice(0, 4);
 
 describe(`Main cards`, () => {
   it(`Card header should be pressed`, () => {
@@ -20,13 +37,17 @@ describe(`Main cards`, () => {
 
     const main = mount(
         <Main
-          offersCount={Settings.OFFERS_COUNT}
-          offers={offers}
+          cityOffers={cityOffers}
+          cities={cities}
+          city={CityName.AMSTERDAM}
           onOfferDetailsOpen={onOfferDetailsOpen}
-        />
+        />,
+        {
+          wrappingComponent: Wrapper
+        }
     );
 
-    const cardsCount = offers.length;
+    const cardsCount = 4;
     const cardHeaders = main.find(`h2.place-card__name a`);
     expect(cardHeaders).toHaveLength(cardsCount);
 

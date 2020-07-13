@@ -69,6 +69,13 @@ exports[`src/Map.jsx when offers is a non-empty array should render with markers
         style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: 115px; top: 11px; z-index: 11;"
         tabindex="0"
       />
+      <img
+        alt=""
+        class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
+        src="img/pin.svg"
+        style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -7400px; top: 16165px; z-index: 16165;"
+        tabindex="0"
+      />
     </div>
     <div
       class="leaflet-pane leaflet-tooltip-pane"

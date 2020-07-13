@@ -2,10 +2,19 @@ import React from "react";
 import renderer from "react-test-renderer";
 import OfferDetails from "./offer-details.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
+import {CityName} from "../../const.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 const offers = testMocks;
 
 const offer = offers[0];
+
+const mockStore = configureStore([]);
+const store = mockStore({
+  offers,
+  city: CityName.AMSTERDAM,
+});
 
 jest.mock(`../map/map.jsx`, () => () => {
   return (
@@ -46,11 +55,14 @@ describe(`src/offers-details.jsx`, () => {
   describe(`when the offers is a non-empty array`, () => {
     it(`should render with data`, () => {
       const tree = renderer.create(
-          <OfferDetails
-            offers={offers}
-            offer={offer}
-            onOfferDetailsOpen={() => null}
-          />
+          <Provider store={store}>
+            <OfferDetails
+              city={CityName.AMSTERDAM}
+              offers={offers}
+              offer={offer}
+              onOfferDetailsOpen={() => null}
+            />
+          </Provider>
       )
       .toJSON();
 

@@ -6,29 +6,20 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
+import {getOffersNearby, getCity} from "../../selectors.js";
+import {connect} from "react-redux";
 
 const MAX_PHOTOS = 6;
 
-const getOffersNearby = (allOffers, offersIds) => {
-  let offersNearby = [];
-  for (const offerId of offersIds) {
-    const result = allOffers.filter((it) => it.id === offerId);
-    offersNearby = offersNearby.concat(result);
-  }
-
-  return offersNearby;
-};
-
 const OfferDetails = (props) => {
-  const {offers, offer, onOfferDetailsOpen} = props;
-  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews, offersNearbyIds} = offer;
+  const {city, offersNearby, offer, onOfferDetailsOpen} = props;
+  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews} = offer;
   const reviewsCount = reviews.length;
   const premiumTag = isPremium
     ? (<div className="property__mark"><span>Premium</span></div>)
     : null;
   const bedroomsText = bedrooms > 1 ? `${bedrooms} Bedrooms` : `${bedrooms} Bedroom`;
   const guestsText = guests > 1 ? `Max ${guests} adults` : `Max ${guests} adult`;
-  const offersNearby = getOffersNearby(offers, offersNearbyIds);
 
   return (
     <main className="page__main page__main--property">
@@ -169,6 +160,7 @@ const OfferDetails = (props) => {
         <section className="property__map map">
           <Map
             offers={offersNearby}
+            city={city}
           />
         </section>
       </section>
@@ -187,7 +179,8 @@ const OfferDetails = (props) => {
 };
 
 OfferDetails.propTypes = {
-  offers: PropTypes.array.isRequired,
+  city: PropTypes.string.isRequired,
+  offersNearby: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     photos: PropTypes.arrayOf(
         PropTypes.shape({
@@ -227,4 +220,10 @@ OfferDetails.propTypes = {
   onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
-export default OfferDetails;
+const mapStateToProps = (state, ownProps) => ({
+  offersNearby: getOffersNearby(state, ownProps),
+  city: getCity(state),
+});
+
+export {OfferDetails};
+export default connect(mapStateToProps, null)(OfferDetails);
