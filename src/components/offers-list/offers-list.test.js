@@ -233,6 +233,7 @@ describe(`src/offers-list.jsx`, () => {
             offers={offers}
             onOfferDetailsOpen={() => null}
             cardStyle={cardStyle.main}
+            onActiveCardChange={() => null}
           />
       )
       .toJSON();
@@ -248,6 +249,7 @@ describe(`src/offers-list.jsx`, () => {
             offers={[]}
             onOfferDetailsOpen={() => null}
             cardStyle={cardStyle.main}
+            onActiveCardChange={() => null}
           />
       )
       .toJSON();

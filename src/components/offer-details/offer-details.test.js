@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import OfferDetails from "./offer-details.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
-import {CityName} from "../../const.js";
+import {CityName, SortTypes} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
@@ -12,8 +12,10 @@ const offer = offers[0];
 
 const mockStore = configureStore([]);
 const store = mockStore({
-  offers,
   city: CityName.AMSTERDAM,
+  offers,
+  sortType: SortTypes.POPULAR,
+  activeCard: null,
 });
 
 jest.mock(`../map/map.jsx`, () => () => {

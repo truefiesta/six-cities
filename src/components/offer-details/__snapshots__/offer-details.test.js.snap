@@ -539,6 +539,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
         <article
           className="near-places__card place-card"
           id="offer-2"
+          onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -638,6 +639,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
         <article
           className="near-places__card place-card"
           id="offer-3"
+          onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -737,6 +739,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
         <article
           className="near-places__card place-card"
           id="offer-4"
+          onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
           <div

@@ -237,13 +237,12 @@ describe(`OffersList`, () => {
           offers={offers}
           onOfferDetailsOpen={() => null}
           cardStyle={cardStyle.main}
+          onActiveCardChange={() => null}
         />
     );
 
     const offer = offers[2];
     const offercard = offersList.find(`#${offer.id}`);
     offercard.simulate(`mouseover`);
-
-    expect(offersList.state().activeCard).toBe(offer);
   });
 });
