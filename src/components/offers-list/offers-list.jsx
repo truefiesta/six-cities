@@ -1,8 +1,8 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
 
-class OffersList extends PureComponent {
+class OffersList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +13,21 @@ class OffersList extends PureComponent {
 
   _handleCardMouseOver(offer) {
     this.setState({activeCard: offer});
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const currentOffers = this.props.offers;
+    const newOffers = nextProps.offers;
+
+    for (const currentOfferItem of currentOffers) {
+      for (const newOfferItem of newOffers) {
+        if (currentOfferItem.id !== newOfferItem.id) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   render() {
@@ -53,7 +68,7 @@ OffersList.propTypes = {
     article: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     list: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
 };
 
 export default OffersList;
