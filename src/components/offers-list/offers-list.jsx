@@ -3,18 +3,6 @@ import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
 
 class OffersList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCard: null,
-    };
-    this._handleCardMouseOver = this._handleCardMouseOver.bind(this);
-  }
-
-  _handleCardMouseOver(offer) {
-    this.setState({activeCard: offer});
-  }
-
   shouldComponentUpdate(nextProps) {
     const currentOffers = this.props.offers;
     const newOffers = nextProps.offers;
@@ -31,7 +19,7 @@ class OffersList extends Component {
   }
 
   render() {
-    const {offers, onOfferDetailsOpen, cardStyle} = this.props;
+    const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
 
     return (
       <div className={`${cardStyle.list} places__list`}>
@@ -40,7 +28,8 @@ class OffersList extends Component {
             <OfferCard
               key={offer.id}
               offer={offer}
-              onMouseOver={this._handleCardMouseOver}
+              onMouseOver={onActiveCardChange}
+              onMouseOut={onActiveCardChange}
               onOfferDetailsOpen={onOfferDetailsOpen}
               cardStyle={cardStyle}
             />
@@ -69,6 +58,7 @@ OffersList.propTypes = {
     image: PropTypes.string.isRequired,
     list: PropTypes.string.isRequired,
   }).isRequired,
+  onActiveCardChange: PropTypes.func.isRequired,
 };
 
 export default OffersList;

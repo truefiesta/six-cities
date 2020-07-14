@@ -5,12 +5,12 @@ import Map from "../map/map.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
 import {connect} from "react-redux";
-import {getCurrentSortType, getSortedCityOffers, getCities, getCity} from "../../selectors.js";
+import {getCurrentSortType, getSortedCityOffers, getCities, getCity, getActiveOffer} from "../../selectors.js";
 import Sort from "../sort/sort.jsx";
 import {ActionCreator} from "../../reducer.js";
 
 const Main = (props) => {
-  const {city, cities, sortedCityOffers, onOfferDetailsOpen, currentSortType, onSortTypeChange} = props;
+  const {city, cities, sortedCityOffers, onOfferDetailsOpen, currentSortType, onSortTypeChange, onActiveCardChange, activeCard} = props;
 
   if (!city) {
     return null;
@@ -65,6 +65,7 @@ const Main = (props) => {
               <OffersList
                 offers={sortedCityOffers}
                 onOfferDetailsOpen={onOfferDetailsOpen}
+                onActiveCardChange={onActiveCardChange}
                 cardStyle={OfferClassNamesForPageType.main}
               />
             </section>
@@ -73,6 +74,7 @@ const Main = (props) => {
                 <Map
                   offers={sortedCityOffers}
                   city={city}
+                  activeCard={activeCard}
                 />
               </section>
             </div>
@@ -90,6 +92,16 @@ Main.propTypes = {
   sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
+  onActiveCardChange: PropTypes.func.isRequired,
+  activeCard: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+  }),
 };
 
 const mapStateToProps = (state) => ({
@@ -97,11 +109,15 @@ const mapStateToProps = (state) => ({
   cities: getCities(state),
   currentSortType: getCurrentSortType(state),
   sortedCityOffers: getSortedCityOffers(state),
+  activeCard: getActiveOffer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSortTypeChange(sortType) {
     dispatch(ActionCreator.changeSortType(sortType));
+  },
+  onActiveCardChange(offer) {
+    dispatch(ActionCreator.changeActiveCard(offer));
   }
 });
 

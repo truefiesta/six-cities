@@ -13,6 +13,10 @@ export const getCurrentSortType = (state) => {
   return state.sortType;
 };
 
+export const getActiveOffer = (state) => {
+  return state.activeCard;
+};
+
 export const getCityOffers = createSelector(
     getOffers,
     getCity,
