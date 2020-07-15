@@ -1,22 +1,25 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
 
-class OffersList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCard: null,
-    };
-    this._handleCardMouseOver = this._handleCardMouseOver.bind(this);
-  }
+class OffersList extends Component {
+  shouldComponentUpdate(nextProps) {
+    const currentOffers = this.props.offers;
+    const newOffers = nextProps.offers;
 
-  _handleCardMouseOver(offer) {
-    this.setState({activeCard: offer});
+    for (const currentOfferItem of currentOffers) {
+      for (const newOfferItem of newOffers) {
+        if (currentOfferItem.id !== newOfferItem.id) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   render() {
-    const {offers, onOfferDetailsOpen, cardStyle} = this.props;
+    const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
 
     return (
       <div className={`${cardStyle.list} places__list`}>
@@ -25,7 +28,8 @@ class OffersList extends PureComponent {
             <OfferCard
               key={offer.id}
               offer={offer}
-              onMouseOver={this._handleCardMouseOver}
+              onMouseOver={onActiveCardChange}
+              onMouseOut={onActiveCardChange}
               onOfferDetailsOpen={onOfferDetailsOpen}
               cardStyle={cardStyle}
             />
@@ -53,7 +57,8 @@ OffersList.propTypes = {
     article: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     list: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
+  onActiveCardChange: PropTypes.func.isRequired,
 };
 
 export default OffersList;

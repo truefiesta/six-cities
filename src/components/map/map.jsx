@@ -4,8 +4,13 @@ import {CityCoordinates} from "../../const.js";
 import PropTypes from "prop-types";
 
 const ZOOM = 12;
-const icon = leaflet.icon({
+const iconInactive = leaflet.icon({
   iconUrl: `img/pin.svg`,
+  iconSize: [27, 39],
+});
+
+const iconActive = leaflet.icon({
+  iconUrl: `img/pin-active.svg`,
   iconSize: [27, 39],
 });
 
@@ -18,11 +23,16 @@ class Map extends PureComponent {
     this._mapRef = createRef();
   }
 
-  _addMarkers(map) {
+  _addMarkers(map, activeCard) {
     const {offers} = this.props;
     this._markers = leaflet.layerGroup();
+    let icon = iconInactive;
 
     offers.forEach((offer) => {
+      if (activeCard) {
+        icon = (offer.id === this.props.activeCard.id) ? iconActive : iconInactive;
+      }
+
       leaflet
         .marker(offer.coordinates, {icon})
         .addTo(this._markers);
@@ -79,6 +89,10 @@ class Map extends PureComponent {
       this._addMarkers(this._map);
     }
 
+    if (prevProps.activeCard !== this.props.activeCard) {
+      this._clearMarkers();
+      this._addMarkers(this._map, this.props.activeCard);
+    }
   }
 }
 
@@ -91,6 +105,15 @@ Map.propTypes = {
         ).isRequired,
       }).isRequired
   ).isRequired,
+  activeCard: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+  }),
   city: PropTypes.string.isRequired,
 };
 

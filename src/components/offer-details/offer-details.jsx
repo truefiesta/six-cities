@@ -6,13 +6,14 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
-import {getOffersNearby, getCity} from "../../selectors.js";
+import {getOffersNearby, getCity, getActiveOffer} from "../../selectors.js";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {city, offersNearby, offer, onOfferDetailsOpen} = props;
+  const {city, offersNearby, offer, onOfferDetailsOpen, onActiveCardChange, activeCard} = props;
   const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews} = offer;
   const reviewsCount = reviews.length;
   const premiumTag = isPremium
@@ -161,6 +162,7 @@ const OfferDetails = (props) => {
           <Map
             offers={offersNearby}
             city={city}
+            activeCard={activeCard}
           />
         </section>
       </section>
@@ -171,6 +173,7 @@ const OfferDetails = (props) => {
             offers={offersNearby}
             onOfferDetailsOpen={onOfferDetailsOpen}
             cardStyle={OfferClassNamesForPageType.details}
+            onActiveCardChange={onActiveCardChange}
           />
         </section>
       </div>
@@ -218,12 +221,29 @@ OfferDetails.propTypes = {
     ).isRequired,
   }),
   onOfferDetailsOpen: PropTypes.func.isRequired,
+  onActiveCardChange: PropTypes.func.isRequired,
+  activeCard: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+  }),
 };
 
 const mapStateToProps = (state, ownProps) => ({
   offersNearby: getOffersNearby(state, ownProps),
   city: getCity(state),
+  activeCard: getActiveOffer(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onActiveCardChange(offer) {
+    dispatch(ActionCreator.changeActiveCard(offer));
+  }
 });
 
 export {OfferDetails};
-export default connect(mapStateToProps, null)(OfferDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);

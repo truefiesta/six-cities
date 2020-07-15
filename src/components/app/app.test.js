@@ -4,7 +4,7 @@ import App from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import testMocks from "../../test-mocks/test-mocks.js";
-import {CityName} from "../../const.js";
+import {CityName, SortTypes} from "../../const.js";
 
 const offers = testMocks;
 
@@ -22,6 +22,8 @@ describe(`src/App.jsx`, () => {
       const store = mockStore({
         city: CityName.AMSTERDAM,
         offers,
+        sortType: SortTypes.POPULAR,
+        activeCard: null,
       });
 
       const tree = renderer.create(

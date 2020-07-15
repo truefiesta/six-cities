@@ -5,16 +5,18 @@ import Map from "../map/map.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
 import {connect} from "react-redux";
-import {getCityOffers, getCities, getCity} from "../../selectors.js";
+import {getCurrentSortType, getSortedCityOffers, getCities, getCity, getActiveOffer} from "../../selectors.js";
+import Sort from "../sort/sort.jsx";
+import {ActionCreator} from "../../reducer.js";
 
 const Main = (props) => {
-  const {city, cities, cityOffers, onOfferDetailsOpen} = props;
+  const {city, cities, sortedCityOffers, onOfferDetailsOpen, currentSortType, onSortTypeChange, onActiveCardChange, activeCard} = props;
 
   if (!city) {
     return null;
   }
 
-  const offersCount = cityOffers.length;
+  const offersCount = sortedCityOffers.length;
 
   return (
     <div className="page page--gray page--main">
@@ -56,40 +58,23 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offersCount} places to stay in Amsterdam</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  &nbsp;Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-                {/* <!--
-                <select className="places__sorting-type" id="places-sorting">
-                  <option className="places__option" value="popular" selected="">Popular</option>
-                  <option className="places__option" value="to-high">Price: low to high</option>
-                  <option className="places__option" value="to-low">Price: high to low</option>
-                  <option className="places__option" value="top-rated">Top rated first</option>
-                </select>
-                --> */}
-              </form>
+              <Sort
+                currentSortType={currentSortType}
+                onSortTypeChange={onSortTypeChange}
+              />
               <OffersList
-                offers={cityOffers}
+                offers={sortedCityOffers}
                 onOfferDetailsOpen={onOfferDetailsOpen}
+                onActiveCardChange={onActiveCardChange}
                 cardStyle={OfferClassNamesForPageType.main}
               />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  offers={cityOffers}
+                  offers={sortedCityOffers}
                   city={city}
+                  activeCard={activeCard}
                 />
               </section>
             </div>
@@ -103,15 +88,38 @@ const Main = (props) => {
 Main.propTypes = {
   city: PropTypes.string,
   cities: PropTypes.array.isRequired,
-  cityOffers: PropTypes.array.isRequired,
+  currentSortType: PropTypes.string.isRequired,
+  sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
+  onSortTypeChange: PropTypes.func.isRequired,
+  onActiveCardChange: PropTypes.func.isRequired,
+  activeCard: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+  }),
 };
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  cityOffers: getCityOffers(state),
   cities: getCities(state),
+  currentSortType: getCurrentSortType(state),
+  sortedCityOffers: getSortedCityOffers(state),
+  activeCard: getActiveOffer(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSortTypeChange(sortType) {
+    dispatch(ActionCreator.changeSortType(sortType));
+  },
+  onActiveCardChange(offer) {
+    dispatch(ActionCreator.changeActiveCard(offer));
+  }
 });
 
 export {Main};
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

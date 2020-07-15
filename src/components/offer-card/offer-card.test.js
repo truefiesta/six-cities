@@ -70,6 +70,7 @@ describe(`src/offer-card.jsx`, () => {
           <OfferCard
             offer={offer}
             onMouseOver={() => null}
+            onMouseOut={() => null}
             onOfferDetailsOpen={() => null}
             cardStyle={cardStyle.main}
           />

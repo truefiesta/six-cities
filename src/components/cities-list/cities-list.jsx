@@ -42,4 +42,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {CitiesList};
 export default connect(null, mapDispatchToProps)(CitiesList);
-

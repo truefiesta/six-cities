@@ -3,7 +3,7 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {App} from "./app.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
-import {CityName} from "../../const.js";
+import {CityName, SortTypes} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import PropTypes from "prop-types";
@@ -18,6 +18,8 @@ const mockStore = configureStore([]);
 const store = mockStore({
   city: CityName.AMSTERDAM,
   offers,
+  sortType: SortTypes.POPULAR,
+  activeCard: null,
 });
 
 const Wrapper = ({children}) => {

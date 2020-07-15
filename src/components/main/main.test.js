@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Main} from "./main.jsx";
 import testMocks from "../../test-mocks/test-mocks.js";
-import {CityName} from "../../const.js";
+import {CityName, SortTypes} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
@@ -63,10 +63,14 @@ describe(`src/Main.jsx`, () => {
       const tree = renderer.create(
           <Provider store={store}>
             <Main
-              cityOffers={cityOffers}
+              sortedCityOffers={cityOffers}
               cities={cities}
               city={CityName.AMSTERDAM}
-              onOfferDetailsOpen={() => {}}
+              onOfferDetailsOpen={() => null}
+              currentSortType={SortTypes.POPULAR}
+              onActiveCardChange={() => null}
+              onSortTypeChange={() => null}
+              activeCard={null}
             />
           </Provider>
       )

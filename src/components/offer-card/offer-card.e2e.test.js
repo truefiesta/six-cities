@@ -72,11 +72,13 @@ describe(`OfferCard`, () => {
   it(`Handler gets offer id on mouse over`, () => {
     const onOfferDetailsOpen = () => null;
     const onMouseOver = jest.fn();
+    const onMouseOut = jest.fn();
 
     const offerCard = shallow(
         <OfferCard
           offer={offer}
           onMouseOver={onMouseOver}
+          onMouseOut={onMouseOut}
           onOfferDetailsOpen={onOfferDetailsOpen}
           cardStyle={cardStyle.main}
         />
@@ -86,6 +88,9 @@ describe(`OfferCard`, () => {
 
     expect(onMouseOver).toHaveBeenCalledTimes(1);
     expect(onMouseOver.mock.calls[0][0]).toMatchObject(offer);
+
+    offerCard.simulate(`mouseout`);
+    expect(onMouseOver).toHaveBeenCalledTimes(1);
   });
 });
 

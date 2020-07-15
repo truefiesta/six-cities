@@ -4,6 +4,7 @@ exports[`src/offer-card.jsx when the offer contains data should render with data
 <article
   className="cities__place-card place-card"
   id="offer-1"
+  onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
   <div
