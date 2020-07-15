@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {SortTypes} from "../../const.js";
+import {SortTypes, KeyCodes} from "../../const.js";
 
 class Sort extends PureComponent {
   constructor(props) {
@@ -11,8 +11,14 @@ class Sort extends PureComponent {
     };
   }
 
-  _handleOpen() {
+  _handleSortListOpen() {
     this.setState({isOpen: !this.state.isOpen});
+  }
+
+  _handleSpaceKeyDown(evt) {
+    if (evt.keyCode === KeyCodes.SPACEBAR) {
+      this._handleSortListOpen();
+    }
   }
 
   render() {
@@ -24,8 +30,10 @@ class Sort extends PureComponent {
         <span className="places__sorting-caption">Sort by</span>
         <span
           className="places__sorting-type"
-          tabIndex="0"
-          onClick={() => this._handleOpen()}
+          tabIndex={0}
+          onClick={() => this._handleSortListOpen()}
+          onKeyDown={(evt) => this._handleSpaceKeyDown(evt)}
+          role="button"
         >
           &nbsp;{currentSortType}
           <svg className="places__sorting-arrow" width="7" height="4">
@@ -40,11 +48,18 @@ class Sort extends PureComponent {
               <li
                 key={sortType}
                 className={`places__option ${currentSortType === sortType ? `places__option--active` : ``}`}
-                tabIndex="0"
+                tabIndex={0}
                 onClick={() => {
                   onSortTypeChange(sortType);
-                  this._handleOpen();
+                  this._handleSortListOpen();
                 }}
+                onKeyDown={(evt) => {
+                  if (evt.keyCode === KeyCodes.ENTER) {
+                    onSortTypeChange(sortType);
+                    this._handleSortListOpen();
+                  }
+                }}
+                role="button"
               >
                 {sortType}
               </li>
