@@ -5,7 +5,7 @@ import Map from "../map/map.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
 import {connect} from "react-redux";
-import {getCurrentSortType, getSortedCityOffers, getCities, getCity, getActiveOffer} from "../../selectors.js";
+import {getCurrentSortType, getSortedCityOffers, getCity} from "../../selectors.js";
 import Sort from "../sort/sort.jsx";
 import {ActionCreator} from "../../reducer.js";
 import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
@@ -13,7 +13,7 @@ import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
 const SortWrapped = withOpenFlag(Sort);
 
 const Main = (props) => {
-  const {city, cities, sortedCityOffers, onOfferDetailsOpen, currentSortType, onSortTypeChange, onActiveCardChange, activeCard} = props;
+  const {city, sortedCityOffers, onOfferDetailsOpen, currentSortType, onSortTypeChange} = props;
 
   if (!city) {
     return null;
@@ -50,10 +50,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CitiesList
-              city={city}
-              cities={cities}
-            />
+            <CitiesList/>
           </section>
         </div>
         <div className="cities">
@@ -66,19 +63,13 @@ const Main = (props) => {
                 onSortTypeChange={onSortTypeChange}
               />
               <OffersList
-                offers={sortedCityOffers}
                 onOfferDetailsOpen={onOfferDetailsOpen}
-                onActiveCardChange={onActiveCardChange}
                 cardStyle={OfferClassNamesForPageType.main}
               />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map
-                  offers={sortedCityOffers}
-                  city={city}
-                  activeCard={activeCard}
-                />
+                <Map/>
               </section>
             </div>
           </div>
@@ -90,38 +81,22 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.string,
-  cities: PropTypes.array.isRequired,
   currentSortType: PropTypes.string.isRequired,
   sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
-  onActiveCardChange: PropTypes.func.isRequired,
-  activeCard: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-  }),
 };
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  cities: getCities(state),
   currentSortType: getCurrentSortType(state),
   sortedCityOffers: getSortedCityOffers(state),
-  activeCard: getActiveOffer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSortTypeChange(sortType) {
     dispatch(ActionCreator.changeSortType(sortType));
   },
-  onActiveCardChange(offer) {
-    dispatch(ActionCreator.changeActiveCard(offer));
-  }
 });
 
 export {Main};

@@ -2,6 +2,8 @@ import React, {PureComponent, createRef} from "react";
 import leaflet from "leaflet";
 import {CityCoordinates} from "../../const.js";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getSortedCityOffers, getActiveOffer, getCity} from "../../selectors.js";
 
 const ZOOM = 12;
 const iconInactive = leaflet.icon({
@@ -24,11 +26,11 @@ class Map extends PureComponent {
   }
 
   _addMarkers(map, activeCard) {
-    const {offers} = this.props;
+    const {sortedCityOffers} = this.props;
     this._markers = leaflet.layerGroup();
     let icon = iconInactive;
 
-    offers.forEach((offer) => {
+    sortedCityOffers.forEach((offer) => {
       if (activeCard) {
         icon = (offer.id === this.props.activeCard.id) ? iconActive : iconInactive;
       }
@@ -97,7 +99,8 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(
+  city: PropTypes.string.isRequired,
+  sortedCityOffers: PropTypes.arrayOf(
       PropTypes.shape({
         city: PropTypes.string.isRequired,
         coordinates: PropTypes.arrayOf(
@@ -114,7 +117,13 @@ Map.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
   }),
-  city: PropTypes.string.isRequired,
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  sortedCityOffers: getSortedCityOffers(state),
+  activeCard: getActiveOffer(state),
+});
+
+export {Map};
+export default connect(mapStateToProps, null)(Map);

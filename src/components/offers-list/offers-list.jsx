@@ -1,11 +1,14 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+import {getSortedCityOffers} from "../../selectors.js";
 
 class OffersList extends Component {
   shouldComponentUpdate(nextProps) {
-    const currentOffers = this.props.offers;
-    const newOffers = nextProps.offers;
+    const currentOffers = this.props.sortedCityOffers;
+    const newOffers = nextProps.sortedCityOffers;
 
     for (const currentOfferItem of currentOffers) {
       for (const newOfferItem of newOffers) {
@@ -19,11 +22,11 @@ class OffersList extends Component {
   }
 
   render() {
-    const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
+    const {sortedCityOffers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
 
     return (
       <div className={`${cardStyle.list} places__list`}>
-        {offers.map((offer) => {
+        {sortedCityOffers.map((offer) => {
           return (
             <OfferCard
               key={offer.id}
@@ -41,7 +44,7 @@ class OffersList extends Component {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(
+  sortedCityOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
@@ -61,4 +64,19 @@ OffersList.propTypes = {
   onActiveCardChange: PropTypes.func.isRequired,
 };
 
-export default OffersList;
+const mapStateToProps = (state) => ({
+  // city: getCity(state),
+  // cities: getCities(state),
+  // currentSortType: getCurrentSortType(state),
+  sortedCityOffers: getSortedCityOffers(state),
+  // activeCard: getActiveOffer(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onActiveCardChange(offer) {
+    dispatch(ActionCreator.changeActiveCard(offer));
+  }
+});
+
+export {OffersList};
+export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
