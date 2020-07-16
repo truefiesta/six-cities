@@ -1,9 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
-import {getSortedCityOffers} from "../../selectors.js";
 
 class OffersList extends Component {
   shouldComponentUpdate(nextProps) {
@@ -23,7 +20,6 @@ class OffersList extends Component {
 
   render() {
     const {sortedCityOffers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
-
     return (
       <div className={`${cardStyle.list} places__list`}>
         {sortedCityOffers.map((offer) => {
@@ -64,19 +60,4 @@ OffersList.propTypes = {
   onActiveCardChange: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  // city: getCity(state),
-  // cities: getCities(state),
-  // currentSortType: getCurrentSortType(state),
-  sortedCityOffers: getSortedCityOffers(state),
-  // activeCard: getActiveOffer(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onActiveCardChange(offer) {
-    dispatch(ActionCreator.changeActiveCard(offer));
-  }
-});
-
-export {OffersList};
-export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
+export default OffersList;

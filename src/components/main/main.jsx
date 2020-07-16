@@ -1,25 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import OffersList from "../offers-list/offers-list.jsx";
 import Map from "../map/map.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
-import {OfferClassNamesForPageType} from "../../const.js";
-import {connect} from "react-redux";
-import {getCurrentSortType, getSortedCityOffers, getCity} from "../../selectors.js";
-import Sort from "../sort/sort.jsx";
-import {ActionCreator} from "../../reducer.js";
-import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
+import Cities from "../cities/cities.jsx";
 
-const SortWrapped = withOpenFlag(Sort);
+import {connect} from "react-redux";
+import {getCity} from "../../selectors.js";
+// import {ActionCreator} from "../../reducer.js";
 
 const Main = (props) => {
-  const {city, sortedCityOffers, onOfferDetailsOpen, currentSortType, onSortTypeChange} = props;
+  const {city, onOfferDetailsOpen} = props;
 
   if (!city) {
     return null;
   }
-
-  const offersCount = sortedCityOffers.length;
 
   return (
     <div className="page page--gray page--main">
@@ -55,18 +49,9 @@ const Main = (props) => {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
-              <SortWrapped
-                currentSortType={currentSortType}
-                onSortTypeChange={onSortTypeChange}
-              />
-              <OffersList
-                onOfferDetailsOpen={onOfferDetailsOpen}
-                cardStyle={OfferClassNamesForPageType.main}
-              />
-            </section>
+            <Cities
+              onOfferDetailsOpen={onOfferDetailsOpen}
+            />
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map/>
@@ -81,23 +66,23 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.string,
-  currentSortType: PropTypes.string.isRequired,
-  sortedCityOffers: PropTypes.array.isRequired,
+  // currentSortType: PropTypes.string.isRequired,
+  // sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
-  onSortTypeChange: PropTypes.func.isRequired,
+  // onSortTypeChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  currentSortType: getCurrentSortType(state),
-  sortedCityOffers: getSortedCityOffers(state),
+  // currentSortType: getCurrentSortType(state),
+  // sortedCityOffers: getSortedCityOffers(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onSortTypeChange(sortType) {
-    dispatch(ActionCreator.changeSortType(sortType));
-  },
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   onSortTypeChange(sortType) {
+//     dispatch(ActionCreator.changeSortType(sortType));
+//   },
+// });
 
 export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, null)(Main);
