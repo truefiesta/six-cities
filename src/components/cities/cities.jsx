@@ -4,7 +4,6 @@ import OffersList from "../offers-list/offers-list.jsx";
 import Sort from "../sort/sort.jsx";
 import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
 import {OfferClassNamesForPageType} from "../../const.js";
-
 import {connect} from "react-redux";
 import {getCurrentSortType, getSortedCityOffers, getCity} from "../../selectors.js";
 import {ActionCreator} from "../../reducer.js";
@@ -41,7 +40,6 @@ Cities.propTypes = {
   onSortTypeChange: PropTypes.func.isRequired,
   onActiveCardChange: PropTypes.func.isRequired,
 };
-
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
