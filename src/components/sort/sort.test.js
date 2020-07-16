@@ -8,8 +8,11 @@ describe(`Sort`, () => {
     it(`should render with correctly`, () => {
       const tree = renderer.create(
           <Sort
+            isOpen={false}
             currentSortType={SortTypes.POPULAR}
             onSortTypeChange={() => null}
+            onComponentClick={() => null}
+            onComponentChildClick={() => null}
           />
       )
       .toJSON();

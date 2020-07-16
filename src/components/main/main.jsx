@@ -6,7 +6,6 @@ import Cities from "../cities/cities.jsx";
 
 import {connect} from "react-redux";
 import {getCity, getSortedCityOffers} from "../../selectors.js";
-// import {ActionCreator} from "../../reducer.js";
 
 const Main = (props) => {
   const {city, sortedCityOffers, onOfferDetailsOpen} = props;

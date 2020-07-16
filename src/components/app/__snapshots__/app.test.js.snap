@@ -120,7 +120,8 @@ exports[`src/App.jsx when the city is chosen and the offers is non-empty array s
             className="places__found"
           >
             4
-             places to stay in Amsterdam
+             places to stay in 
+            Amsterdam
           </b>
           <form
             action="#"
