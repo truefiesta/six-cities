@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {KeyCodes} from "../../const.js";
+import {SortTypes, KeyCodes} from "../../const.js";
 
-const SortTypes = {
-  POPULAR: `Popular`,
-  PRICE_LOW_TO_HIGH: `Price: low to high`,
-  PRICE_HIGH_TO_LOW: `Price: high to low`,
-  TOP_RATED_FIRST: `Top rated first`,
+const SortTypeTitles = {
+  [SortTypes.POPULAR]: `Popular`,
+  [SortTypes.PRICE_LOW_TO_HIGH]: `Price: low to high`,
+  [SortTypes.PRICE_HIGH_TO_LOW]: `Price: high to low`,
+  [SortTypes.TOP_RATED_FIRST]: `Top rated first`,
 };
 
 const Sort = (props) => {
@@ -27,7 +27,7 @@ const Sort = (props) => {
         }}
         role="button"
       >
-        &nbsp;{currentSortType}
+        &nbsp;{SortTypeTitles[currentSortType]}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -53,7 +53,7 @@ const Sort = (props) => {
               }}
               role="button"
             >
-              {sortType}
+              {SortTypeTitles[sortType]}
             </li>
           );
         })}
@@ -66,9 +66,7 @@ Sort.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onComponentClick: PropTypes.func.isRequired,
   onComponentChildClick: PropTypes.func.isRequired,
-  currentSortType: PropTypes.oneOf([
-    SortTypes.POPULAR, SortTypes.PRICE_LOW_TO_HIGH, SortTypes.PRICE_HIGH_TO_LOW, SortTypes.TOP_RATED_FIRST
-  ]).isRequired,
+  currentSortType: PropTypes.number.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
 };
 

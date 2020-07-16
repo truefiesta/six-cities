@@ -1,5 +1,5 @@
 import {extend} from "./utils.js";
-import {SortTypes} from "./components/sort/sort.jsx";
+import {SortTypes} from "./const.js";
 
 const initialState = {
   city: null,

@@ -35,7 +35,7 @@ const Cities = (props) => {
 
 Cities.propTypes = {
   city: PropTypes.string,
-  currentSortType: PropTypes.string.isRequired,
+  currentSortType: PropTypes.number.isRequired,
   sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
