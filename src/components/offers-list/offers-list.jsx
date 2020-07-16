@@ -4,8 +4,8 @@ import OfferCard from "../offer-card/offer-card.jsx";
 
 class OffersList extends Component {
   shouldComponentUpdate(nextProps) {
-    const currentOffers = this.props.sortedCityOffers;
-    const newOffers = nextProps.sortedCityOffers;
+    const currentOffers = this.props.offers;
+    const newOffers = nextProps.offers;
 
     for (const currentOfferItem of currentOffers) {
       for (const newOfferItem of newOffers) {
@@ -19,10 +19,10 @@ class OffersList extends Component {
   }
 
   render() {
-    const {sortedCityOffers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
+    const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
     return (
       <div className={`${cardStyle.list} places__list`}>
-        {sortedCityOffers.map((offer) => {
+        {offers.map((offer) => {
           return (
             <OfferCard
               key={offer.id}
@@ -40,7 +40,7 @@ class OffersList extends Component {
 }
 
 OffersList.propTypes = {
-  sortedCityOffers: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,

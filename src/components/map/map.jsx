@@ -3,7 +3,7 @@ import leaflet from "leaflet";
 import {CityCoordinates} from "../../const.js";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getSortedCityOffers, getActiveOffer, getCity} from "../../selectors.js";
+import {getActiveOffer, getCity} from "../../selectors.js";
 
 const ZOOM = 12;
 const iconInactive = leaflet.icon({
@@ -26,11 +26,11 @@ class Map extends PureComponent {
   }
 
   _addMarkers(map, activeCard) {
-    const {sortedCityOffers} = this.props;
+    const {offers} = this.props;
     this._markers = leaflet.layerGroup();
     let icon = iconInactive;
 
-    sortedCityOffers.forEach((offer) => {
+    offers.forEach((offer) => {
       if (activeCard) {
         icon = (offer.id === this.props.activeCard.id) ? iconActive : iconInactive;
       }
@@ -100,7 +100,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   city: PropTypes.string.isRequired,
-  sortedCityOffers: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
       PropTypes.shape({
         city: PropTypes.string.isRequired,
         coordinates: PropTypes.arrayOf(
@@ -121,7 +121,6 @@ Map.propTypes = {
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  sortedCityOffers: getSortedCityOffers(state),
   activeCard: getActiveOffer(state),
 });
 

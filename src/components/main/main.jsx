@@ -5,11 +5,11 @@ import CitiesList from "../cities-list/cities-list.jsx";
 import Cities from "../cities/cities.jsx";
 
 import {connect} from "react-redux";
-import {getCity} from "../../selectors.js";
+import {getCity, getSortedCityOffers} from "../../selectors.js";
 // import {ActionCreator} from "../../reducer.js";
 
 const Main = (props) => {
-  const {city, onOfferDetailsOpen} = props;
+  const {city, sortedCityOffers, onOfferDetailsOpen} = props;
 
   if (!city) {
     return null;
@@ -54,7 +54,9 @@ const Main = (props) => {
             />
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map/>
+                <Map
+                  offers={sortedCityOffers}
+                />
               </section>
             </div>
           </div>
@@ -66,23 +68,14 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.string,
-  // currentSortType: PropTypes.string.isRequired,
-  // sortedCityOffers: PropTypes.array.isRequired,
+  sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
-  // onSortTypeChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  // currentSortType: getCurrentSortType(state),
-  // sortedCityOffers: getSortedCityOffers(state),
+  sortedCityOffers: getSortedCityOffers(state),
 });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   onSortTypeChange(sortType) {
-//     dispatch(ActionCreator.changeSortType(sortType));
-//   },
-// });
 
 export {Main};
 export default connect(mapStateToProps, null)(Main);

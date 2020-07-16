@@ -27,7 +27,7 @@ const Cities = (props) => {
         onOfferDetailsOpen={onOfferDetailsOpen}
         cardStyle={OfferClassNamesForPageType.main}
         onActiveCardChange={onActiveCardChange}
-        sortedCityOffers={sortedCityOffers}
+        offers={sortedCityOffers}
       />
     </section>
   );
