@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {SortTypes} from "../../const.js";
-import Sort from "./sort.jsx";
+import Sort, {SortTypes} from "./sort.jsx";
 
 describe(`Sort`, () => {
   describe(`when the offers is not empty array`, () => {

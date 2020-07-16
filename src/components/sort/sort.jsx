@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {SortTypes, KeyCodes} from "../../const.js";
+import {KeyCodes} from "../../const.js";
+
+const SortTypes = {
+  POPULAR: `Popular`,
+  PRICE_LOW_TO_HIGH: `Price: low to high`,
+  PRICE_HIGH_TO_LOW: `Price: high to low`,
+  TOP_RATED_FIRST: `Top rated first`,
+};
 
 const Sort = (props) => {
   const sortTypes = Object.values(SortTypes);
@@ -65,4 +72,5 @@ Sort.propTypes = {
   onSortTypeChange: PropTypes.func.isRequired,
 };
 
+export {SortTypes};
 export default Sort;

@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import {SortTypes} from "./const";
+import {SortTypes} from "./components/sort/sort.jsx";
 
 export const getOffers = (state) => {
   return state.offers;
