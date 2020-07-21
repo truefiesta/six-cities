@@ -36,4 +36,24 @@ describe(`src/App.jsx`, () => {
       expect(tree).toMatchSnapshot();
     });
   });
+
+  describe(`when the offers is an empty array`, () => {
+    it(`should render with no data`, () => {
+      const store = mockStore({
+        city: null,
+        offers: [],
+        sortType: SortTypes.POPULAR,
+        activeCard: null,
+      });
+
+      const tree = renderer.create(
+          <Provider store={store}>
+            <App/>
+          </Provider>
+      )
+      .toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+  });
 });

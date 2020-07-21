@@ -42,4 +42,28 @@ describe(`src/Main.jsx`, () => {
       expect(tree).toMatchSnapshot();
     });
   });
+
+  describe(`when the offers is an empty array`, () => {
+    it(`should render with data`, () => {
+      const store = mockStore({
+        city: null,
+        offers: [],
+        sortType: SortTypes.POPULAR,
+        activeCard: null,
+      });
+
+      const tree = renderer.create(
+          <Provider store={store}>
+            <Main
+              sortedCityOffers={cityOffers}
+              city={CityName.AMSTERDAM}
+              onOfferDetailsOpen={() => null}
+            />
+          </Provider>
+      )
+      .toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+  });
 });
