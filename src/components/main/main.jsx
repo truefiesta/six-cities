@@ -5,14 +5,12 @@ import CitiesList from "../cities-list/cities-list.jsx";
 import Cities from "../cities/cities.jsx";
 
 import {connect} from "react-redux";
-import {getCity, getSortedCityOffers} from "../../selectors.js";
+import {getSortedCityOffers} from "../../selectors.js";
+import NoOffers from "../no-offers/no-offers.jsx";
 
 const Main = (props) => {
-  const {city, sortedCityOffers, onOfferDetailsOpen} = props;
-
-  if (!city) {
-    return null;
-  }
+  const {sortedCityOffers, onOfferDetailsOpen} = props;
+  const isNoOffers = sortedCityOffers.length === 0 ? true : false;
 
   return (
     <div className="page page--gray page--main">
@@ -39,7 +37,7 @@ const Main = (props) => {
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${isNoOffers ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -47,18 +45,21 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <Cities
-              onOfferDetailsOpen={onOfferDetailsOpen}
-            />
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map
-                  offers={sortedCityOffers}
-                />
-              </section>
+          {isNoOffers
+            ? <NoOffers/>
+            : <div className="cities__places-container container">
+              <Cities
+                onOfferDetailsOpen={onOfferDetailsOpen}
+              />
+              <div className="cities__right-section">
+                <section className="cities__map map">
+                  <Map
+                    offers={sortedCityOffers}
+                  />
+                </section>
+              </div>
             </div>
-          </div>
+          }
         </div>
       </main>
     </div>
@@ -66,13 +67,11 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  city: PropTypes.string,
   sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  city: getCity(state),
   sortedCityOffers: getSortedCityOffers(state),
 });
 

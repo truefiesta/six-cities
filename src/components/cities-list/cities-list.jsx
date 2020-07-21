@@ -7,6 +7,10 @@ import {getCities, getCity} from "../../selectors.js";
 const CitiesList = ({city, cities, onCityClick}) => {
   const sixCities = cities.slice(0, 6);
 
+  if (!city) {
+    return null;
+  }
+
   return (
     <ul className="locations__list tabs__list">
       {sixCities.map((it) => {
@@ -30,7 +34,7 @@ const CitiesList = ({city, cities, onCityClick}) => {
 };
 
 CitiesList.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(null)]),
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onCityClick: PropTypes.func.isRequired,
 };
