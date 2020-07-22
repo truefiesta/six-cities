@@ -2,9 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer";
+import {getCities, getCity} from "../../selectors.js";
 
 const CitiesList = ({city, cities, onCityClick}) => {
   const sixCities = cities.slice(0, 6);
+
+  if (!city) {
+    return null;
+  }
 
   return (
     <ul className="locations__list tabs__list">
@@ -29,10 +34,15 @@ const CitiesList = ({city, cities, onCityClick}) => {
 };
 
 CitiesList.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(null)]),
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onCityClick: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  cities: getCities(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick(city) {
@@ -41,4 +51,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {CitiesList};
-export default connect(null, mapDispatchToProps)(CitiesList);
+export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);

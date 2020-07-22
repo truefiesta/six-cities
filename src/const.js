@@ -32,14 +32,14 @@ export const OfferClassNamesForPageType = {
   }
 };
 
-export const SortTypes = {
-  POPULAR: `Popular`,
-  PRICE_LOW_TO_HIGH: `Price: low to high`,
-  PRICE_HIGH_TO_LOW: `Price: high to low`,
-  TOP_RATED_FIRST: `Top rated first`,
-};
-
 export const KeyCodes = {
   ENTER: 13,
   SPACEBAR: 32,
+};
+
+export const SortTypes = {
+  POPULAR: 1,
+  PRICE_LOW_TO_HIGH: 2,
+  PRICE_HIGH_TO_LOW: 3,
+  TOP_RATED_FIRST: 4,
 };

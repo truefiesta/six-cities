@@ -20,7 +20,6 @@ class OffersList extends Component {
 
   render() {
     const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
-
     return (
       <div className={`${cardStyle.list} places__list`}>
         {offers.map((offer) => {

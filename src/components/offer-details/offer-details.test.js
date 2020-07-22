@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
 const offers = testMocks;
+const sortedCityOffers = offers.slice(0, 4);
 
 const offer = offers[0];
 
@@ -60,7 +61,7 @@ describe(`src/offers-details.jsx`, () => {
           <Provider store={store}>
             <OfferDetails
               city={CityName.AMSTERDAM}
-              offers={offers}
+              sortedCityOffers={sortedCityOffers}
               offer={offer}
               onOfferDetailsOpen={() => null}
             />

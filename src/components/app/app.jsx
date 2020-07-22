@@ -42,7 +42,9 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.onLoad(mockOffers[0].city, mockOffers);
+    if (mockOffers.length > 0) {
+      this.props.onLoad(mockOffers[0].city, mockOffers);
+    }
   }
 
   render() {
@@ -55,10 +57,12 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-offer-details">
-            <OfferDetails
-              offer={offers[0]}
-              onOfferDetailsOpen={this._handleCardHeaderClick}
-            />
+            {offers && offers.length && (
+              <OfferDetails
+                offer={offers[0]}
+                onOfferDetailsOpen={this._handleCardHeaderClick}
+              />
+            )}
           </Route>
         </Switch>
       </BrowserRouter>

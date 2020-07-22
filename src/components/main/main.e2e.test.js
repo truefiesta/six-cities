@@ -13,9 +13,16 @@ Enzyme.configure({
 });
 
 const offers = testMocks;
+const cityOffers = offers.slice(0, 4);
 
 const mockStore = configureStore([]);
-const store = mockStore({});
+const store = mockStore({
+  city: CityName.AMSTERDAM,
+  offers: cityOffers,
+  sortType: SortTypes.POPULAR,
+  activeCard: null,
+});
+
 const Wrapper = ({children}) => {
   return (
     <Provider store={store}>
@@ -28,9 +35,6 @@ Wrapper.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const cities = Object.values(CityName);
-const cityOffers = offers.slice(0, 4);
-
 describe(`Main cards`, () => {
   it(`Card header should be pressed`, () => {
     const onOfferDetailsOpen = jest.fn();
@@ -38,13 +42,8 @@ describe(`Main cards`, () => {
     const main = mount(
         <Main
           sortedCityOffers={cityOffers}
-          cities={cities}
           city={CityName.AMSTERDAM}
           onOfferDetailsOpen={onOfferDetailsOpen}
-          currentSortType={SortTypes.POPULAR}
-          onActiveCardChange={() => null}
-          onSortTypeChange={() => null}
-          activeCard={null}
         />,
         {
           wrappingComponent: Wrapper
