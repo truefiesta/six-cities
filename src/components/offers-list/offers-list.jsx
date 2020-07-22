@@ -7,9 +7,11 @@ class OffersList extends Component {
     const currentOffers = this.props.offers;
     const newOffers = nextProps.offers;
 
-    for (const currentOfferItem of currentOffers) {
-      for (const newOfferItem of newOffers) {
-        if (currentOfferItem.id !== newOfferItem.id) {
+    if (currentOffers.length !== newOffers.length) {
+      return true;
+    } else {
+      for (let index = 0; index < currentOffers.length; index++) {
+        if (currentOffers[index].id !== newOffers[index].id) {
           return true;
         }
       }
@@ -20,6 +22,7 @@ class OffersList extends Component {
 
   render() {
     const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
+
     return (
       <div className={`${cardStyle.list} places__list`}>
         {offers.map((offer) => {
