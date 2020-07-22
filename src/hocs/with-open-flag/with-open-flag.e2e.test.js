@@ -9,19 +9,19 @@ Enzyme.configure({
 });
 
 const MockComponent = (props) => {
-  const {isOpen, ids, onComponentClick, onComponentChildClick} = props;
+  const {isOpen, ids, onOpenStateToggle, onClose} = props;
   return (
-    <ul className={isOpen ? `class-open` : `class-close`} onClick={() => onComponentClick()}>
-      <li id={ids[0]} onClick={() => onComponentChildClick()}></li>
-      <li id={ids[1]} onClick={() => onComponentChildClick()}></li>
+    <ul className={isOpen ? `class-open` : `class-close`} onClick={() => onOpenStateToggle()}>
+      <li id={ids[0]} onClick={() => onClose()}></li>
+      <li id={ids[1]} onClick={() => onClose()}></li>
     </ul>);
 };
 
 MockComponent.propTypes = {
   ids: PropTypes.array.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  onComponentClick: PropTypes.func.isRequired,
-  onComponentChildClick: PropTypes.func.isRequired,
+  onOpenStateToggle: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 const MockComponentWrapped = withOpenFlag(MockComponent);

@@ -12,7 +12,7 @@ const SortTypeTitles = {
 
 const Sort = (props) => {
   const sortTypes = Object.values(SortTypes);
-  const {isOpen, onComponentClick, onComponentChildClick, currentSortType, onSortTypeChange} = props;
+  const {isOpen, onOpenStateToggle, onClose, currentSortType, onSortTypeChange} = props;
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -20,10 +20,10 @@ const Sort = (props) => {
       <span
         className="places__sorting-type"
         tabIndex={0}
-        onClick={() => onComponentClick()}
+        onClick={onOpenStateToggle}
         onKeyDown={(evt) => {
           if (evt.keyCode === KeyCodes.SPACEBAR) {
-            onComponentClick();
+            onOpenStateToggle();
           }
         }}
         role="button"
@@ -44,12 +44,12 @@ const Sort = (props) => {
               tabIndex={0}
               onClick={() => {
                 onSortTypeChange(sortType);
-                onComponentClick();
+                onClose();
               }}
               onKeyDown={(evt) => {
                 if (evt.keyCode === KeyCodes.ENTER) {
                   onSortTypeChange(sortType);
-                  onComponentChildClick();
+                  onClose();
                 }
               }}
               role="button"
@@ -65,8 +65,8 @@ const Sort = (props) => {
 
 Sort.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onComponentClick: PropTypes.func.isRequired,
-  onComponentChildClick: PropTypes.func.isRequired,
+  onOpenStateToggle: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   currentSortType: PropTypes.number.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
 };

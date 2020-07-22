@@ -9,15 +9,15 @@ const withOpenFlag = (Component) => {
         isOpen: false,
       };
 
-      this._handleComponentClick = this._handleComponentClick.bind(this);
-      this._handleComponentChildClick = this._handleComponentChildClick.bind(this);
+      this._handleOpenStateToggle = this._handleOpenStateToggle.bind(this);
+      this._handleComponentClose = this._handleComponentClose.bind(this);
     }
 
-    _handleComponentClick() {
+    _handleOpenStateToggle() {
       this.setState({isOpen: !this.state.isOpen});
     }
 
-    _handleComponentChildClick() {
+    _handleComponentClose() {
       this.setState({isOpen: false});
     }
 
@@ -28,8 +28,8 @@ const withOpenFlag = (Component) => {
         <Component
           {...this.props}
           isOpen={isOpen}
-          onComponentClick={this._handleComponentClick}
-          onComponentChildClick={this._handleComponentChildClick}
+          onOpenStateToggle={this._handleOpenStateToggle}
+          onClose={this._handleComponentClose}
         />
       );
     }
