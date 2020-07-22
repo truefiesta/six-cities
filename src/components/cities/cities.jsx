@@ -2,13 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list.jsx";
 import Sort from "../sort/sort.jsx";
-import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
 import {OfferClassNamesForPageType} from "../../const.js";
 import {connect} from "react-redux";
 import {getCurrentSortType, getSortedCityOffers, getCity} from "../../selectors.js";
 import {ActionCreator} from "../../reducer.js";
-
-const SortWrapped = withOpenFlag(Sort);
 
 const Cities = (props) => {
   const {city, currentSortType, sortedCityOffers, onSortTypeChange, onOfferDetailsOpen, onActiveCardChange} = props;
@@ -18,7 +15,7 @@ const Cities = (props) => {
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{offersCount} places to stay in {city}</b>
-      <SortWrapped
+      <Sort
         currentSortType={currentSortType}
         onSortTypeChange={onSortTypeChange}
       />

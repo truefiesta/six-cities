@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {SortTypes, KeyCodes} from "../../const.js";
+import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
 
 const SortTypeTitles = {
   [SortTypes.POPULAR]: `Popular`,
@@ -70,5 +71,5 @@ Sort.propTypes = {
   onSortTypeChange: PropTypes.func.isRequired,
 };
 
-export {SortTypes};
-export default Sort;
+export {SortTypes, Sort};
+export default withOpenFlag(Sort);
