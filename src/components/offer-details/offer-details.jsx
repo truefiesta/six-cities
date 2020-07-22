@@ -6,9 +6,10 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
-import {getOffersNearby, getCity, getActiveOffer, getCurrentOfferReviews} from "../../selectors.js";
+import {getOffersNearby, getCurrentOfferReviews} from "../../reducer/offers/selectors.js";
+import {getCity, getActiveOffer} from "../../reducer/filters/selectors.js";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
 
 const MAX_PHOTOS = 6;
 
@@ -224,8 +225,8 @@ OfferDetails.propTypes = {
   ).isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  offersNearby: getOffersNearby(state, ownProps),
+const mapStateToProps = (state) => ({
+  offersNearby: getOffersNearby(state),
   city: getCity(state),
   activeCard: getActiveOffer(state),
   currentOfferReviews: getCurrentOfferReviews(state),
@@ -233,7 +234,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveCardChange(offer) {
-    dispatch(ActionCreator.changeActiveCard(offer));
+    dispatch(FiltersActionCreator.changeActiveCard(offer));
   }
 });
 

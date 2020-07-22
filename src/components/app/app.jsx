@@ -4,8 +4,8 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import {connect} from "react-redux";
-import {getOffers} from "../../selectors.js";
-import {Operation as OfferOperation} from "../../reducer.js";
+import {getOffers} from "../../reducer/offers/selectors.js";
+import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -75,8 +75,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onCurrentOfferChange(offer) {
-    dispatch(OfferOperation.loadOfferReviews(offer.id));
-    dispatch(OfferOperation.loadOffersNearby(offer.id));
+    dispatch(OffersOperation.loadOfferReviews(offer.id));
+    dispatch(OffersOperation.loadOffersNearby(offer.id));
   }
 });
 

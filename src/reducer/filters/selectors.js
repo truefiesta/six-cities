@@ -1,28 +1,18 @@
 import {createSelector} from "reselect";
-import {SortTypes} from "./const.js";
-
-export const getOffers = (state) => {
-  return state.offers;
-};
+import {getOffers} from "../offers/selectors.js";
+import {SortTypes} from "../../const.js";
+import {NameSpace} from "../name-space.js";
 
 export const getCity = (state) => {
-  return state.city;
+  return state[NameSpace.FILTERS].city;
 };
 
 export const getCurrentSortType = (state) => {
-  return state.sortType;
+  return state[NameSpace.FILTERS].sortType;
 };
 
 export const getActiveOffer = (state) => {
-  return state.activeCard;
-};
-
-export const getCurrentOfferReviews = (state) => {
-  return state.currentOfferReviews;
-};
-
-export const getOffersNearby = (state) => {
-  return state.currentOffersNearby;
+  return state[NameSpace.FILTERS].activeCard;
 };
 
 export const getCityOffers = createSelector(
@@ -50,12 +40,3 @@ export const getSortedCityOffers = createSelector(
       return cityOffers;
     }
 );
-
-export const getCities = (state) => {
-  const offers = getOffers(state);
-  const cities = offers.map((offer) => {
-    return offer.city.name;
-  });
-
-  return [...new Set(cities)];
-};

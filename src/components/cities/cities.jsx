@@ -4,8 +4,8 @@ import OffersList from "../offers-list/offers-list.jsx";
 import Sort from "../sort/sort.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
 import {connect} from "react-redux";
-import {getCurrentSortType, getSortedCityOffers, getCity} from "../../selectors.js";
-import {ActionCreator} from "../../reducer.js";
+import {getCurrentSortType, getSortedCityOffers, getCity} from "../../reducer/filters/selectors.js";
+import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
 
 const Cities = (props) => {
   const {city, currentSortType, sortedCityOffers, onSortTypeChange, onOfferDetailsOpen, onActiveCardChange} = props;
@@ -46,10 +46,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSortTypeChange(sortType) {
-    dispatch(ActionCreator.changeSortType(sortType));
+    dispatch(FiltersActionCreator.changeSortType(sortType));
   },
   onActiveCardChange(offer) {
-    dispatch(ActionCreator.changeActiveCard(offer));
+    dispatch(FiltersActionCreator.changeActiveCard(offer));
   }
 });
 

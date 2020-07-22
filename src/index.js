@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 import {Provider} from "react-redux";
 import {createStore, applyMiddleware, compose} from "redux";
-import {reducer, Operation as OffersOperation} from "./reducer.js";
+import reducer from "./reducer/reducer.js";
+import {Operation as OffersOperation} from "./reducer/offers/offers.js";
 import thunk from "redux-thunk";
 import {createApi} from "./api.js";
 

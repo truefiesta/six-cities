@@ -1,9 +1,9 @@
 import React, {PureComponent, createRef} from "react";
 import leaflet from "leaflet";
-import {CityCoordinates} from "../../const.js";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getActiveOffer, getCity} from "../../selectors.js";
+import {getActiveOffer, getCity} from "../../reducer/filters/selectors.js";
+import {CityCoordinates} from "../../const.js";
 
 const ZOOM = 12;
 const iconInactive = leaflet.icon({
