@@ -102,14 +102,18 @@ Map.propTypes = {
   city: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        city: PropTypes.string.isRequired,
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+          zoom: PropTypes.number.isRequired,
+        }),
         coordinates: PropTypes.arrayOf(
             PropTypes.number
         ).isRequired,
       }).isRequired
   ).isRequired,
   activeCard: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

@@ -6,16 +6,16 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
 import {OfferClassNamesForPageType} from "../../const.js";
-import {getOffersNearby, getCity, getActiveOffer} from "../../selectors.js";
+import {getOffersNearby, getCity, getActiveOffer, getCurrentOfferReviews} from "../../selectors.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {city, offersNearby, offer, onOfferDetailsOpen, onActiveCardChange, activeCard} = props;
-  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews} = offer;
-  const reviewsCount = reviews.length;
+  const {city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, onActiveCardChange, activeCard} = props;
+  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
+  const reviewsCount = currentOfferReviews.length;
   const premiumTag = isPremium
     ? (<div className="property__mark"><span>Premium</span></div>)
     : null;
@@ -27,10 +27,10 @@ const OfferDetails = (props) => {
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            {photos.slice(0, MAX_PHOTOS).map((photo, i) => {
+            {photos.slice(0, MAX_PHOTOS).map((photo) => {
               return (
-                <div key={`${i}-${photo.src}`} className="property__image-wrapper">
-                  <img className="property__image" src={photo.src} alt={photo.alt}/>
+                <div key={photo} className="property__image-wrapper">
+                  <img className="property__image" src={photo} alt={name}/>
                 </div>
               );
             })}
@@ -95,19 +95,15 @@ const OfferDetails = (props) => {
                 </span>
               </div>
               <div className="property__description">
-                {description.map((parapraph, i) => {
-                  return (
-                    <p key={`${i}-p`} className="property__text">
-                      {parapraph}
-                    </p>
-                  );
-                })}
+                <p className="property__text">
+                  {description}
+                </p>
               </div>
             </div>
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
               <ReviewsList
-                reviews={reviews}
+                reviews={currentOfferReviews}
               />
               <form className="reviews__form form" action="#" method="post">
                 <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -186,13 +182,10 @@ OfferDetails.propTypes = {
   offersNearby: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     photos: PropTypes.arrayOf(
-        PropTypes.shape({
-          src: PropTypes.string.isRequired,
-          alt: PropTypes.string.isRequired,
-        })
+        PropTypes.string.isRequired
     ).isRequired,
     name: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    description: PropTypes.string.isRequired,
     type: PropTypes.oneOf([EstateType.APARTMENT, EstateType.ROOM, EstateType.HOTEL, EstateType.HOUSE]).isRequired,
     rating: PropTypes.number.isRequired,
     bedrooms: PropTypes.number.isRequired,
@@ -200,30 +193,17 @@ OfferDetails.propTypes = {
     price: PropTypes.number.isRequired,
     equipment: PropTypes.arrayOf(PropTypes.string).isRequired,
     host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
+      status: PropTypes.bool.isRequired,
     }).isRequired,
     isPremium: PropTypes.bool.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired,
-          rating: PropTypes.number.isRequired,
-          user: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-          }).isRequired,
-          date: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    offersNearbyIds: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
   }),
   onOfferDetailsOpen: PropTypes.func.isRequired,
   onActiveCardChange: PropTypes.func.isRequired,
   activeCard: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -231,12 +211,24 @@ OfferDetails.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
   }),
+  currentOfferReviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }).isRequired,
+        date: PropTypes.string.isRequired,
+      })
+  ).isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
   offersNearby: getOffersNearby(state, ownProps),
   city: getCity(state),
   activeCard: getActiveOffer(state),
+  currentOfferReviews: getCurrentOfferReviews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

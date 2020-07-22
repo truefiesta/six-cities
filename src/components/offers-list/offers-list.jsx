@@ -42,7 +42,7 @@ class OffersList extends Component {
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
         image: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
