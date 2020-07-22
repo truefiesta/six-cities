@@ -17,12 +17,19 @@ export const getActiveOffer = (state) => {
   return state.activeCard;
 };
 
+export const getCurrentOfferReviews = (state) => {
+  return state.currentOfferReviews;
+};
+
+export const getOffersNearby = (state) => {
+  return state.currentOffersNearby;
+};
+
 export const getCityOffers = createSelector(
     getOffers,
     getCity,
-
     (offers, city) => offers.filter((offer) => {
-      return offer.city === city;
+      return offer.city.name === city;
     })
 );
 
@@ -47,19 +54,8 @@ export const getSortedCityOffers = createSelector(
 export const getCities = (state) => {
   const offers = getOffers(state);
   const cities = offers.map((offer) => {
-    return offer.city;
+    return offer.city.name;
   });
 
   return [...new Set(cities)];
-};
-
-export const getOffersNearby = (state, props) => {
-  const offers = getOffers(state);
-  const {offer} = props;
-  const {offersNearbyIds} = offer;
-  const offersNearbyIdsSet = new Set(offersNearbyIds);
-
-  return offers.filter((offerItem) => {
-    return offersNearbyIdsSet.has(offerItem.id);
-  });
 };
