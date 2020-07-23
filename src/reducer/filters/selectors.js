@@ -40,3 +40,13 @@ export const getSortedCityOffers = createSelector(
       return cityOffers;
     }
 );
+
+export const getCityDetails = (state) => {
+  const offers = getOffers(state);
+  const city = getCity(state);
+  const offerFound = offers.find((offer) => {
+    return offer.city.name === city;
+  });
+
+  return offerFound.city;
+};
