@@ -1,11 +1,9 @@
-import React, {PureComponent, createRef} from "react";
+import React, {Component, createRef} from "react";
 import leaflet from "leaflet";
-import {CityCoordinates} from "../../const.js";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getActiveOffer, getCity} from "../../selectors.js";
+import {getActiveOffer, getCity, getCityDetails} from "../../reducer/filters/selectors.js";
 
-const ZOOM = 12;
 const iconInactive = leaflet.icon({
   iconUrl: `img/pin.svg`,
   iconSize: [27, 39],
@@ -16,7 +14,7 @@ const iconActive = leaflet.icon({
   iconSize: [27, 39],
 });
 
-class Map extends PureComponent {
+class Map extends Component {
   constructor(props) {
     super(props);
 
@@ -47,17 +45,20 @@ class Map extends PureComponent {
     this._markers.clearLayers();
   }
 
-  _createMap(mapRef, city) {
+  _createMap(mapRef) {
+    const {coordinates, zoom} = this.props.cityDetails;
+
     this._map = leaflet.map(mapRef, {
-      center: CityCoordinates[city],
-      zoom: ZOOM,
+      center: coordinates,
+      zoom,
       zoomControl: false,
       marker: true,
     });
   }
 
-  _setMapView(city) {
-    this._map.setView(CityCoordinates[city], ZOOM);
+  _setMapView() {
+    const {coordinates, zoom} = this.props.cityDetails;
+    this._map.setView(coordinates, zoom);
   }
 
   _addTileLayer(map) {
@@ -68,30 +69,66 @@ class Map extends PureComponent {
       .addTo(map);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.city !== nextProps.city) {
+      return true;
+    }
+
+    if (!this.props.activeCard && nextProps.activeCard) {
+      return true;
+    }
+
+    if (this.props.activeCard && !nextProps.activeCard) {
+      return true;
+    }
+
+    if (this.props.activeCard && nextProps.activeCard) {
+      if (this.props.activeCard.id !== nextProps.activeCard.id) {
+        return true;
+      }
+    }
+
+    const currentOffers = this.props.offers;
+    const newOffers = nextProps.offers;
+
+    if (currentOffers.length !== newOffers.length) {
+      return true;
+    } else {
+      for (let index = 0; index < currentOffers.length; index++) {
+        if (currentOffers[index].id !== newOffers[index].id) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   componentDidMount() {
     const mapRef = this._mapRef.current;
-    const {city} = this.props;
 
-    this._createMap(mapRef, city);
-    this._setMapView(city);
+    this._createMap(mapRef);
+    this._setMapView();
     this._addTileLayer(this._map);
     this._addMarkers(this._map);
   }
 
   render() {
+    const {mapStyle} = this.props;
+
     return (
-      <div id="map" style={{height: `100%`}} ref={this._mapRef}></div>
+      <section className={`${mapStyle} map`}>
+        <div id="map" style={{height: `100%`}} ref={this._mapRef}></div>
+      </section>
     );
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.city !== this.props.city) {
       this._clearMarkers();
-      this._setMapView(this.props.city);
+      this._setMapView();
       this._addMarkers(this._map);
-    }
-
-    if (prevProps.activeCard !== this.props.activeCard) {
+    } else {
       this._clearMarkers();
       this._addMarkers(this._map, this.props.activeCard);
     }
@@ -102,26 +139,32 @@ Map.propTypes = {
   city: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        city: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+        }),
         coordinates: PropTypes.arrayOf(
             PropTypes.number
         ).isRequired,
       }).isRequired
   ).isRequired,
   activeCard: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
   }),
+  mapStyle: PropTypes.string.isRequired,
+  cityDetails: PropTypes.shape({
+    coordinates: PropTypes.arrayOf(
+        PropTypes.number.isRequired
+    ).isRequired,
+    zoom: PropTypes.number.isRequired,
+  })
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   city: getCity(state),
-  activeCard: getActiveOffer(state),
+  cityDetails: getCityDetails(state),
+  activeCard: ownProps.activeCard || getActiveOffer(state),
 });
 
 export {Map};

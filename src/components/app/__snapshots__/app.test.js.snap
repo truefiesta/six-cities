@@ -616,13 +616,9 @@ exports[`src/App.jsx when the city is chosen and the offers is non-empty array s
         <div
           className="cities__right-section"
         >
-          <section
-            className="cities__map map"
-          >
-            <div
-              id="map"
-            />
-          </section>
+          <div
+            id="map"
+          />
         </div>
       </div>
     </div>

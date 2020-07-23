@@ -5,32 +5,33 @@ import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
-import {OfferClassNamesForPageType} from "../../const.js";
-import {getOffersNearby, getCity, getActiveOffer} from "../../selectors.js";
+import {OfferClassNamesForPageType, MapClass} from "../../const.js";
+import {getOffersNearby, getCurrentOfferReviews} from "../../reducer/offers/selectors.js";
+import {getCity} from "../../reducer/filters/selectors.js";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
 
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {city, offersNearby, offer, onOfferDetailsOpen, onActiveCardChange, activeCard} = props;
-  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, reviews} = offer;
-  const reviewsCount = reviews.length;
+  const {city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen} = props;
+  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
+  const reviewsCount = currentOfferReviews.length;
   const premiumTag = isPremium
     ? (<div className="property__mark"><span>Premium</span></div>)
     : null;
   const bedroomsText = bedrooms > 1 ? `${bedrooms} Bedrooms` : `${bedrooms} Bedroom`;
   const guestsText = guests > 1 ? `Max ${guests} adults` : `Max ${guests} adult`;
+  const nearbyOffersWithCurrentOffer = offersNearby.concat(offer);
 
   return (
     <main className="page__main page__main--property">
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            {photos.slice(0, MAX_PHOTOS).map((photo, i) => {
+            {photos.slice(0, MAX_PHOTOS).map((photo) => {
               return (
-                <div key={`${i}-${photo.src}`} className="property__image-wrapper">
-                  <img className="property__image" src={photo.src} alt={photo.alt}/>
+                <div key={photo} className="property__image-wrapper">
+                  <img className="property__image" src={photo} alt={name}/>
                 </div>
               );
             })}
@@ -95,19 +96,15 @@ const OfferDetails = (props) => {
                 </span>
               </div>
               <div className="property__description">
-                {description.map((parapraph, i) => {
-                  return (
-                    <p key={`${i}-p`} className="property__text">
-                      {parapraph}
-                    </p>
-                  );
-                })}
+                <p className="property__text">
+                  {description}
+                </p>
               </div>
             </div>
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
               <ReviewsList
-                reviews={reviews}
+                reviews={currentOfferReviews}
               />
               <form className="reviews__form form" action="#" method="post">
                 <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -158,13 +155,12 @@ const OfferDetails = (props) => {
             </section>
           </div>
         </div>
-        <section className="property__map map">
-          <Map
-            offers={offersNearby}
-            city={city}
-            activeCard={activeCard}
-          />
-        </section>
+        <Map
+          offers={nearbyOffersWithCurrentOffer}
+          city={city}
+          activeCard={offer}
+          mapStyle={MapClass.MAP_DETAILS}
+        />
       </section>
       <div className="container">
         <section className="near-places places">
@@ -173,7 +169,7 @@ const OfferDetails = (props) => {
             offers={offersNearby}
             onOfferDetailsOpen={onOfferDetailsOpen}
             cardStyle={OfferClassNamesForPageType.details}
-            onActiveCardChange={onActiveCardChange}
+            onActiveCardChange={() => null}
           />
         </section>
       </div>
@@ -186,13 +182,10 @@ OfferDetails.propTypes = {
   offersNearby: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     photos: PropTypes.arrayOf(
-        PropTypes.shape({
-          src: PropTypes.string.isRequired,
-          alt: PropTypes.string.isRequired,
-        })
+        PropTypes.string.isRequired
     ).isRequired,
     name: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string).isRequired,
+    description: PropTypes.string.isRequired,
     type: PropTypes.oneOf([EstateType.APARTMENT, EstateType.ROOM, EstateType.HOTEL, EstateType.HOUSE]).isRequired,
     rating: PropTypes.number.isRequired,
     bedrooms: PropTypes.number.isRequired,
@@ -200,50 +193,32 @@ OfferDetails.propTypes = {
     price: PropTypes.number.isRequired,
     equipment: PropTypes.arrayOf(PropTypes.string).isRequired,
     host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
+      status: PropTypes.bool.isRequired,
     }).isRequired,
     isPremium: PropTypes.bool.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired,
-          rating: PropTypes.number.isRequired,
-          user: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-          }).isRequired,
-          date: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    offersNearbyIds: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
   }),
   onOfferDetailsOpen: PropTypes.func.isRequired,
-  onActiveCardChange: PropTypes.func.isRequired,
-  activeCard: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-  }),
+  currentOfferReviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }).isRequired,
+        date: PropTypes.string.isRequired,
+      })
+  ).isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  offersNearby: getOffersNearby(state, ownProps),
+const mapStateToProps = (state) => ({
+  offersNearby: getOffersNearby(state),
   city: getCity(state),
-  activeCard: getActiveOffer(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onActiveCardChange(offer) {
-    dispatch(ActionCreator.changeActiveCard(offer));
-  }
+  currentOfferReviews: getCurrentOfferReviews(state),
 });
 
 export {OfferDetails};
-export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);
+export default connect(mapStateToProps, null)(OfferDetails);

@@ -14,9 +14,9 @@ export const CityName = {
   PARIS: `Paris`,
 };
 
-export const CityCoordinates = {
-  [CityName.AMSTERDAM]: [52.38333, 4.9],
-  [CityName.PARIS]: [48.864716, 2.35],
+export const MapClass = {
+  MAP_MAIN: `cities__map`,
+  MAP_DETAILS: `property__map`,
 };
 
 export const OfferClassNamesForPageType = {

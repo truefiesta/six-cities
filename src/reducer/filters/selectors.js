@@ -1,28 +1,25 @@
 import {createSelector} from "reselect";
-import {SortTypes} from "./const.js";
-
-export const getOffers = (state) => {
-  return state.offers;
-};
+import {getOffers} from "../offers/selectors.js";
+import {SortTypes} from "../../const.js";
+import {NameSpace} from "../name-space.js";
 
 export const getCity = (state) => {
-  return state.city;
+  return state[NameSpace.FILTERS].city;
 };
 
 export const getCurrentSortType = (state) => {
-  return state.sortType;
+  return state[NameSpace.FILTERS].sortType;
 };
 
 export const getActiveOffer = (state) => {
-  return state.activeCard;
+  return state[NameSpace.FILTERS].activeCard;
 };
 
 export const getCityOffers = createSelector(
     getOffers,
     getCity,
-
     (offers, city) => offers.filter((offer) => {
-      return offer.city === city;
+      return offer.city.name === city;
     })
 );
 
@@ -44,22 +41,12 @@ export const getSortedCityOffers = createSelector(
     }
 );
 
-export const getCities = (state) => {
+export const getCityDetails = (state) => {
   const offers = getOffers(state);
-  const cities = offers.map((offer) => {
-    return offer.city;
+  const city = getCity(state);
+  const offerFound = offers.find((offer) => {
+    return offer.city.name === city;
   });
 
-  return [...new Set(cities)];
-};
-
-export const getOffersNearby = (state, props) => {
-  const offers = getOffers(state);
-  const {offer} = props;
-  const {offersNearbyIds} = offer;
-  const offersNearbyIdsSet = new Set(offersNearbyIds);
-
-  return offers.filter((offerItem) => {
-    return offersNearbyIdsSet.has(offerItem.id);
-  });
+  return offerFound.city;
 };

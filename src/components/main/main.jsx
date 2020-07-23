@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Map from "../map/map.jsx";
+import NoOffers from "../no-offers/no-offers.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
 import Cities from "../cities/cities.jsx";
-
 import {connect} from "react-redux";
-import {getSortedCityOffers} from "../../selectors.js";
-import NoOffers from "../no-offers/no-offers.jsx";
+import {getSortedCityOffers} from "../../reducer/filters/selectors.js";
+import {MapClass} from "../../const.js";
 
 const Main = (props) => {
   const {sortedCityOffers, onOfferDetailsOpen} = props;
@@ -52,11 +52,10 @@ const Main = (props) => {
                 onOfferDetailsOpen={onOfferDetailsOpen}
               />
               <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map
-                    offers={sortedCityOffers}
-                  />
-                </section>
+                <Map
+                  mapStyle={MapClass.MAP_MAIN}
+                  offers={sortedCityOffers}
+                />
               </div>
             </div>
           }

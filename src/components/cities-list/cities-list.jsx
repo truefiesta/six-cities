@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer";
-import {getCities, getCity} from "../../selectors.js";
+import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
+import {getCities} from "../../reducer/offers/selectors.js";
+import {getCity} from "../../reducer/filters/selectors.js";
 
 const CitiesList = ({city, cities, onCityClick}) => {
   const sixCities = cities.slice(0, 6);
@@ -46,7 +47,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick(city) {
-    dispatch(ActionCreator.changeCity(city));
+    dispatch(FiltersActionCreator.changeCity(city));
   }
 });
 

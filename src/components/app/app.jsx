@@ -4,9 +4,8 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import {connect} from "react-redux";
-import {getOffers} from "../../selectors.js";
-import {ActionCreator} from "../../reducer.js";
-import mockOffers from "../../mocks/offers.js";
+import {getOffers} from "../../reducer/offers/selectors.js";
+import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -20,6 +19,7 @@ class App extends PureComponent {
 
   _handleCardHeaderClick(offer) {
     this.setState({clickedOffer: offer});
+    this.props.onCurrentOfferChange(offer);
   }
 
   _renderApp() {
@@ -39,12 +39,6 @@ class App extends PureComponent {
         onOfferDetailsOpen={this._handleCardHeaderClick}
       />
     );
-  }
-
-  componentDidMount() {
-    if (mockOffers.length > 0) {
-      this.props.onLoad(mockOffers[0].city, mockOffers);
-    }
   }
 
   render() {
@@ -72,7 +66,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.array.isRequired,
-  onLoad: PropTypes.func.isRequired,
+  onCurrentOfferChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -80,9 +74,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoad(city, offers) {
-    dispatch(ActionCreator.changeCity(city));
-    dispatch(ActionCreator.setAllOffers(offers));
+  onCurrentOfferChange(offer) {
+    dispatch(OffersOperation.loadOfferReviews(offer.id));
+    dispatch(OffersOperation.loadOffersNearby(offer.id));
   }
 });
 
