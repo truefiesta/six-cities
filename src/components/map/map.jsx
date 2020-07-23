@@ -143,7 +143,6 @@ Map.propTypes = {
         city: PropTypes.shape({
           name: PropTypes.string.isRequired,
           coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-          zoom: PropTypes.number.isRequired,
         }),
         coordinates: PropTypes.arrayOf(
             PropTypes.number
@@ -152,16 +151,9 @@ Map.propTypes = {
   ).isRequired,
   activeCard: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
   }),
   mapStyle: PropTypes.string.isRequired,
   cityDetails: PropTypes.shape({
-    name: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(
         PropTypes.number.isRequired
     ).isRequired,
