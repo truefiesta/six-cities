@@ -1,46 +1,27 @@
-import React, {Component} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
 
-class OffersList extends Component {
-  shouldComponentUpdate(nextProps) {
-    const currentOffers = this.props.offers;
-    const newOffers = nextProps.offers;
+const OffersList = (props) => {
+  const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = props;
 
-    if (currentOffers.length !== newOffers.length) {
-      return true;
-    } else {
-      for (let index = 0; index < currentOffers.length; index++) {
-        if (currentOffers[index].id !== newOffers[index].id) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  render() {
-    const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = this.props;
-
-    return (
-      <div className={`${cardStyle.list} places__list`}>
-        {offers.map((offer) => {
-          return (
-            <OfferCard
-              key={offer.id}
-              offer={offer}
-              onMouseOver={onActiveCardChange}
-              onMouseOut={onActiveCardChange}
-              onOfferDetailsOpen={onOfferDetailsOpen}
-              cardStyle={cardStyle}
-            />
-          );
-        })};
-      </div>
-    );
-  }
-}
+  return (
+    <div className={`${cardStyle.list} places__list`}>
+      {offers.map((offer) => {
+        return (
+          <OfferCard
+            key={offer.id}
+            offer={offer}
+            onMouseOver={onActiveCardChange}
+            onMouseOut={onActiveCardChange}
+            onOfferDetailsOpen={onOfferDetailsOpen}
+            cardStyle={cardStyle}
+          />
+        );
+      })};
+    </div>
+  );
+};
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(
