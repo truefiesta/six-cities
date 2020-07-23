@@ -15,7 +15,7 @@ const OfferCard = (props) => {
       onMouseOver={() => onMouseOver(offer)}
       onMouseOut={() => onMouseOut(null)}
       className={`${cardStyle.article} place-card`}
-      id={id}
+      id={`offer-${id}`}
     >
       {premiumTag}
       <div className={`${cardStyle.image} place-card__image-wrapper`}>

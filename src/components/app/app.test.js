@@ -3,10 +3,9 @@ import renderer from "react-test-renderer";
 import App from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import testMocks from "../../test-mocks/test-mocks.js";
 import {CityName, SortTypes} from "../../const.js";
-
-const offers = testMocks;
+import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
+import {NameSpace} from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
@@ -20,10 +19,16 @@ describe(`src/App.jsx`, () => {
   describe(`when the city is chosen and the offers is non-empty array`, () => {
     it(`should render with data`, () => {
       const store = mockStore({
-        city: CityName.AMSTERDAM,
-        offers,
-        sortType: SortTypes.POPULAR,
-        activeCard: null,
+        [NameSpace.FILTERS]: {
+          city: CityName.AMSTERDAM,
+          sortType: SortTypes.POPULAR,
+          activeCard: null,
+        },
+        [NameSpace.OFFERS]: {
+          offers,
+          currentOfferReviews: reviews,
+          currentOffersNearby: offersNearby,
+        },
       });
 
       const tree = renderer.create(
@@ -40,10 +45,16 @@ describe(`src/App.jsx`, () => {
   describe(`when the offers is an empty array`, () => {
     it(`should render with no data`, () => {
       const store = mockStore({
-        city: null,
-        offers: [],
-        sortType: SortTypes.POPULAR,
-        activeCard: null,
+        [NameSpace.FILTERS]: {
+          city: null,
+          sortType: SortTypes.POPULAR,
+          activeCard: null,
+        },
+        [NameSpace.OFFERS]: {
+          offers: [],
+          currentOfferReviews: [],
+          currentOffersNearby: [],
+        },
       });
 
       const tree = renderer.create(

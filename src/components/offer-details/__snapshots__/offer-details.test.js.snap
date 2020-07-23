@@ -17,7 +17,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
           className="property__image-wrapper"
         >
           <img
-            alt="Photo studio"
+            alt="Beautiful & luxurious apartment at great location"
             className="property__image"
             src="img/room.jpg"
           />
@@ -26,7 +26,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
           className="property__image-wrapper"
         >
           <img
-            alt="Photo studio"
+            alt="Beautiful & luxurious apartment at great location"
             className="property__image"
             src="img/apartment-01.jpg"
           />
@@ -35,7 +35,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
           className="property__image-wrapper"
         >
           <img
-            alt="Photo studio"
+            alt="Beautiful & luxurious apartment at great location"
             className="property__image"
             src="img/apartment-02.jpg"
           />
@@ -44,7 +44,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
           className="property__image-wrapper"
         >
           <img
-            alt="Photo studio"
+            alt="Beautiful & luxurious apartment at great location"
             className="property__image"
             src="img/apartment-03.jpg"
           />
@@ -53,18 +53,9 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
           className="property__image-wrapper"
         >
           <img
-            alt="Photo studio"
+            alt="Beautiful & luxurious apartment at great location"
             className="property__image"
             src="img/studio-01.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/apartment-01.jpg"
           />
         </div>
       </div>
@@ -266,12 +257,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
             <p
               className="property__text"
             >
-              A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-            </p>
-            <p
-              className="property__text"
-            >
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+              A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
             </p>
           </div>
         </div>
@@ -285,7 +271,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
             <span
               className="reviews__amount"
             >
-              1
+              12
             </span>
           </h2>
           <ul
@@ -514,13 +500,9 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
         </section>
       </div>
     </div>
-    <section
-      className="property__map map"
-    >
-      <div
-        id="map"
-      />
-    </section>
+    <div
+      id="map"
+    />
   </section>
   <div
     className="container"
@@ -536,6 +518,113 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
       <div
         className="near-places__list places__list"
       >
+        <article
+          className="near-places__card place-card"
+          id="offer-1"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <div
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
+          <div
+            className="near-places__image-wrapper place-card__image-wrapper"
+          >
+            <a
+              href="#"
+            >
+              <img
+                alt="Place image"
+                className="place-card__image"
+                height="200"
+                src="img/room.jpg"
+                width="260"
+              />
+            </a>
+          </div>
+          <div
+            className="place-card__info"
+          >
+            <div
+              className="place-card__price-wrapper"
+            >
+              <div
+                className="place-card__price"
+              >
+                <b
+                  className="place-card__price-value"
+                >
+                  €
+                  120
+                </b>
+                <span
+                  className="place-card__price-text"
+                >
+                  / night
+                </span>
+              </div>
+              <button
+                className="place-card__bookmark-button button"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  className="place-card__bookmark-icon"
+                  height="19"
+                  width="18"
+                >
+                  <use
+                    xlinkHref="#icon-bookmark"
+                  />
+                </svg>
+                <span
+                  className="visually-hidden"
+                >
+                  To bookmarks
+                </span>
+              </button>
+            </div>
+            <div
+              className="place-card__rating rating"
+            >
+              <div
+                className="place-card__stars rating__stars"
+              >
+                <span
+                  style={
+                    Object {
+                      "width": "80%",
+                    }
+                  }
+                />
+                <span
+                  className="visually-hidden"
+                >
+                  Rating
+                </span>
+              </div>
+            </div>
+            <h2
+              className="place-card__name"
+            >
+              <a
+                href="#"
+                onClick={[Function]}
+              >
+                Beautiful & luxurious apartment at great location
+              </a>
+            </h2>
+            <p
+              className="place-card__type"
+            >
+              Apartment
+            </p>
+          </div>
+        </article>
         <article
           className="near-places__card place-card"
           id="offer-2"

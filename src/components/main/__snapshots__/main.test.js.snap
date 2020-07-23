@@ -603,13 +603,9 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
         <div
           className="cities__right-section"
         >
-          <section
-            className="cities__map map"
-          >
-            <div
-              id="map"
-            />
-          </section>
+          <div
+            id="map"
+          />
         </div>
       </div>
     </div>
@@ -787,13 +783,9 @@ exports[`src/Main.jsx when the offers is an empty array should render with data 
         <div
           className="cities__right-section"
         >
-          <section
-            className="cities__map map"
-          >
-            <div
-              id="map"
-            />
-          </section>
+          <div
+            id="map"
+          />
         </div>
       </div>
     </div>

@@ -1,12 +1,25 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {CitiesList} from "./cities-list.jsx";
-import {CityName} from "../../const.js";
+import {CityName, SortTypes} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
+import {NameSpace} from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
-const store = mockStore({});
+const store = mockStore({
+  [NameSpace.FILTERS]: {
+    city: CityName.AMSTERDAM,
+    sortType: SortTypes.POPULAR,
+    activeCard: null,
+  },
+  [NameSpace.OFFERS]: {
+    offers,
+    currentOfferReviews: reviews,
+    currentOffersNearby: offersNearby,
+  },
+});
 
 const cities = Object.values(CityName);
 

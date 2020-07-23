@@ -1,23 +1,28 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import OfferDetails from "./offer-details.jsx";
-import testMocks from "../../test-mocks/test-mocks.js";
 import {CityName, SortTypes} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-
-const offers = testMocks;
-const sortedCityOffers = offers.slice(0, 4);
-
-const offer = offers[0];
+import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
+import {NameSpace} from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
+
 const store = mockStore({
-  city: CityName.AMSTERDAM,
-  offers,
-  sortType: SortTypes.POPULAR,
-  activeCard: null,
+  [NameSpace.FILTERS]: {
+    city: CityName.AMSTERDAM,
+    sortType: SortTypes.POPULAR,
+    activeCard: null,
+  },
+  [NameSpace.OFFERS]: {
+    offers,
+    currentOfferReviews: reviews,
+    currentOffersNearby: offersNearby,
+  },
 });
+
+const offer = offers[0];
 
 jest.mock(`../map/map.jsx`, () => () => {
   return (
@@ -60,10 +65,8 @@ describe(`src/offers-details.jsx`, () => {
       const tree = renderer.create(
           <Provider store={store}>
             <OfferDetails
-              city={CityName.AMSTERDAM}
-              sortedCityOffers={sortedCityOffers}
-              offer={offer}
               onOfferDetailsOpen={() => null}
+              offer={offer}
             />
           </Provider>
       )

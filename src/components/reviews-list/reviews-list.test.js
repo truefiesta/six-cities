@@ -4,22 +4,28 @@ import ReviewsList from "./reviews-list.jsx";
 
 const reviews = [
   {
-    id: `r000003`,
-    text: `Styled to complement the original features in the building, this historic warehouse is centrally located in the cool and vibrant city center.`,
+    id: 1,
+    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     rating: 4.1,
     user: {
-      name: `George`,
+      id: 1,
+      name: `Max`,
+      status: true,
+      avatar: `img/avatar-max.jpg`,
     },
     date: `2019-04-24`,
   },
   {
-    id: `r000004`,
-    text: `Beautiful apartment in a fantastic location. Had a great stay!`,
-    rating: 5,
+    id: 2,
+    text: `Very good location ,lovely staff ,clean apartment, great beds.`,
+    rating: 4.8,
     user: {
-      name: `Taylor`,
+      id: 2,
+      name: `Anthony`,
+      status: false,
+      avatar: `img/avatar-max.jpg`,
     },
-    date: `2019-03-17`,
+    date: `2019-06-25`,
   },
 ];
 

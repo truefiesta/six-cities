@@ -24,7 +24,7 @@ exports[`src/offer-card.jsx when the offer contains data should render with data
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="http://lorempixel.com/400/200/"
+        src="img/room.jpg"
         width="260"
       />
     </a>
