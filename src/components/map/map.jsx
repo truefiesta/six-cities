@@ -79,8 +79,12 @@ class Map extends PureComponent {
   }
 
   render() {
+    const {mapStyle} = this.props;
+
     return (
-      <div id="map" style={{height: `100%`}} ref={this._mapRef}></div>
+      <section className={`${mapStyle} map`}>
+        <div id="map" style={{height: `100%`}} ref={this._mapRef}></div>
+      </section>
     );
   }
 
@@ -121,6 +125,7 @@ Map.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
   }),
+  mapStyle: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

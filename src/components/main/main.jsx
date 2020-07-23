@@ -6,7 +6,7 @@ import CitiesList from "../cities-list/cities-list.jsx";
 import Cities from "../cities/cities.jsx";
 import {connect} from "react-redux";
 import {getSortedCityOffers} from "../../reducer/filters/selectors.js";
-
+import {MapClass} from "../../const.js";
 
 const Main = (props) => {
   const {sortedCityOffers, onOfferDetailsOpen} = props;
@@ -52,11 +52,10 @@ const Main = (props) => {
                 onOfferDetailsOpen={onOfferDetailsOpen}
               />
               <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map
-                    offers={sortedCityOffers}
-                  />
-                </section>
+                <Map
+                  mapStyle={MapClass.MAP_MAIN}
+                  offers={sortedCityOffers}
+                />
               </div>
             </div>
           }
