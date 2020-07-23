@@ -5,16 +5,15 @@ import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
-import {OfferClassNamesForPageType} from "../../const.js";
+import {OfferClassNamesForPageType, MapClass} from "../../const.js";
 import {getOffersNearby, getCurrentOfferReviews} from "../../reducer/offers/selectors.js";
-import {getCity, getActiveOffer} from "../../reducer/filters/selectors.js";
+import {getCity} from "../../reducer/filters/selectors.js";
 import {connect} from "react-redux";
-import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
 
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, onActiveCardChange, activeCard} = props;
+  const {city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen} = props;
   const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
   const reviewsCount = currentOfferReviews.length;
   const premiumTag = isPremium
@@ -22,6 +21,7 @@ const OfferDetails = (props) => {
     : null;
   const bedroomsText = bedrooms > 1 ? `${bedrooms} Bedrooms` : `${bedrooms} Bedroom`;
   const guestsText = guests > 1 ? `Max ${guests} adults` : `Max ${guests} adult`;
+  const nearbyOffersWithCurrentOffer = offersNearby.concat(offer);
 
   return (
     <main className="page__main page__main--property">
@@ -155,13 +155,12 @@ const OfferDetails = (props) => {
             </section>
           </div>
         </div>
-        <section className="property__map map">
-          <Map
-            offers={offersNearby}
-            city={city}
-            activeCard={activeCard}
-          />
-        </section>
+        <Map
+          offers={nearbyOffersWithCurrentOffer}
+          city={city}
+          activeCard={offer}
+          mapStyle={MapClass.MAP_DETAILS}
+        />
       </section>
       <div className="container">
         <section className="near-places places">
@@ -170,7 +169,7 @@ const OfferDetails = (props) => {
             offers={offersNearby}
             onOfferDetailsOpen={onOfferDetailsOpen}
             cardStyle={OfferClassNamesForPageType.details}
-            onActiveCardChange={onActiveCardChange}
+            onActiveCardChange={() => null}
           />
         </section>
       </div>
@@ -202,16 +201,6 @@ OfferDetails.propTypes = {
     isPremium: PropTypes.bool.isRequired,
   }),
   onOfferDetailsOpen: PropTypes.func.isRequired,
-  onActiveCardChange: PropTypes.func.isRequired,
-  activeCard: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-  }),
   currentOfferReviews: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -228,15 +217,8 @@ OfferDetails.propTypes = {
 const mapStateToProps = (state) => ({
   offersNearby: getOffersNearby(state),
   city: getCity(state),
-  activeCard: getActiveOffer(state),
   currentOfferReviews: getCurrentOfferReviews(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onActiveCardChange(offer) {
-    dispatch(FiltersActionCreator.changeActiveCard(offer));
-  }
-});
-
 export {OfferDetails};
-export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);
+export default connect(mapStateToProps, null)(OfferDetails);
