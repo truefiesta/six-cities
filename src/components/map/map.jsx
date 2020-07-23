@@ -1,4 +1,4 @@
-import React, {PureComponent, createRef} from "react";
+import React, {Component, createRef} from "react";
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
@@ -16,7 +16,7 @@ const iconActive = leaflet.icon({
   iconSize: [27, 39],
 });
 
-class Map extends PureComponent {
+class Map extends Component {
   constructor(props) {
     super(props);
 
@@ -68,6 +68,41 @@ class Map extends PureComponent {
       .addTo(map);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.city !== nextProps.city) {
+      return true;
+    }
+
+    if (!this.props.activeCard && nextProps.activeCard) {
+      return true;
+    }
+
+    if (this.props.activeCard && !nextProps.activeCard) {
+      return true;
+    }
+
+    if (this.props.activeCard && nextProps.activeCard) {
+      if (this.props.activeCard.id !== nextProps.activeCard.id) {
+        return true;
+      }
+    }
+
+    const currentOffers = this.props.offers;
+    const newOffers = nextProps.offers;
+
+    if (currentOffers.length !== newOffers.length) {
+      return true;
+    } else {
+      for (let index = 0; index < currentOffers.length; index++) {
+        if (currentOffers[index].id !== newOffers[index].id) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   componentDidMount() {
     const mapRef = this._mapRef.current;
     const {city} = this.props;
@@ -93,9 +128,7 @@ class Map extends PureComponent {
       this._clearMarkers();
       this._setMapView(this.props.city);
       this._addMarkers(this._map);
-    }
-
-    if (prevProps.activeCard !== this.props.activeCard) {
+    } else {
       this._clearMarkers();
       this._addMarkers(this._map, this.props.activeCard);
     }
@@ -106,6 +139,7 @@ Map.propTypes = {
   city: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         city: PropTypes.shape({
           name: PropTypes.string.isRequired,
           coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -128,9 +162,9 @@ Map.propTypes = {
   mapStyle: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   city: getCity(state),
-  activeCard: getActiveOffer(state),
+  activeCard: ownProps.activeCard || getActiveOffer(state),
 });
 
 export {Map};
