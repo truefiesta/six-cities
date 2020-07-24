@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const Error = {
-  UNAUTHORIZED: 401
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
 };
 
 const createApi = (onUnauthorized) => {
@@ -20,12 +21,14 @@ const createApi = (onUnauthorized) => {
 
     if (response.status === Error.UNAUTHORIZED) {
       onUnauthorized();
-
-      // Здесь применяется throw err, чтобы после запроса авторизации цепочка
-      // промисов была прервана. Иначе, если запрос был неудачным, приложение этого не поймет.
-      throw err;
+    } else if (response.status === Error.BAD_REQUEST) {
+      // TODO:
+    } else if (!response.status) {
+      // TODO:
     }
 
+    // Здесь применяется throw err, чтобы после запроса авторизации цепочка
+    // промисов была прервана. Иначе, если запрос был неудачным, приложение этого не поймет.
     throw err;
   };
 
