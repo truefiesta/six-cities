@@ -7,10 +7,12 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  email: null,
 };
 
 const ActionType = {
   CHANGE_AUTH_STATUS: `CHANGE_AUTH_STATUS`,
+  SET_EMAIL: `SET_EMAIL`,
 };
 
 const ActionCreator = {
@@ -19,6 +21,13 @@ const ActionCreator = {
       type: ActionType.CHANGE_AUTH_STATUS,
       payload: status,
     };
+  },
+  setEmail: (email) => {
+    return {
+      type: ActionType.SET_EMAIL,
+      payload: email,
+    };
+  },
 };
 
 const Operation = {
@@ -32,6 +41,15 @@ const Operation = {
     //   throw err;
     // });
   },
+
+  logIn: (userCredentials) => (dispatch, getState, api) => {
+    return api.post(`/login`, {
+      email: userCredentials.login,
+      password: userCredentials.password,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.changeAuthStatus(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setEmail(response.data.email));
       });
   },
 };
@@ -41,6 +59,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_AUTH_STATUS:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.SET_EMAIL:
+      return extend(state, {
+        email: action.payload,
       });
   }
 
