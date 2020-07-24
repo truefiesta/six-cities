@@ -6,6 +6,7 @@ import configureStore from "redux-mock-store";
 import {CityName, SortTypes} from "../../const.js";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -16,7 +17,7 @@ jest.mock(`../map/map.jsx`, () => () => {
 });
 
 describe(`src/App.jsx`, () => {
-  describe(`when the city is chosen and the offers is non-empty array`, () => {
+  describe(`when the city is chosen and there are offers`, () => {
     it(`should render with data`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
@@ -29,6 +30,10 @@ describe(`src/App.jsx`, () => {
           currentOfferReviews: reviews,
           currentOffersNearby: offersNearby,
         },
+        [NameSpace.USER]: {
+          authorizationStatus: AuthorizationStatus.NO_AUTH,
+          email: ``,
+        }
       });
 
       const tree = renderer.create(
@@ -42,11 +47,11 @@ describe(`src/App.jsx`, () => {
     });
   });
 
-  describe(`when the offers is an empty array`, () => {
+  describe(`when there are no offers`, () => {
     it(`should render with no data`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
-          city: null,
+          city: ``,
           sortType: SortTypes.POPULAR,
           activeCard: null,
         },
@@ -55,6 +60,10 @@ describe(`src/App.jsx`, () => {
           currentOfferReviews: [],
           currentOffersNearby: [],
         },
+        [NameSpace.USER]: {
+          authorizationStatus: AuthorizationStatus.NO_AUTH,
+          email: ``,
+        }
       });
 
       const tree = renderer.create(

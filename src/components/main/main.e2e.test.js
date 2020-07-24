@@ -8,6 +8,7 @@ import configureStore from "redux-mock-store";
 import PropTypes from "prop-types";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -28,6 +29,10 @@ const store = mockStore({
     currentOfferReviews: reviews,
     currentOffersNearby: offersNearby,
   },
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+    email: ``,
+  }
 });
 
 const Wrapper = ({children}) => {

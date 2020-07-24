@@ -47,7 +47,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  Sign in
                 </span>
               </a>
             </li>
@@ -613,7 +613,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
 </div>
 `;
 
-exports[`src/Main.jsx when the offers is an empty array should render with data 1`] = `
+exports[`src/Main.jsx when the offers is an empty array should render with no data 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -660,7 +660,7 @@ exports[`src/Main.jsx when the offers is an empty array should render with data 
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  Sign in
                 </span>
               </a>
             </li>
@@ -670,7 +670,7 @@ exports[`src/Main.jsx when the offers is an empty array should render with data 
     </div>
   </header>
   <main
-    className="page__main page__main--index "
+    className="page__main page__main--index page__main--index-empty"
   >
     <h1
       className="visually-hidden"
@@ -688,105 +688,29 @@ exports[`src/Main.jsx when the offers is an empty array should render with data 
       className="cities"
     >
       <div
-        className="cities__places-container container"
+        className="cities__places-container cities__places-container--empty container"
       >
         <section
-          className="cities__places places"
+          className="cities__no-places"
         >
-          <h2
-            className="visually-hidden"
-          >
-            Places
-          </h2>
-          <b
-            className="places__found"
-          >
-            0
-             places to stay in 
-          </b>
-          <form
-            action="#"
-            className="places__sorting"
-            method="get"
-          >
-            <span
-              className="places__sorting-caption"
-            >
-              Sort by
-            </span>
-            <span
-              className="places__sorting-type"
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              role="button"
-              tabIndex={0}
-            >
-               
-              Popular
-              <svg
-                className="places__sorting-arrow"
-                height="4"
-                width="7"
-              >
-                <use
-                  xlinkHref="#icon-arrow-select"
-                />
-              </svg>
-            </span>
-            <ul
-              className="places__options places__options--custom "
-            >
-              <li
-                className="places__option places__option--active"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                Popular
-              </li>
-              <li
-                className="places__option "
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                Price: low to high
-              </li>
-              <li
-                className="places__option "
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                Price: high to low
-              </li>
-              <li
-                className="places__option "
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                Top rated first
-              </li>
-            </ul>
-          </form>
           <div
-            className="cities__places-list tabs__content places__list"
+            className="cities__status-wrapper tabs__content"
           >
-            ;
+            <b
+              className="cities__status"
+            >
+              No places to stay available
+            </b>
+            <p
+              className="cities__status-description"
+            >
+              We could not find any property availbale at the moment.
+            </p>
           </div>
         </section>
         <div
           className="cities__right-section"
-        >
-          <div
-            id="map"
-          />
-        </div>
+        />
       </div>
     </div>
   </main>
