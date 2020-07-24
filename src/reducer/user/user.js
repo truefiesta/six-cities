@@ -7,7 +7,7 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  email: null,
+  email: ``,
 };
 
 const ActionType = {
@@ -36,10 +36,10 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.changeAuthStatus(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setEmail(response.data.email));
-      });
-    // .catch((err) => {
-    //   throw err;
-    // });
+      })
+    .catch(() => {
+      // TODO: throw err;
+    });
   },
 
   logIn: (userCredentials) => (dispatch, getState, api) => {

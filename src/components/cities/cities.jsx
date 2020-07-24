@@ -30,7 +30,7 @@ const Cities = (props) => {
 };
 
 Cities.propTypes = {
-  city: PropTypes.string,
+  city: PropTypes.string.isRequired,
   currentSortType: PropTypes.number.isRequired,
   sortedCityOffers: PropTypes.array.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
