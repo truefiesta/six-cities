@@ -1,22 +1,66 @@
-import React, {PureComponent, createRef} from "react";
+import React, {PureComponent} from "react";
+import Stars from "../stars/stars.jsx";
 
-// const RatingOptionTitle = {
-//   1: `terribly`,
-//   2: `badly`,
-//   3: `not bad`,
-//   4: `good`,
-//   5: `perfect`,
-// };
+const RATING = `rating`;
 
-// const RATING = `rating`;
+const RatingStarTitle = {
+  ONE_STAR: `terribly`,
+  TWO_STARS: `badly`,
+  THREE_STARS: `not bad`,
+  FOUR_STARS: `good`,
+  FIVE_STARS: `perfect`,
+};
+
+const ratingOptions = [
+  RatingStarTitle.ONE_STAR,
+  RatingStarTitle.TWO_STARS,
+  RatingStarTitle.THREE_STARS,
+  RatingStarTitle.FOUR_STARS,
+  RatingStarTitle.FIVE_STARS,
+];
 
 class ReviewForm extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      review: ``,
+      rating: 0,
+    };
+
+    this._handleFormSubmit = this._handleFormSubmit.bind(this);
+    this._handleFormClear = this._handleFormClear.bind(this);
+    this._handleReviewChange = this._handleReviewChange.bind(this);
+    this._handleRatingChange = this._handleRatingChange.bind(this);
   }
 
-  _handleSubmit(evt) {
+  _handleFormSubmit(evt) {
     evt.preventDefault();
+
+    // const reviewToSubmit = {
+    //   review: this.state.review,
+    //   rating: this.state.rating,
+    // };
+
+    this._handleFormClear(evt);
+  }
+
+  _handleFormClear(evt) {
+    evt.preventDefault();
+
+    this.setState({
+      review: ``,
+      rating: 0,
+    });
+  }
+
+  _handleReviewChange(evt) {
+    this.setState({review: evt.target.value});
+  }
+
+  _handleRatingChange(evt) {
+    const newRating = parseInt(evt.target.value, 10);
+    this.setState({rating: newRating});
   }
 
   render() {
@@ -28,45 +72,20 @@ class ReviewForm extends PureComponent {
         onSubmit={() => null}
       >
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
-
-        <div className="reviews__rating-form form__rating">
-          <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
-          <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"/>
-            </svg>
-          </label>
-
-          <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"/>
-          <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"/>
-            </svg>
-          </label>
-
-          <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"/>
-          <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"/>
-            </svg>
-          </label>
-
-          <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"/>
-          <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"/>
-            </svg>
-          </label>
-
-          <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"/>
-          <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"/>
-            </svg>
-          </label>
-        </div>
-
-        <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"/>
+        <Stars
+          setName={RATING}
+          setOptions={ratingOptions}
+          selectedOption={this.state.rating}
+          onSelectedOptionChange={this._handleRatingChange}
+        />
+        <textarea
+          className="reviews__textarea form__textarea"
+          id="review"
+          name="review"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+          value={this.state.value}
+          onChange={this._handleReviewChange}
+        />
 
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
