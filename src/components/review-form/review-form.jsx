@@ -1,6 +1,7 @@
-import React, {Component} from "react";
-import Stars from "../stars/stars.jsx";
+import React from "react";
 import PropTypes from "prop-types";
+import Stars from "../stars/stars.jsx";
+import withReview from "../../hocs/with-review/with-review.js";
 
 const RATING = `rating`;
 
@@ -20,115 +21,65 @@ const ratingOptions = [
   RatingStarTitle.FIVE_STARS,
 ];
 
-const MIN_LENGTH = 50;
-const MAX_LENGTH = 300;
+const ReviewForm = (props) => {
+  const {review, rating, isEnabled, minReviewLength, maxReviewLength, onRatingChange, onReviewChange, onReviewSubmit} = props;
 
-class ReviewForm extends Component {
-  constructor(props) {
-    super(props);
+  return (
+    <form
+      className="reviews__form form"
+      action=""
+      method="post"
+      onSubmit={(evt) => {
+        evt.preventDefault();
+        onReviewSubmit();
+      }}
+    >
+      <label className="reviews__label form__label" htmlFor="review">Your review</label>
+      <Stars
+        setName={RATING}
+        setOptions={ratingOptions}
+        selectedOption={rating}
+        onSelectedOptionChange={onRatingChange}
+      />
+      <textarea
+        className="reviews__textarea form__textarea"
+        id="review"
+        name="review"
+        placeholder="Tell how was your stay, what you like and what can be improved"
+        minLength={minReviewLength}
+        maxLength={maxReviewLength}
+        value={review}
+        onChange={(evt) => {
+          onReviewChange(evt.target.value);
+        }}
+      />
 
-    this.state = {
-      review: ``,
-      rating: 0,
-    };
-
-    this._handleFormSubmit = this._handleFormSubmit.bind(this);
-    this._handleFormClear = this._handleFormClear.bind(this);
-    this._handleReviewChange = this._handleReviewChange.bind(this);
-    this._handleRatingChange = this._handleRatingChange.bind(this);
-    this._validateForm = this._validateForm.bind(this);
-  }
-
-  _handleFormSubmit(evt) {
-    if (!this._validateForm()) {
-      evt.preventDefault();
-      return;
-    }
-
-    const {onSubmit, offerId} = this.props;
-
-    onSubmit({
-      comment: this.state.review,
-      rating: this.state.rating,
-    }, offerId);
-
-    this._handleFormClear(evt);
-  }
-
-  _handleFormClear(evt) {
-    evt.preventDefault();
-
-    this.setState({
-      review: ``,
-      rating: 0,
-    });
-  }
-
-  _handleReviewChange(evt) {
-    const newReview = evt.target.value;
-    this.setState({review: newReview});
-  }
-
-  _handleRatingChange(evt) {
-    const newRating = parseInt(evt.target.value, 10);
-    this.setState({rating: newRating});
-  }
-
-  _validateForm() {
-    const {rating, review} = this.state;
-    return (
-      rating > 0 && review.length >= MIN_LENGTH
-    );
-  }
-
-  render() {
-    const isEnabled = this._validateForm();
-
-    return (
-      <form
-        className="reviews__form form"
-        action=""
-        method="post"
-        onSubmit={this._handleFormSubmit}
-      >
-        <label className="reviews__label form__label" htmlFor="review">Your review</label>
-        <Stars
-          setName={RATING}
-          setOptions={ratingOptions}
-          selectedOption={this.state.rating}
-          onSelectedOptionChange={this._handleRatingChange}
-        />
-        <textarea
-          className="reviews__textarea form__textarea"
-          id="review"
-          name="review"
-          placeholder="Tell how was your stay, what you like and what can be improved"
-          minLength={MIN_LENGTH}
-          maxLength={MAX_LENGTH}
-          value={this.state.review}
-          onChange={this._handleReviewChange}
-        />
-
-        <div className="reviews__button-wrapper">
-          <p className="reviews__help">
-            To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-          </p>
-          <button
-            className="reviews__submit form__submit button"
-            type="submit"
-            disabled={!isEnabled}
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-    );
-  }
-}
-
-ReviewForm.propTypes = {
-  offerId: PropTypes.number.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+      <div className="reviews__button-wrapper">
+        <p className="reviews__help">
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+        </p>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={!isEnabled}
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  );
 };
 
-export default ReviewForm;
+ReviewForm.propTypes = {
+  review: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  isEnabled: PropTypes.bool.isRequired,
+  minReviewLength: PropTypes.number.isRequired,
+  maxReviewLength: PropTypes.number.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
+  onReviewChange: PropTypes.func.isRequired,
+  onReviewSubmit: PropTypes.func.isRequired,
+};
+
+export {ReviewForm};
+export default withReview(ReviewForm);

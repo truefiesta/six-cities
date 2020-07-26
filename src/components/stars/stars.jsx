@@ -21,7 +21,10 @@ const Stars = (props) => {
               id={`${id}-stars`}
               type="radio"
               checked={isChecked}
-              onChange={onSelectedOptionChange}
+              onChange={(evt) => {
+                const formattedRating = parseInt(evt.target.value, 10);
+                onSelectedOptionChange(formattedRating);
+              }}
             />
             <label htmlFor={`${id}-stars`} className="reviews__rating-label form__rating-label" title={option}>
               <svg className="form__star-image" width="37" height="33">
