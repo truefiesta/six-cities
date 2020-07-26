@@ -23,6 +23,7 @@ const store = mockStore({
     activeCard: null,
   },
   [NameSpace.OFFERS]: {
+    reviewError: ``,
     offers,
     currentOfferReviews: reviews,
     currentOffersNearby: offersNearby,
