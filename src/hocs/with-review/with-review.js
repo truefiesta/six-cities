@@ -26,15 +26,17 @@ const withReview = (Component) => {
 
       const {onSubmit, offerId} = this.props;
 
+      const onSubmitSuccess = () => {
+        this._clearReview();
+      };
+
       onSubmit({
         comment: this.state.message,
         rating: this.state.rating,
-      }, offerId);
-
-      this._crearReview();
+      }, offerId, onSubmitSuccess);
     }
 
-    _crearReview() {
+    _clearReview() {
       this.setState({
         message: ``,
         rating: 0,

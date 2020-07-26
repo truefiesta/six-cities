@@ -4,18 +4,25 @@ import {createOffer, createReview} from "../../adapters/adapters.js";
 import {ActionCreator as FiltersActionCreator} from "../filters/filters.js";
 
 const initialState = {
+  reviewError: ``,
   offers: [],
   currentOfferReviews: [],
   currentOffersNearby: [],
 };
 
 const ActionType = {
+  SET_REVIEW_ERROR: `SET_REVIEW_ERROR`,
   SET_ALL_OFFERS: `SET_ALL_OFFERS`,
   CHANGE_CURRENT_OFFER_REVIEWS: `CHANGE_CURRENT_OFFER_REVIEWS`,
   CHANGE_CURRENT_OFFERS_NEARBY: `CHANGE_CURRENT_OFFERS_NEARBY`,
 };
 
 const ActionCreator = {
+  setReviewError: (err) => ({
+    type: ActionType.SET_REVIEW_ERROR,
+    payload: err,
+  }),
+
   setAllOffers: (offers) => ({
     type: ActionType.SET_ALL_OFFERS,
     payload: offers,
@@ -75,7 +82,7 @@ const Operation = {
       });
   },
 
-  addReview: (review, offerId) => (dispatch, getState, api) => {
+  addReview: (review, offerId, onSuccess) => (dispatch, getState, api) => {
     return api.post(`/comments/${offerId}`, {
       comment: review.comment,
       rating: review.rating,
@@ -85,12 +92,22 @@ const Operation = {
       const reviews = allComments.map((comment) => createReview(comment));
 
       dispatch(ActionCreator.changeCurrentOfferReviews(reviews));
+      dispatch(ActionCreator.setReviewError(``));
+      onSuccess();
+    })
+    .catch((err) => {
+      dispatch(ActionCreator.setReviewError(err.message));
     });
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.SET_REVIEW_ERROR:
+      return extend(state, {
+        reviewError: action.payload,
+      });
+
     case ActionType.SET_ALL_OFFERS:
       return extend(state, {
         offers: action.payload,

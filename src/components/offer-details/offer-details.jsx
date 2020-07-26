@@ -7,7 +7,7 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
 import {OfferClassNamesForPageType, MapClass} from "../../const.js";
-import {getOffersNearby, getCurrentOfferReviews} from "../../reducer/offers/selectors.js";
+import {getOffersNearby, getCurrentOfferReviews, getReviewError} from "../../reducer/offers/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getCity} from "../../reducer/filters/selectors.js";
@@ -18,7 +18,7 @@ import ReviewForm from "../review-form/review-form.jsx";
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, authorizationStatus, onReviewSubmit} = props;
+  const {reviewError, city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, authorizationStatus, onReviewSubmit} = props;
   const {id, photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
   const reviewsCount = currentOfferReviews.length;
   const premiumTag = isPremium
@@ -118,6 +118,7 @@ const OfferDetails = (props) => {
                   <ReviewForm
                     onSubmit={onReviewSubmit}
                     offerId={id}
+                    reviewError={reviewError}
                   />
                 )}
               </section>
@@ -184,9 +185,11 @@ OfferDetails.propTypes = {
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onReviewSubmit: PropTypes.func.isRequired,
+  reviewError: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  reviewError: getReviewError(state),
   authorizationStatus: getAuthorizationStatus(state),
   offersNearby: getOffersNearby(state),
   city: getCity(state),
@@ -194,8 +197,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onReviewSubmit(review, offerId) {
-    dispatch(OffersOperation.addReview(review, offerId));
+  onReviewSubmit(review, offerId, onSuccess) {
+    dispatch(OffersOperation.addReview(review, offerId, onSuccess));
   }
 });
 

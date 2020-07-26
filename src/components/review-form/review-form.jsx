@@ -22,7 +22,7 @@ const ratingOptions = [
 ];
 
 const ReviewForm = (props) => {
-  const {review, rating, isEnabled, minReviewLength, maxReviewLength, onRatingChange, onReviewChange, onReviewSubmit} = props;
+  const {reviewError, review, rating, isEnabled, minReviewLength, maxReviewLength, onRatingChange, onReviewChange, onReviewSubmit} = props;
 
   return (
     <form
@@ -35,6 +35,7 @@ const ReviewForm = (props) => {
       }}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
+      {reviewError && <span style={{backgroundColor: `red`}}>{reviewError}</span>}
       <Stars
         setName={RATING}
         setOptions={ratingOptions}
@@ -71,6 +72,7 @@ const ReviewForm = (props) => {
 };
 
 ReviewForm.propTypes = {
+  reviewError: PropTypes.string.isRequired,
   review: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   isEnabled: PropTypes.bool.isRequired,

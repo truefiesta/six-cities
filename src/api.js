@@ -19,12 +19,12 @@ const createApi = (onUnauthorized) => {
   const onFail = (err) => {
     const {response} = err;
 
-    if (response.status === Error.UNAUTHORIZED) {
-      onUnauthorized();
-    } else if (response.status === Error.BAD_REQUEST) {
-      // TODO:
-    } else if (!response.status) {
-      // TODO:
+    if (response) {
+      if (response.status === Error.UNAUTHORIZED) {
+        onUnauthorized();
+      } else if (response.status === Error.BAD_REQUEST) {
+        // TODO:
+      }
     }
 
     // Здесь применяется throw err, чтобы после запроса авторизации цепочка
