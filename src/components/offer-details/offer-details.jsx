@@ -11,14 +11,15 @@ import {getOffersNearby, getCurrentOfferReviews} from "../../reducer/offers/sele
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getCity} from "../../reducer/filters/selectors.js";
+import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {connect} from "react-redux";
 import ReviewForm from "../review-form/review-form.jsx";
 
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, authorizationStatus} = props;
-  const {photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
+  const {city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, authorizationStatus, onReviewSubmit} = props;
+  const {id, photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
   const reviewsCount = currentOfferReviews.length;
   const premiumTag = isPremium
     ? (<div className="property__mark"><span>Premium</span></div>)
@@ -113,7 +114,12 @@ const OfferDetails = (props) => {
                 <ReviewsList
                   reviews={currentOfferReviews}
                 />
-                {isUserAuthorized && <ReviewForm/>}
+                {isUserAuthorized && (
+                  <ReviewForm
+                    onSubmit={onReviewSubmit}
+                    offerId={id}
+                  />
+                )}
               </section>
             </div>
           </div>
@@ -144,6 +150,7 @@ OfferDetails.propTypes = {
   city: PropTypes.string.isRequired,
   offersNearby: PropTypes.array.isRequired,
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     photos: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ).isRequired,
@@ -176,6 +183,7 @@ OfferDetails.propTypes = {
       })
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  onReviewSubmit: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -185,5 +193,11 @@ const mapStateToProps = (state) => ({
   currentOfferReviews: getCurrentOfferReviews(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onReviewSubmit(review, offerId) {
+    dispatch(OffersOperation.addReview(review, offerId));
+  }
+});
+
 export {OfferDetails};
-export default connect(mapStateToProps, null)(OfferDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);

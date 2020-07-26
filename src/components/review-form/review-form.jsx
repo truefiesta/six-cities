@@ -1,5 +1,6 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import Stars from "../stars/stars.jsx";
+import PropTypes from "prop-types";
 
 const RATING = `rating`;
 
@@ -19,7 +20,10 @@ const ratingOptions = [
   RatingStarTitle.FIVE_STARS,
 ];
 
-class ReviewForm extends PureComponent {
+const MIN_LENGTH = 50;
+const MAX_LENGTH = 300;
+
+class ReviewForm extends Component {
   constructor(props) {
     super(props);
 
@@ -32,15 +36,21 @@ class ReviewForm extends PureComponent {
     this._handleFormClear = this._handleFormClear.bind(this);
     this._handleReviewChange = this._handleReviewChange.bind(this);
     this._handleRatingChange = this._handleRatingChange.bind(this);
+    this._validateForm = this._validateForm.bind(this);
   }
 
   _handleFormSubmit(evt) {
-    evt.preventDefault();
+    if (!this._validateForm()) {
+      evt.preventDefault();
+      return;
+    }
 
-    // const reviewToSubmit = {
-    //   review: this.state.review,
-    //   rating: this.state.rating,
-    // };
+    const {onSubmit, offerId} = this.props;
+
+    onSubmit({
+      comment: this.state.review,
+      rating: this.state.rating,
+    }, offerId);
 
     this._handleFormClear(evt);
   }
@@ -55,7 +65,8 @@ class ReviewForm extends PureComponent {
   }
 
   _handleReviewChange(evt) {
-    this.setState({review: evt.target.value});
+    const newReview = evt.target.value;
+    this.setState({review: newReview});
   }
 
   _handleRatingChange(evt) {
@@ -63,13 +74,22 @@ class ReviewForm extends PureComponent {
     this.setState({rating: newRating});
   }
 
+  _validateForm() {
+    const {rating, review} = this.state;
+    return (
+      rating > 0 && review.length >= MIN_LENGTH
+    );
+  }
+
   render() {
+    const isEnabled = this._validateForm();
+
     return (
       <form
         className="reviews__form form"
-        action="#"
+        action=""
         method="post"
-        onSubmit={() => null}
+        onSubmit={this._handleFormSubmit}
       >
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <Stars
@@ -83,7 +103,9 @@ class ReviewForm extends PureComponent {
           id="review"
           name="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
-          value={this.state.value}
+          minLength={MIN_LENGTH}
+          maxLength={MAX_LENGTH}
+          value={this.state.review}
           onChange={this._handleReviewChange}
         />
 
@@ -91,11 +113,22 @@ class ReviewForm extends PureComponent {
           <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           </p>
-          <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+          <button
+            className="reviews__submit form__submit button"
+            type="submit"
+            disabled={!isEnabled}
+          >
+            Submit
+          </button>
         </div>
       </form>
     );
   }
 }
+
+ReviewForm.propTypes = {
+  offerId: PropTypes.number.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ReviewForm;

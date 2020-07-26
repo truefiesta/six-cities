@@ -74,6 +74,19 @@ const Operation = {
         dispatch(ActionCreator.changeCurrentOffersNearby(offersNearby));
       });
   },
+
+  addReview: (review, offerId) => (dispatch, getState, api) => {
+    return api.post(`/comments/${offerId}`, {
+      comment: review.comment,
+      rating: review.rating,
+    })
+    .then((response) => {
+      const allComments = response.data;
+      const reviews = allComments.map((comment) => createReview(comment));
+
+      dispatch(ActionCreator.changeCurrentOfferReviews(reviews));
+    });
+  },
 };
 
 const reducer = (state = initialState, action) => {
