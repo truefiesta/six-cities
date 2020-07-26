@@ -69,4 +69,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {AuthorizationStatus, ActionType, ActionCreator, Operation, reducer};
+export {initialState, AuthorizationStatus, ActionType, ActionCreator, Operation, reducer};
