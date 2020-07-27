@@ -43,3 +43,9 @@ export const SortTypes = {
   PRICE_HIGH_TO_LOW: 3,
   TOP_RATED_FIRST: 4,
 };
+
+export const AppRoute = {
+  LOGIN: `/login`,
+  FAVORITE: `/favorite`,
+  ROOT: `/`,
+};

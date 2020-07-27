@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {getOffers} from "../../reducer/offers/selectors.js";
 import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import LoginScreen from "../login-screen/login-screen.jsx";
+import {AppRoute} from "../../const.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -43,23 +44,14 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
+          <Route exact path={AppRoute.ROOT}>
             {this._renderApp()}
           </Route>
-          <Route exact path="/dev-offer-details">
-            {offers && offers.length && (
-              <OfferDetails
-                offer={offers[0]}
-                onOfferDetailsOpen={this._handleCardHeaderClick}
-              />
-            )}
-          </Route>
-          <Route exact path="/dev-auth">
+          <Route exact path={AppRoute.LOGIN}>
             <LoginScreen/>
           </Route>
         </Switch>
