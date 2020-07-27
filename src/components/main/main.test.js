@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 jest.mock(`../map/map.jsx`, () => () => {
   return (
@@ -31,6 +32,10 @@ describe(`src/Main.jsx`, () => {
           currentOfferReviews: reviews,
           currentOffersNearby: offersNearby,
         },
+        [NameSpace.USER]: {
+          authorizationStatus: AuthorizationStatus.NO_AUTH,
+          email: ``,
+        }
       });
 
       const tree = renderer.create(
@@ -48,10 +53,10 @@ describe(`src/Main.jsx`, () => {
   });
 
   describe(`when the offers is an empty array`, () => {
-    it(`should render with data`, () => {
+    it(`should render with no data`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
-          city: null,
+          city: ``,
           sortType: SortTypes.POPULAR,
           activeCard: null,
         },
@@ -60,12 +65,16 @@ describe(`src/Main.jsx`, () => {
           currentOfferReviews: [],
           currentOffersNearby: [],
         },
+        [NameSpace.USER]: {
+          authorizationStatus: AuthorizationStatus.NO_AUTH,
+          email: ``,
+        }
       });
 
       const tree = renderer.create(
           <Provider store={store}>
             <Main
-              sortedCityOffers={cityOffers}
+              sortedCityOffers={[]}
               onOfferDetailsOpen={() => null}
             />
           </Provider>

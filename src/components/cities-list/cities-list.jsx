@@ -35,7 +35,7 @@ const CitiesList = ({city, cities, onCityClick}) => {
 };
 
 CitiesList.propTypes = {
-  city: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(null)]),
+  city: PropTypes.string.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onCityClick: PropTypes.func.isRequired,
 };

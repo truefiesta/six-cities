@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/App.jsx when the city is chosen and the offers is non-empty array should render with data 1`] = `
+exports[`src/App.jsx when the city is chosen and there are offers should render with data 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -47,7 +47,7 @@ exports[`src/App.jsx when the city is chosen and the offers is non-empty array s
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  Sign in
                 </span>
               </a>
             </li>
@@ -626,7 +626,7 @@ exports[`src/App.jsx when the city is chosen and the offers is non-empty array s
 </div>
 `;
 
-exports[`src/App.jsx when the offers is an empty array should render with no data 1`] = `
+exports[`src/App.jsx when there are no offers should render with no data 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -673,7 +673,7 @@ exports[`src/App.jsx when the offers is an empty array should render with no dat
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  Sign in
                 </span>
               </a>
             </li>

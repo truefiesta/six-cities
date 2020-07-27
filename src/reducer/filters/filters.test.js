@@ -23,7 +23,7 @@ describe(`Reducer`, () => {
   it(`without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
       activeCard: null,
-      city: null,
+      city: ``,
       sortType: SortTypes.POPULAR,
     });
   });
