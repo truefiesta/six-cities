@@ -20,7 +20,7 @@ const createApi = (onUnauthorized) => {
     const {response} = err;
 
     if (response) {
-      if (response.status === Error.UNAUTHORIZED) {
+      if (response.status === Error.UNAUTHORIZED && response.config.method === `post`) {
         onUnauthorized();
       } else if (response.status === Error.BAD_REQUEST) {
         // TODO:
