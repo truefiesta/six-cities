@@ -18,7 +18,7 @@ import ReviewForm from "../review-form/review-form.jsx";
 const MAX_PHOTOS = 6;
 
 const OfferDetails = (props) => {
-  const {reviewError, city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, authorizationStatus, onReviewSubmit} = props;
+  const {reviewError, city, offersNearby, currentOfferReviews, offer, onOfferDetailsOpen, authorizationStatus, onReviewSubmit, onBookmarkStatusChange} = props;
   const {id, photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
   const reviewsCount = currentOfferReviews.length;
   const premiumTag = isPremium
@@ -139,6 +139,7 @@ const OfferDetails = (props) => {
               onOfferDetailsOpen={onOfferDetailsOpen}
               cardStyle={OfferClassNamesForPageType.details}
               onActiveCardChange={() => null}
+              onBookmarkStatusChange={onBookmarkStatusChange}
             />
           </section>
         </div>
@@ -186,6 +187,7 @@ OfferDetails.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   onReviewSubmit: PropTypes.func.isRequired,
   reviewError: PropTypes.string.isRequired,
+  onBookmarkStatusChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -199,6 +201,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onReviewSubmit(review, offerId, onSuccess) {
     dispatch(OffersOperation.addReview(review, offerId, onSuccess));
+  },
+  onBookmarkStatusChange(offerId, status) {
+    dispatch(OffersOperation.changeOfferBookmarkStatus(offerId, status));
   }
 });
 

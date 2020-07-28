@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
 const OfferCard = (props) => {
-  const {offer, onOfferDetailsOpen, onMouseOver, cardStyle, onMouseOut} = props;
-  const {id, image, price, name, type, rating, isPremium} = offer;
+  const {offer, onOfferDetailsOpen, onMouseOver, cardStyle, onMouseOut, onBookmarkStatusChange} = props;
+  const {id, image, price, name, type, rating, isPremium, isBookmarked} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
     : null;
-  // const activeBookmark = isBookmarked ? `place-card__bookmark-button--active` : ``;
+  const activeBookmark = isBookmarked ? `place-card__bookmark-button--active` : ``;
+  const newBookmarkStatus = !isBookmarked;
 
   return (
     <article
@@ -29,7 +30,7 @@ const OfferCard = (props) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button onClick={() => null} className="place-card__bookmark-button button" type="button">
+          <button onClick={() => onBookmarkStatusChange(id, newBookmarkStatus)} className={`place-card__bookmark-button ${activeBookmark} button`} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -68,6 +69,7 @@ OfferCard.propTypes = {
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
   }).isRequired,
   onMouseOver: PropTypes.func.isRequired,
   onOfferDetailsOpen: PropTypes.func.isRequired,
@@ -76,6 +78,7 @@ OfferCard.propTypes = {
     image: PropTypes.string.isRequired,
   }).isRequired,
   onMouseOut: PropTypes.func.isRequired,
+  onBookmarkStatusChange: PropTypes.func.isRequired,
 };
 
 export default OfferCard;

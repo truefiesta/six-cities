@@ -1,5 +1,5 @@
 import {extend} from "../../utils.js";
-import {getCities} from "./selectors.js";
+import {getCities, getOffers} from "./selectors.js";
 import {createOffer, createReview} from "../../adapters/adapters.js";
 import {ActionCreator as FiltersActionCreator} from "../filters/filters.js";
 
@@ -8,6 +8,7 @@ const initialState = {
   offers: [],
   currentOfferReviews: [],
   currentOffersNearby: [],
+  currentBookmarkedOffers: [],
 };
 
 const ActionType = {
@@ -15,6 +16,12 @@ const ActionType = {
   SET_ALL_OFFERS: `SET_ALL_OFFERS`,
   CHANGE_CURRENT_OFFER_REVIEWS: `CHANGE_CURRENT_OFFER_REVIEWS`,
   CHANGE_CURRENT_OFFERS_NEARBY: `CHANGE_CURRENT_OFFERS_NEARBY`,
+  CHANGE_CURRENT_BOOKMARKED_OFFERS: `CHANGE_CURRENT_BOOKMARKED_OFFERS`,
+};
+
+const OfferBookmarkStatus = {
+  BOOKMARKED: 1,
+  NOT_BOOKMARKED: 0,
 };
 
 const ActionCreator = {
@@ -36,6 +43,11 @@ const ActionCreator = {
   changeCurrentOffersNearby: (offersNearby) => ({
     type: ActionType.CHANGE_CURRENT_OFFERS_NEARBY,
     payload: offersNearby,
+  }),
+
+  changeCurrentBookmarkedOffers: (bookmarkedOffers) => ({
+    type: ActionType.CHANGE_CURRENT_BOOKMARKED_OFFERS,
+    payload: bookmarkedOffers,
   }),
 };
 
@@ -99,6 +111,28 @@ const Operation = {
       dispatch(ActionCreator.setReviewError(err.message));
     });
   },
+
+  changeOfferBookmarkStatus: (offerId, bookmarkStatus) => (dispatch, getState, api) => {
+    const status = bookmarkStatus ? OfferBookmarkStatus.BOOKMARKED : OfferBookmarkStatus.NOT_BOOKMARKED;
+
+    return api.post(`/favorite/${offerId}/${status}`)
+    .then((response) => {
+      const offerWithChangedBookmarkStatus = createOffer(response.data);
+
+      const offers = getOffers(getState()).slice();
+      const offerIndex = offers.findIndex((offer) => {
+        return offer.id === offerId;
+      });
+
+      if (offerIndex !== -1) {
+        offers[offerIndex] = offerWithChangedBookmarkStatus;
+      } else {
+        offers.push(offerWithChangedBookmarkStatus);
+      }
+
+      dispatch(ActionCreator.setAllOffers(offers));
+    });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -121,6 +155,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CURRENT_OFFERS_NEARBY:
       return extend(state, {
         currentOffersNearby: action.payload,
+      });
+
+    case ActionType.CHANGE_CURRENT_BOOKMARKED_OFFERS:
+      return extend(state, {
+        currentBookmarkedOffers: action.payload,
       });
   }
 
