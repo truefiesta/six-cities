@@ -6,6 +6,7 @@ import configureStore from "redux-mock-store";
 import {LoginScreen} from "./login-screen.jsx";
 import {CityName} from "../../const.js";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter as Router} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -24,10 +25,12 @@ describe(`LoginScreen`, () => {
     it(`should render correctly`, () => {
       const tree = renderer.create(
           <Provider store={store}>
-            <LoginScreen
-              onUserLogIn={() => null}
-              city={CityName.AMSTERDAM}
-            />
+            <Router>
+              <LoginScreen
+                onUserLogIn={() => null}
+                city={CityName.AMSTERDAM}
+              />
+            </Router>
           </Provider>
       )
       .toJSON();

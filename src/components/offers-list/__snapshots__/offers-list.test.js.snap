@@ -54,7 +54,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           onClick={[Function]}
           type="button"
         >
@@ -154,7 +154,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button place-card__bookmark-button--active button"
           onClick={[Function]}
           type="button"
         >
@@ -254,7 +254,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           onClick={[Function]}
           type="button"
         >
@@ -361,7 +361,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           onClick={[Function]}
           type="button"
         >

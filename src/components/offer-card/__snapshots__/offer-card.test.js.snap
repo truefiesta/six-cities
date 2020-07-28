@@ -51,7 +51,7 @@ exports[`src/offer-card.jsx when the offer contains data should render with data
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button"
+        className="place-card__bookmark-button  button"
         onClick={[Function]}
         type="button"
       >

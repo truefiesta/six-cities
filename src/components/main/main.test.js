@@ -7,6 +7,7 @@ import configureStore from "redux-mock-store";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {BrowserRouter as Router} from "react-router-dom";
 
 jest.mock(`../map/map.jsx`, () => () => {
   return (
@@ -40,10 +41,12 @@ describe(`src/Main.jsx`, () => {
 
       const tree = renderer.create(
           <Provider store={store}>
-            <Main
-              sortedCityOffers={cityOffers}
-              onOfferDetailsOpen={() => null}
-            />
+            <Router>
+              <Main
+                sortedCityOffers={cityOffers}
+                onOfferDetailsOpen={() => null}
+              />
+            </Router>
           </Provider>
       )
       .toJSON();
@@ -73,10 +76,12 @@ describe(`src/Main.jsx`, () => {
 
       const tree = renderer.create(
           <Provider store={store}>
-            <Main
-              sortedCityOffers={[]}
-              onOfferDetailsOpen={() => null}
-            />
+            <Router>
+              <Main
+                sortedCityOffers={[]}
+                onOfferDetailsOpen={() => null}
+              />
+            </Router>
           </Provider>
       )
       .toJSON();

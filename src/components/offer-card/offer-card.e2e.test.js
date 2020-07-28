@@ -23,6 +23,7 @@ describe(`OfferCard`, () => {
     const onOfferDetailsOpen = () => null;
     const onMouseOver = jest.fn();
     const onMouseOut = jest.fn();
+    const onBookmarkStatusChange = jest.fn();
 
     const offerCard = shallow(
         <OfferCard
@@ -31,6 +32,7 @@ describe(`OfferCard`, () => {
           onMouseOut={onMouseOut}
           onOfferDetailsOpen={onOfferDetailsOpen}
           cardStyle={cardStyle.main}
+          onBookmarkStatusChange={onBookmarkStatusChange}
         />
     );
 

@@ -36,7 +36,8 @@ exports[`Header when the user is authorized should render with email 1`] = `
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="#"
+              href="/favorite"
+              onClick={[Function]}
             >
               <div
                 className="header__avatar-wrapper user__avatar-wrapper"
@@ -91,7 +92,8 @@ exports[`Header when the user is not authorized should render with Sign in 1`] =
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="#"
+              href="/login"
+              onClick={[Function]}
             >
               <div
                 className="header__avatar-wrapper user__avatar-wrapper"

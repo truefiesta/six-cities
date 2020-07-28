@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {BrowserRouter as Router} from "react-router-dom";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -38,7 +39,9 @@ const store = mockStore({
 const Wrapper = ({children}) => {
   return (
     <Provider store={store}>
-      {children}
+      <Router>
+        {children}
+      </Router>
     </Provider>
   );
 };

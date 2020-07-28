@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import {connect} from "react-redux";
@@ -47,7 +47,7 @@ class App extends PureComponent {
   render() {
 
     return (
-      <BrowserRouter>
+      <Router>
         <Switch>
           <Route exact path={AppRoute.ROOT}>
             {this._renderApp()}
@@ -56,7 +56,7 @@ class App extends PureComponent {
             <LoginScreen/>
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
