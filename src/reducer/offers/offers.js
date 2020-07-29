@@ -1,5 +1,5 @@
 import {extend} from "../../utils.js";
-import {getCities, getOffers} from "./selectors.js";
+import {getCities, getOffers, getBookmarkedOffers} from "./selectors.js";
 import {createOffer, createReview} from "../../adapters/adapters.js";
 import {ActionCreator as FiltersActionCreator} from "../filters/filters.js";
 
@@ -94,6 +94,18 @@ const Operation = {
       });
   },
 
+  loadBookmarkedOffers: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+    .then((response) => {
+      const favoriteHotels = response.data;
+      const bookmarkedOffers = favoriteHotels.map((hotel) => {
+        return createOffer(hotel);
+      });
+
+      dispatch(ActionCreator.changeCurrentBookmarkedOffers(bookmarkedOffers));
+    });
+  },
+
   addReview: (review, offerId, onSuccess) => (dispatch, getState, api) => {
     return api.post(`/comments/${offerId}`, {
       comment: review.comment,
@@ -131,8 +143,21 @@ const Operation = {
       }
 
       dispatch(ActionCreator.setAllOffers(offers));
+
+      let bookmarkedOffers = getBookmarkedOffers(getState()).slice();
+      const bookmarkedOfferIndex = bookmarkedOffers.findIndex((offer) => {
+        return offer.id === offerId;
+      });
+
+      if (bookmarkedOfferIndex !== -1) {
+        bookmarkedOffers = [...bookmarkedOffers.slice(0, bookmarkedOfferIndex), ...bookmarkedOffers.slice(bookmarkedOfferIndex + 1)];
+      } else {
+        bookmarkedOffers.push(offerWithChangedBookmarkStatus);
+      }
+
+      dispatch(ActionCreator.changeCurrentBookmarkedOffers(bookmarkedOffers));
     });
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {

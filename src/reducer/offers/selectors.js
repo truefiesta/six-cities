@@ -16,8 +16,21 @@ export const getOffersNearby = (state) => {
   return state[NameSpace.OFFERS].currentOffersNearby;
 };
 
+export const getBookmarkedOffers = (state) => {
+  return state[NameSpace.OFFERS].currentBookmarkedOffers;
+};
+
 export const getCities = (state) => {
   const offers = getOffers(state);
+  const cities = offers.map((offer) => {
+    return offer.city.name;
+  });
+
+  return [...new Set(cities)];
+};
+
+export const getBookmarkedCitites = (state) => {
+  const offers = getBookmarkedOffers(state);
   const cities = offers.map((offer) => {
     return offer.city.name;
   });

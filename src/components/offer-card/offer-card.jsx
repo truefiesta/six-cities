@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
+import {OfferClassNamesForPageType} from "../../const.js";
 
 const OfferCard = (props) => {
   const {offer, onMouseOver, cardStyle, onMouseOut, onBookmarkStatusChange} = props;
@@ -25,7 +26,7 @@ const OfferCard = (props) => {
           <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${cardStyle.info} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -35,7 +36,7 @@ const OfferCard = (props) => {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">{cardStyle.article === OfferClassNamesForPageType.favorites.article ? `In bookmarks` : `To bookmarks`}</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -70,6 +71,7 @@ OfferCard.propTypes = {
   cardStyle: PropTypes.shape({
     article: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    info: PropTypes.string.isRequired,
   }).isRequired,
   onMouseOut: PropTypes.func.isRequired,
   onBookmarkStatusChange: PropTypes.func.isRequired,
