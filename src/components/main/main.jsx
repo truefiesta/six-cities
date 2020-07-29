@@ -10,7 +10,7 @@ import {getSortedCityOffers} from "../../reducer/filters/selectors.js";
 import {MapClass} from "../../const.js";
 
 const Main = (props) => {
-  const {sortedCityOffers, onOfferDetailsOpen} = props;
+  const {sortedCityOffers} = props;
   const isNoOffers = sortedCityOffers.length === 0 ? true : false;
 
   return (
@@ -27,9 +27,7 @@ const Main = (props) => {
           {isNoOffers
             ? <NoOffers/>
             : <div className="cities__places-container container">
-              <Cities
-                onOfferDetailsOpen={onOfferDetailsOpen}
-              />
+              <Cities/>
               <div className="cities__right-section">
                 <Map
                   mapStyle={MapClass.MAP_MAIN}
@@ -46,7 +44,6 @@ const Main = (props) => {
 
 Main.propTypes = {
   sortedCityOffers: PropTypes.array.isRequired,
-  onOfferDetailsOpen: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

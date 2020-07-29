@@ -73,7 +73,6 @@ describe(`src/offers-details.jsx`, () => {
           <Provider store={store}>
             <Router>
               <OfferDetails
-                onOfferDetailsOpen={() => null}
                 offer={offer}
               />
             </Router>

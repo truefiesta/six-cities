@@ -52,12 +52,10 @@ Wrapper.propTypes = {
 
 describe(`Main cards`, () => {
   it(`Card header should be pressed`, () => {
-    const onOfferDetailsOpen = jest.fn();
 
     const main = mount(
         <Main
           sortedCityOffers={cityOffers}
-          onOfferDetailsOpen={onOfferDetailsOpen}
         />,
         {
           wrappingComponent: Wrapper
@@ -71,7 +69,5 @@ describe(`Main cards`, () => {
     cardHeaders.forEach((cardHeader) => {
       cardHeader.simulate(`click`);
     });
-
-    expect(onOfferDetailsOpen.mock.calls.length).toBe(cardsCount);
   });
 });

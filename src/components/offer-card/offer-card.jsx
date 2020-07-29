@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 
 const OfferCard = (props) => {
-  const {offer, onOfferDetailsOpen, onMouseOver, cardStyle, onMouseOut, onBookmarkStatusChange} = props;
+  const {offer, onMouseOver, cardStyle, onMouseOut, onBookmarkStatusChange} = props;
   const {id, image, price, name, type, rating, isPremium, isBookmarked} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
@@ -44,15 +45,9 @@ const OfferCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a
-            onClick={(evt) => {
-              evt.preventDefault();
-              onOfferDetailsOpen(offer);
-            }}
-            href="#"
-          >
+          <Link to={`offer/${id}`}>
             {name}
-          </a>
+          </Link>
         </h2>
         <p className="place-card__type">{capitalize(type)}</p>
       </div>
@@ -72,7 +67,6 @@ OfferCard.propTypes = {
     isBookmarked: PropTypes.bool.isRequired,
   }).isRequired,
   onMouseOver: PropTypes.func.isRequired,
-  onOfferDetailsOpen: PropTypes.func.isRequired,
   cardStyle: PropTypes.shape({
     article: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,

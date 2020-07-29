@@ -21,7 +21,6 @@ describe(`src/offer-card.jsx`, () => {
             offer={offer}
             onMouseOver={() => null}
             onMouseOut={() => null}
-            onOfferDetailsOpen={() => null}
             cardStyle={cardStyle.main}
             onBookmarkStatusChange={() => null}
           />

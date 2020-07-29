@@ -19,7 +19,6 @@ describe(`src/offers-list.jsx`, () => {
       const tree = renderer.create(
           <OffersList
             offers={cityOffers}
-            onOfferDetailsOpen={() => null}
             cardStyle={cardStyle.main}
             onActiveCardChange={() => null}
             onBookmarkStatusChange={() => null}
@@ -36,7 +35,6 @@ describe(`src/offers-list.jsx`, () => {
       const tree = renderer.create(
           <OffersList
             offers={[]}
-            onOfferDetailsOpen={() => null}
             cardStyle={cardStyle.main}
             onActiveCardChange={() => null}
             onBookmarkStatusChange={() => null}

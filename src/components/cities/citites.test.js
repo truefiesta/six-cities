@@ -27,9 +27,7 @@ describe(`Cities`, () => {
     it(`should render with correctly`, () => {
       const tree = renderer.create(
           <Provider store={store}>
-            <Cities
-              onOfferDetailsOpen={() => null}
-            />
+            <Cities/>
           </Provider>
       )
       .toJSON();

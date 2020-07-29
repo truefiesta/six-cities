@@ -9,7 +9,7 @@ import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filte
 import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 
 const Cities = (props) => {
-  const {city, currentSortType, sortedCityOffers, onSortTypeChange, onOfferDetailsOpen, onActiveCardChange, onBookmarkStatusChange} = props;
+  const {city, currentSortType, sortedCityOffers, onSortTypeChange, onActiveCardChange, onBookmarkStatusChange} = props;
   const offersCount = sortedCityOffers.length;
 
   return (
@@ -21,7 +21,6 @@ const Cities = (props) => {
         onSortTypeChange={onSortTypeChange}
       />
       <OffersList
-        onOfferDetailsOpen={onOfferDetailsOpen}
         cardStyle={OfferClassNamesForPageType.main}
         onActiveCardChange={onActiveCardChange}
         offers={sortedCityOffers}
@@ -35,7 +34,6 @@ Cities.propTypes = {
   city: PropTypes.string.isRequired,
   currentSortType: PropTypes.number.isRequired,
   sortedCityOffers: PropTypes.array.isRequired,
-  onOfferDetailsOpen: PropTypes.func.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
   onActiveCardChange: PropTypes.func.isRequired,
   onBookmarkStatusChange: PropTypes.func.isRequired,

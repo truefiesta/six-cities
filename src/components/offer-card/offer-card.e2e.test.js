@@ -20,7 +20,6 @@ const cardStyle = {
 
 describe(`OfferCard`, () => {
   it(`Handler gets offer id on mouse over`, () => {
-    const onOfferDetailsOpen = () => null;
     const onMouseOver = jest.fn();
     const onMouseOut = jest.fn();
     const onBookmarkStatusChange = jest.fn();
@@ -30,7 +29,6 @@ describe(`OfferCard`, () => {
           offer={offer}
           onMouseOver={onMouseOver}
           onMouseOut={onMouseOut}
-          onOfferDetailsOpen={onOfferDetailsOpen}
           cardStyle={cardStyle.main}
           onBookmarkStatusChange={onBookmarkStatusChange}
         />
