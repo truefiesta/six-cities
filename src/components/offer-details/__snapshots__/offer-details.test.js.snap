@@ -23,7 +23,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -297,7 +297,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="img/avatar-angelina.jpg"
+                  src="/img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
@@ -353,6 +353,537 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   <span
                     className="reviews__user-name"
                   >
+                    Anthony
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Very good location ,lovely staff ,clean apartment, great beds.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-06-25"
+                  >
+                    June 25, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Dylan
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    The master bed room is spacious and there should be an additional chair and a desk. the last bed room closet need hangers.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-06-21"
+                  >
+                    June 21, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Thomas
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Excellent location. Apartment well laid out and very roomy.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-06-12"
+                  >
+                    June 12, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Larry
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Location was fantastic, Amenities were good, views were good, would probably stay again. Nice large comfortable penthouse with outside areas to sit. Lounge was comfortable and kitchen had what was needed. Close to shops and supermarkets.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-06-10"
+                  >
+                    June 10, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Bernadette
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    There was nothing I didn't like, it was far better than what I expected!!
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-22"
+                  >
+                    May 22, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Jerry
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Neighbours were noisy until the early hours.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-12"
+                  >
+                    May 12, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Kim
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Very spacious, clean and in a perfect location.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-11"
+                  >
+                    May 11, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Sandra
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Very spacious, clean and in a perfect location.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-11"
+                  >
+                    May 11, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Holy
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Nice, but also the check in was very confusing....especially where the office is actually located......putting the notice on the door might work better than on the window where you’re not looking.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-05-05"
+                  >
+                    May 5, 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
                     Max
                   </span>
                 </div>
@@ -388,7 +919,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                     className="reviews__time"
                     dateTime="2019-04-24"
                   >
-                    April 2019
+                    April 24, 2019
                   </time>
                 </div>
               </li>
@@ -443,7 +974,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
               </a>
             </div>
             <div
-              className="place-card__info"
+              className=" place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -508,7 +1039,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   Beautiful & luxurious apartment at great location
@@ -543,7 +1074,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
               </a>
             </div>
             <div
-              className="place-card__info"
+              className=" place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -608,7 +1139,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/2"
                   onClick={[Function]}
                 >
                   Wood and stone place
@@ -643,7 +1174,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
               </a>
             </div>
             <div
-              className="place-card__info"
+              className=" place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -708,7 +1239,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/3"
                   onClick={[Function]}
                 >
                   Canal view Prinsengracht
@@ -750,7 +1281,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
               </a>
             </div>
             <div
-              className="place-card__info"
+              className=" place-card__info"
             >
               <div
                 className="place-card__price-wrapper"
@@ -815,7 +1346,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/4"
                   onClick={[Function]}
                 >
                   Nice, cozy, warm big bed apartment

@@ -30,7 +30,7 @@ exports[`src/offer-card.jsx when the offer contains data should render with data
     </a>
   </div>
   <div
-    className="place-card__info"
+    className=" place-card__info"
   >
     <div
       className="place-card__price-wrapper"
@@ -95,7 +95,7 @@ exports[`src/offer-card.jsx when the offer contains data should render with data
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/1"
         onClick={[Function]}
       >
         Beautiful & luxurious apartment at great location

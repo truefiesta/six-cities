@@ -15,6 +15,7 @@ const cardStyle = {
     article: `cities__place-card`,
     image: `cities__image-wrapper`,
     list: `cities__places-list tabs__content`,
+    info: ``,
   },
 };
 
