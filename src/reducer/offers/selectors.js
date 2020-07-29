@@ -1,5 +1,9 @@
 import {NameSpace} from "../name-space.js";
 
+export const getReviewError = (state) => {
+  return state[NameSpace.OFFERS].reviewError;
+};
+
 export const getOffers = (state) => {
   return state[NameSpace.OFFERS].offers;
 };

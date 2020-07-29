@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
 
 const OffersList = (props) => {
-  const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange} = props;
+  const {offers, onOfferDetailsOpen, cardStyle, onActiveCardChange, onBookmarkStatusChange} = props;
 
   return (
     <div className={`${cardStyle.list} places__list`}>
@@ -16,6 +16,7 @@ const OffersList = (props) => {
             onMouseOut={onActiveCardChange}
             onOfferDetailsOpen={onOfferDetailsOpen}
             cardStyle={cardStyle}
+            onBookmarkStatusChange={onBookmarkStatusChange}
           />
         );
       })};
@@ -42,6 +43,7 @@ OffersList.propTypes = {
     list: PropTypes.string.isRequired,
   }).isRequired,
   onActiveCardChange: PropTypes.func.isRequired,
+  onBookmarkStatusChange: PropTypes.func.isRequired,
 };
 
 export default OffersList;

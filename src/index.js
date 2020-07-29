@@ -8,9 +8,12 @@ import {Operation as OffersOperation} from "./reducer/offers/offers.js";
 import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import thunk from "redux-thunk";
 import {createApi} from "./api.js";
+import history from "./history.js";
+import {AppRoute} from "./const.js";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.changeAuthStatus(AuthorizationStatus.NO_AUTH));
+  history.push(AppRoute.LOGIN);
 };
 
 const api = createApi(onUnauthorized);

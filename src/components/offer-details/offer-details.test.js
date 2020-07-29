@@ -7,6 +7,7 @@ import configureStore from "redux-mock-store";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {BrowserRouter as Router} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -17,6 +18,7 @@ const store = mockStore({
     activeCard: null,
   },
   [NameSpace.OFFERS]: {
+    reviewError: ``,
     offers,
     currentOfferReviews: reviews,
     currentOffersNearby: offersNearby,
@@ -69,10 +71,12 @@ describe(`src/offers-details.jsx`, () => {
     it(`should render with data`, () => {
       const tree = renderer.create(
           <Provider store={store}>
-            <OfferDetails
-              onOfferDetailsOpen={() => null}
-              offer={offer}
-            />
+            <Router>
+              <OfferDetails
+                onOfferDetailsOpen={() => null}
+                offer={offer}
+              />
+            </Router>
           </Provider>
       )
       .toJSON();

@@ -23,6 +23,7 @@ describe(`src/offer-card.jsx`, () => {
             onMouseOut={() => null}
             onOfferDetailsOpen={() => null}
             cardStyle={cardStyle.main}
+            onBookmarkStatusChange={() => null}
           />
       )
       .toJSON();

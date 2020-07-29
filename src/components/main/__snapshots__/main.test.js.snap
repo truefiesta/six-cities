@@ -39,7 +39,8 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -233,7 +234,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -333,7 +334,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button place-card__bookmark-button--active button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -433,7 +434,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -540,7 +541,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -652,7 +653,8 @@ exports[`src/Main.jsx when the offers is an empty array should render with no da
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"

@@ -39,7 +39,8 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -246,7 +247,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -346,7 +347,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button place-card__bookmark-button--active button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -446,7 +447,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -553,7 +554,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     onClick={[Function]}
                     type="button"
                   >
@@ -665,7 +666,8 @@ exports[`src/App.jsx when there are no offers should render with no data 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"

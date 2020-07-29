@@ -39,7 +39,8 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -392,166 +393,6 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                 </div>
               </li>
             </ul>
-            <form
-              action="#"
-              className="reviews__form form"
-              method="post"
-            >
-              <label
-                className="reviews__label form__label"
-                htmlFor="review"
-              >
-                Your review
-              </label>
-              <div
-                className="reviews__rating-form form__rating"
-              >
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="5-stars"
-                  name="rating"
-                  type="radio"
-                  value="5"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="5-stars"
-                  title="perfect"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="4-stars"
-                  name="rating"
-                  type="radio"
-                  value="4"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="4-stars"
-                  title="good"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="3-stars"
-                  name="rating"
-                  type="radio"
-                  value="3"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="3-stars"
-                  title="not bad"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="2-stars"
-                  name="rating"
-                  type="radio"
-                  value="2"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="2-stars"
-                  title="badly"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="1-star"
-                  name="rating"
-                  type="radio"
-                  value="1"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="1-star"
-                  title="terribly"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-              </div>
-              <textarea
-                className="reviews__textarea form__textarea"
-                id="review"
-                name="review"
-                placeholder="Tell how was your stay, what you like and what can be improved"
-              />
-              <div
-                className="reviews__button-wrapper"
-              >
-                <p
-                  className="reviews__help"
-                >
-                  To submit review please make sure to set 
-                  <span
-                    className="reviews__star"
-                  >
-                    rating
-                  </span>
-                   and describe your stay with at least 
-                  <b
-                    className="reviews__text-amount"
-                  >
-                    50 characters
-                  </b>
-                  .
-                </p>
-                <button
-                  className="reviews__submit form__submit button"
-                  disabled=""
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
           </section>
         </div>
       </div>
@@ -623,7 +464,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button  button"
                   onClick={[Function]}
                   type="button"
                 >
@@ -723,7 +564,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button place-card__bookmark-button--active button"
                   onClick={[Function]}
                   type="button"
                 >
@@ -823,7 +664,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button  button"
                   onClick={[Function]}
                   type="button"
                 >
@@ -930,7 +771,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button"
+                  className="place-card__bookmark-button  button"
                   onClick={[Function]}
                   type="button"
                 >

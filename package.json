@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "axios": "0.19.2",
+    "history": "5.0.0",
     "leaflet": "1.6.0",
     "moment": "2.27.0",
     "moment-locales-webpack-plugin": "1.2.0",
