@@ -707,7 +707,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   <span
                     className="reviews__user-name"
                   >
-                    Kim
+                    Sandra
                   </span>
                 </div>
                 <div
@@ -766,7 +766,7 @@ exports[`src/offers-details.jsx when the offers is a non-empty array should rend
                   <span
                     className="reviews__user-name"
                   >
-                    Sandra
+                    Kim
                   </span>
                 </div>
                 <div

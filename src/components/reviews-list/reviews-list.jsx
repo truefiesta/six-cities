@@ -5,7 +5,12 @@ import moment from "moment";
 
 const sortReviewsByDate = (reviews) => {
   return reviews.sort((reviewA, reviewB) => {
-    return moment(reviewB.date) - moment(reviewA.date);
+    const isSameDate = moment(reviewB.date) - moment(reviewA.date) === 0;
+    if (isSameDate) {
+      return reviewB.id - reviewA.id;
+    } else {
+      return moment(reviewB.date) - moment(reviewA.date);
+    }
   });
 };
 
