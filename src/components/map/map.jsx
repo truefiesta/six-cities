@@ -5,12 +5,12 @@ import {connect} from "react-redux";
 import {getActiveOffer, getCity, getCityDetails} from "../../reducer/filters/selectors.js";
 
 const iconInactive = leaflet.icon({
-  iconUrl: `img/pin.svg`,
+  iconUrl: `/img/pin.svg`,
   iconSize: [27, 39],
 });
 
 const iconActive = leaflet.icon({
-  iconUrl: `img/pin-active.svg`,
+  iconUrl: `/img/pin-active.svg`,
   iconSize: [27, 39],
 });
 
