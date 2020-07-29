@@ -45,6 +45,7 @@ export const SortTypes = {
 };
 
 export const AppRoute = {
+  ROOM: `/offer/:id`,
   LOGIN: `/login`,
   FAVORITE: `/favorite`,
   ROOT: `/`,

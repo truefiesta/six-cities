@@ -49,12 +49,9 @@ class App extends PureComponent {
     return (
       <Router>
         <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            {this._renderApp()}
-          </Route>
-          <Route exact path={AppRoute.LOGIN}>
-            <LoginScreen/>
-          </Route>
+          <Route exact path={AppRoute.ROOT} component={Main}/>
+          <Route path={AppRoute.LOGIN} component={LoginScreen}/>
+          <Route path={AppRoute.ROOM} component={OfferDetails}/>
         </Switch>
       </Router>
     );
