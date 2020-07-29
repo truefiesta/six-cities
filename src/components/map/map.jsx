@@ -23,13 +23,17 @@ class Map extends Component {
     this._mapRef = createRef();
   }
 
-  _addMarkers(map, activeCard) {
+  _addMarkers() {
+    if (!this._map) {
+      return;
+    }
+
     const {offers} = this.props;
     this._markers = leaflet.layerGroup();
     let icon = iconInactive;
 
     offers.forEach((offer) => {
-      if (activeCard) {
+      if (this.props.activeCard) {
         icon = (offer.id === this.props.activeCard.id) ? iconActive : iconInactive;
       }
 
@@ -38,14 +42,24 @@ class Map extends Component {
         .addTo(this._markers);
     });
 
-    this._markers.addTo(map);
+    this._markers.addTo(this._map);
   }
 
   _clearMarkers() {
-    this._markers.clearLayers();
+    if (this._markers) {
+      this._markers.clearLayers();
+    }
   }
 
   _createMap(mapRef) {
+    if (!this.props.cityDetails) {
+      return;
+    }
+
+    if (this._map) {
+      return;
+    }
+
     const {coordinates, zoom} = this.props.cityDetails;
 
     this._map = leaflet.map(mapRef, {
@@ -57,16 +71,28 @@ class Map extends Component {
   }
 
   _setMapView() {
+    if (!this.props.cityDetails) {
+      return;
+    }
+
+    if (!this._map) {
+      return;
+    }
+
     const {coordinates, zoom} = this.props.cityDetails;
     this._map.setView(coordinates, zoom);
   }
 
-  _addTileLayer(map) {
+  _addTileLayer() {
+    if (!this._map) {
+      return;
+    }
+
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(map);
+      .addTo(this._map);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -105,12 +131,22 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    const mapRef = this._mapRef.current;
-
-    this._createMap(mapRef);
+    this._createMap(this._mapRef.current);
     this._setMapView();
-    this._addTileLayer(this._map);
-    this._addMarkers(this._map);
+    this._addTileLayer();
+    this._addMarkers();
+  }
+
+  componentDidUpdate(prevProps) {
+    this._createMap(this._mapRef.current);
+    if (prevProps.city !== this.props.city) {
+      this._clearMarkers();
+      this._setMapView();
+      this._addMarkers();
+    } else {
+      this._clearMarkers();
+      this._addMarkers();
+    }
   }
 
   render() {
@@ -121,17 +157,6 @@ class Map extends Component {
         <div id="map" style={{height: `100%`}} ref={this._mapRef}></div>
       </section>
     );
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.city !== this.props.city) {
-      this._clearMarkers();
-      this._setMapView();
-      this._addMarkers(this._map);
-    } else {
-      this._clearMarkers();
-      this._addMarkers(this._map, this.props.activeCard);
-    }
   }
 }
 
