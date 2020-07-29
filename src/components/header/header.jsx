@@ -5,13 +5,14 @@ import {Link} from "react-router-dom";
 import {getAuthorizationStatus, getUserEmail} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
+import {capitalize} from "../../utils.js";
 
 const UNAUTHORIZED_USER = `Sign in`;
 
 const Header = (props) => {
   const {authorizationStatus, email} = props;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-  const userName = isAuthorized ? email : UNAUTHORIZED_USER;
+  const userName = isAuthorized ? capitalize(email) : UNAUTHORIZED_USER;
   const page = isAuthorized ? AppRoute.FAVORITE : AppRoute.LOGIN;
 
   return (
