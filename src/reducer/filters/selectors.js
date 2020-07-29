@@ -48,5 +48,5 @@ export const getCityDetails = (state) => {
     return offer.city.name === city;
   });
 
-  return offerFound.city;
+  return offerFound ? offerFound.city : undefined;
 };
