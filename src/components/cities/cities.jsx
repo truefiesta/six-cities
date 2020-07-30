@@ -6,10 +6,9 @@ import {OfferClassNamesForPageType} from "../../const.js";
 import {connect} from "react-redux";
 import {getCurrentSortType, getSortedCityOffers, getCity} from "../../reducer/filters/selectors.js";
 import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
-import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 
 const Cities = (props) => {
-  const {city, currentSortType, sortedCityOffers, onSortTypeChange, onActiveCardChange, onBookmarkStatusChange} = props;
+  const {city, currentSortType, sortedCityOffers, onSortTypeChange, onActiveCardChange} = props;
   const offersCount = sortedCityOffers.length;
 
   return (
@@ -24,7 +23,6 @@ const Cities = (props) => {
         cardStyle={OfferClassNamesForPageType.main}
         onActiveCardChange={onActiveCardChange}
         offers={sortedCityOffers}
-        onBookmarkStatusChange={onBookmarkStatusChange}
       />
     </section>
   );
@@ -36,7 +34,6 @@ Cities.propTypes = {
   sortedCityOffers: PropTypes.array.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
   onActiveCardChange: PropTypes.func.isRequired,
-  onBookmarkStatusChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -52,9 +49,6 @@ const mapDispatchToProps = (dispatch) => ({
   onActiveCardChange(offer) {
     dispatch(FiltersActionCreator.changeActiveCard(offer));
   },
-  onBookmarkStatusChange(offerId, status) {
-    dispatch(OffersOperation.changeOfferBookmarkStatus(offerId, status));
-  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cities);

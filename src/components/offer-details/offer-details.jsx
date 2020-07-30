@@ -14,6 +14,7 @@ import {getCity} from "../../reducer/filters/selectors.js";
 import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {connect} from "react-redux";
 import ReviewForm from "../review-form/review-form.jsx";
+import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
 
 const MAX_PHOTOS = 6;
 
@@ -24,12 +25,12 @@ class OfferDetails extends PureComponent {
   }
 
   render() {
-    const {reviewError, city, offersNearby, currentOfferReviews, offer, authorizationStatus, onReviewSubmit, onBookmarkStatusChange} = this.props;
+    const {reviewError, city, offersNearby, currentOfferReviews, offer, authorizationStatus, onReviewSubmit} = this.props;
     if (!offer) {
       return null;
     }
 
-    const {id, photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium} = offer;
+    const {id, photos, name, description, type, rating, bedrooms, guests, price, equipment, host, isPremium, isBookmarked} = offer;
     const reviewsCount = currentOfferReviews.length;
     const premiumTag = isPremium
       ? (<div className="property__mark"><span>Premium</span></div>)
@@ -62,12 +63,11 @@ class OfferDetails extends PureComponent {
                   <h1 className="property__name">
                     {name}
                   </h1>
-                  <button className="property__bookmark-button button" type="button">
-                    <svg className="property__bookmark-icon" width="31" height="33">
-                      <use xlinkHref="#icon-bookmark"></use>
-                    </svg>
-                    <span className="visually-hidden">To bookmarks</span>
-                  </button>
+                  <BookmarkButton
+                    offerId={id}
+                    isBookmarked={isBookmarked}
+                    cardStyle={OfferClassNamesForPageType.details}
+                  />
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
@@ -146,9 +146,8 @@ class OfferDetails extends PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <OffersList
                 offers={offersNearby}
-                cardStyle={OfferClassNamesForPageType.details}
+                cardStyle={OfferClassNamesForPageType.main}
                 onActiveCardChange={() => null}
-                onBookmarkStatusChange={onBookmarkStatusChange}
               />
             </section>
           </div>
@@ -186,6 +185,7 @@ OfferDetails.propTypes = {
       status: PropTypes.bool.isRequired,
     }).isRequired,
     isPremium: PropTypes.bool.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
   }),
   currentOfferReviews: PropTypes.arrayOf(
       PropTypes.shape({
@@ -201,7 +201,6 @@ OfferDetails.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   onReviewSubmit: PropTypes.func.isRequired,
   reviewError: PropTypes.string.isRequired,
-  onBookmarkStatusChange: PropTypes.func.isRequired,
   onLoad: PropTypes.func.isRequired,
 };
 
@@ -217,9 +216,6 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   onReviewSubmit(review, offerId, onSuccess) {
     dispatch(OffersOperation.addReview(review, offerId, onSuccess));
-  },
-  onBookmarkStatusChange(offerId, status) {
-    dispatch(OffersOperation.changeOfferBookmarkStatus(offerId, status));
   },
   onLoad(offerId) {
     dispatch(OffersOperation.loadOfferReviews(offerId));
