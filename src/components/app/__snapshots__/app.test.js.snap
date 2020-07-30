@@ -23,7 +23,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -226,7 +226,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -291,7 +291,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
@@ -326,7 +326,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -391,7 +391,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
                     onClick={[Function]}
                   >
                     Wood and stone place
@@ -426,7 +426,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -491,7 +491,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/3"
                     onClick={[Function]}
                   >
                     Canal view Prinsengracht
@@ -533,7 +533,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -598,7 +598,7 @@ exports[`src/App.jsx when the city is chosen and there are offers should render 
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/4"
                     onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
@@ -650,7 +650,7 @@ exports[`src/App.jsx when there are no offers should render with no data 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>

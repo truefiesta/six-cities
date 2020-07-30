@@ -33,7 +33,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -98,7 +98,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/1"
           onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
@@ -133,7 +133,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -198,7 +198,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/2"
           onClick={[Function]}
         >
           Wood and stone place
@@ -233,7 +233,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -298,7 +298,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/3"
           onClick={[Function]}
         >
           Canal view Prinsengracht
@@ -340,7 +340,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -405,7 +405,7 @@ exports[`src/offers-list.jsx when the offers is a non-empty array should render 
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/4"
           onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment

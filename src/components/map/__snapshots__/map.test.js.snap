@@ -47,35 +47,35 @@ exports[`src/Map.jsx when offers is a non-empty array should render with markers
         <img
           alt=""
           class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
-          src="img/pin.svg"
+          src="/img/pin-active.svg"
           style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: 5px; top: 0px; z-index: 0;"
           tabindex="0"
         />
         <img
           alt=""
           class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
-          src="img/pin.svg"
+          src="/img/pin.svg"
           style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: 14px; top: 25px; z-index: 25;"
           tabindex="0"
         />
         <img
           alt=""
           class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
-          src="img/pin.svg"
+          src="/img/pin.svg"
           style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: 16px; top: 25px; z-index: 25;"
           tabindex="0"
         />
         <img
           alt=""
           class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
-          src="img/pin.svg"
+          src="/img/pin.svg"
           style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: 73px; top: 25px; z-index: 25;"
           tabindex="0"
         />
         <img
           alt=""
           class="leaflet-marker-icon leaflet-zoom-hide leaflet-interactive"
-          src="img/pin.svg"
+          src="/img/pin.svg"
           style="margin-left: -13.5px; margin-top: -19.5px; width: 27px; height: 39px; left: -1816px; top: 4050px; z-index: 4050;"
           tabindex="0"
         />

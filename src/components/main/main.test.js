@@ -44,7 +44,6 @@ describe(`src/Main.jsx`, () => {
             <Router>
               <Main
                 sortedCityOffers={cityOffers}
-                onOfferDetailsOpen={() => null}
               />
             </Router>
           </Provider>
@@ -79,7 +78,6 @@ describe(`src/Main.jsx`, () => {
             <Router>
               <Main
                 sortedCityOffers={[]}
-                onOfferDetailsOpen={() => null}
               />
             </Router>
           </Provider>

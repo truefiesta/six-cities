@@ -20,7 +20,7 @@ exports[`Header when the user is authorized should render with email 1`] = `
             alt="6 cities logo"
             className="header__logo"
             height="41"
-            src="img/logo.svg"
+            src="/img/logo.svg"
             width="81"
           />
         </a>
@@ -45,7 +45,7 @@ exports[`Header when the user is authorized should render with email 1`] = `
               <span
                 className="header__user-name user__name"
               >
-                abs@gmail.com
+                Abs@gmail.com
               </span>
             </a>
           </li>
@@ -76,7 +76,7 @@ exports[`Header when the user is not authorized should render with Sign in 1`] =
             alt="6 cities logo"
             className="header__logo"
             height="41"
-            src="img/logo.svg"
+            src="/img/logo.svg"
             width="81"
           />
         </a>

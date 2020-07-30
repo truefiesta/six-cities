@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {BrowserRouter as Router} from "react-router-dom";
 import Cities from "./cities.jsx";
 import {CityName, SortTypes} from "../../const.js";
 import {Provider} from "react-redux";
@@ -26,11 +27,11 @@ describe(`Cities`, () => {
   describe(`when the offers is not empty array`, () => {
     it(`should render with correctly`, () => {
       const tree = renderer.create(
-          <Provider store={store}>
-            <Cities
-              onOfferDetailsOpen={() => null}
-            />
-          </Provider>
+          <Router>
+            <Provider store={store}>
+              <Cities/>
+            </Provider>
+          </Router>
       )
       .toJSON();
 

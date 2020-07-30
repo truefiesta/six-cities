@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
+import {OfferClassNamesForPageType} from "../../const.js";
 
 const OfferCard = (props) => {
-  const {offer, onOfferDetailsOpen, onMouseOver, cardStyle, onMouseOut, onBookmarkStatusChange} = props;
+  const {offer, onMouseOver, cardStyle, onMouseOut, onBookmarkStatusChange} = props;
   const {id, image, price, name, type, rating, isPremium, isBookmarked} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
@@ -24,7 +26,7 @@ const OfferCard = (props) => {
           <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${cardStyle.info} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -34,7 +36,7 @@ const OfferCard = (props) => {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">{cardStyle.article === OfferClassNamesForPageType.favorites.article ? `In bookmarks` : `To bookmarks`}</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -44,15 +46,9 @@ const OfferCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a
-            onClick={(evt) => {
-              evt.preventDefault();
-              onOfferDetailsOpen(offer);
-            }}
-            href="#"
-          >
+          <Link to={`offer/${id}`}>
             {name}
-          </a>
+          </Link>
         </h2>
         <p className="place-card__type">{capitalize(type)}</p>
       </div>
@@ -72,10 +68,10 @@ OfferCard.propTypes = {
     isBookmarked: PropTypes.bool.isRequired,
   }).isRequired,
   onMouseOver: PropTypes.func.isRequired,
-  onOfferDetailsOpen: PropTypes.func.isRequired,
   cardStyle: PropTypes.shape({
     article: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    info: PropTypes.string.isRequired,
   }).isRequired,
   onMouseOut: PropTypes.func.isRequired,
   onBookmarkStatusChange: PropTypes.func.isRequired,

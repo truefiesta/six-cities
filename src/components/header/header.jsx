@@ -5,13 +5,14 @@ import {Link} from "react-router-dom";
 import {getAuthorizationStatus, getUserEmail} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
+import {capitalize} from "../../utils.js";
 
 const UNAUTHORIZED_USER = `Sign in`;
 
 const Header = (props) => {
   const {authorizationStatus, email} = props;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-  const userName = isAuthorized ? email : UNAUTHORIZED_USER;
+  const userName = isAuthorized ? capitalize(email) : UNAUTHORIZED_USER;
   const page = isAuthorized ? AppRoute.FAVORITE : AppRoute.LOGIN;
 
   return (
@@ -20,7 +21,7 @@ const Header = (props) => {
         <div className="header__wrapper">
           <div className="header__left">
             <a className="header__logo-link header__logo-link--active">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81" height="41"/>
             </a>
           </div>
           <nav className="header__nav">

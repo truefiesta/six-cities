@@ -23,7 +23,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -213,7 +213,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -278,7 +278,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
@@ -313,7 +313,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -378,7 +378,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
                     onClick={[Function]}
                   >
                     Wood and stone place
@@ -413,7 +413,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -478,7 +478,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/3"
                     onClick={[Function]}
                   >
                     Canal view Prinsengracht
@@ -520,7 +520,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -585,7 +585,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/4"
                     onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
@@ -637,7 +637,7 @@ exports[`src/Main.jsx when the offers is an empty array should render with no da
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
