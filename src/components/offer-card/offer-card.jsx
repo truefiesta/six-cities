@@ -20,9 +20,9 @@ const OfferCard = (props) => {
     >
       {premiumTag}
       <div className={`${cardStyle.image} place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className={`${cardStyle.info} place-card__info`}>
         <div className="place-card__price-wrapper">
