@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Header from "../header/header.jsx";
 import OfferCard from "../offer-card/offer-card.jsx";
-import {OfferClassNamesForPageType} from "../../const.js";
+import {OfferClassNamesForPageType, AppRoute} from "../../const.js";
 import {getBookmarkedOffers, getBookmarkedCitites} from "../../reducer/offers/selectors.js";
 import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
+import {Link} from "react-router-dom";
 
 class FavoritesScreen extends PureComponent {
   componentDidMount() {
@@ -64,9 +65,12 @@ class FavoritesScreen extends PureComponent {
           </div>
         </main>
         <footer className="footer container">
-          <a className="footer__logo-link" href="main.html">
+          <Link
+            className="footer__logo-link"
+            to={AppRoute.ROOT}
+          >
             <img className="footer__logo" src="/img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-          </a>
+          </Link>
         </footer>
       </div>
     );
