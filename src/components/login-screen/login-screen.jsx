@@ -2,12 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
+import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {getCity} from "../../reducer/filters/selectors.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {AppRoute} from "../../const.js";
 
 const LoginScreen = (props) => {
-  const {city, onUserLogIn} = props;
+  const {city, onUserLogIn, authorizationStatus} = props;
+  if (authorizationStatus === AuthorizationStatus.AUTH) {
+    return <Redirect to={AppRoute.ROOT} />;
+  }
 
   return (
     <div className="page page--gray page--login">
@@ -32,11 +38,13 @@ const LoginScreen = (props) => {
 
 LoginScreen.propTypes = {
   city: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   onUserLogIn: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
