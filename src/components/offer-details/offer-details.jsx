@@ -15,13 +15,23 @@ import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {connect} from "react-redux";
 import ReviewForm from "../review-form/review-form.jsx";
 import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
+import {BookmarkStyle, OfferCardTypes} from "../../const.js";
 
 const MAX_PHOTOS = 6;
 
 class OfferDetails extends PureComponent {
   componentDidMount() {
-    const offerId = parseInt(this.props.match.params.id, 10);
-    this.props.onLoad(offerId);
+    if (this.props.offer) {
+      this.props.onLoad(this.props.offer.id);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.offer) {
+      if (!prevProps.offer || prevProps.offer.id !== this.props.offer.id) {
+        this.props.onLoad(this.props.offer.id);
+      }
+    }
   }
 
   render() {
