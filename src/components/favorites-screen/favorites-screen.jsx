@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Header from "../header/header.jsx";
 import OfferCard from "../offer-card/offer-card.jsx";
-import {OfferClassNamesForPageType, AppRoute} from "../../const.js";
+import {AppRoute} from "../../const.js";
 import {getBookmarkedOffers, getBookmarkedCitites} from "../../reducer/offers/selectors.js";
 import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {Link} from "react-router-dom";
+import {OfferCardTypes} from "../../const.js";
 
 class FavoritesScreen extends PureComponent {
   componentDidMount() {
@@ -50,7 +51,7 @@ class FavoritesScreen extends PureComponent {
                               <OfferCard
                                 key={offer.id}
                                 offer={offer}
-                                cardStyle={OfferClassNamesForPageType.favorites}
+                                cardType={OfferCardTypes.FAVORITES}
                                 onMouseOver={() => null}
                                 onMouseOut={() => null}
                                 onBookmarkStatusChange={onBookmarkStatusChange}

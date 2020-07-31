@@ -3,9 +3,36 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
+import {BookmarkStyle, OfferCardTypes} from "../../const.js";
+
+export const CardStylesByCardType = {
+  [OfferCardTypes.MAIN]: {
+    article: `cities__place-card`,
+    image: `cities__image-wrapper`,
+    info: ``,
+    imageWidth: 260,
+    imageHeight: 200,
+  },
+  [OfferCardTypes.DETAILS]: {
+    article: `near-places__card`,
+    image: `near-places__image-wrapper`,
+    info: ``,
+    imageWidth: 260,
+    imageHeight: 200,
+  },
+  [OfferCardTypes.FAVORITES]: {
+    article: `favorites__card `,
+    image: `favorites__image-wrapper`,
+    info: `favorites__card-info`,
+    imageWidth: 150,
+    imageHeight: 110,
+  },
+};
 
 const OfferCard = (props) => {
-  const {offer, onMouseOver, cardStyle, onMouseOut} = props;
+  const {offer, onMouseOver, cardType, onMouseOut} = props;
+  const cardStyle = CardStylesByCardType[cardType];
+
   const {id, image, price, name, type, rating, isPremium, isBookmarked} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
@@ -21,7 +48,7 @@ const OfferCard = (props) => {
       {premiumTag}
       <div className={`${cardStyle.image} place-card__image-wrapper`}>
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={image} width={cardStyle.imageWidth} height={cardStyle.imageHeight} alt="Place image" />
         </Link>
       </div>
       <div className={`${cardStyle.info} place-card__info`}>
@@ -33,7 +60,7 @@ const OfferCard = (props) => {
           <BookmarkButton
             offerId={id}
             isBookmarked={isBookmarked}
-            cardStyle={cardStyle}
+            buttonStyle={BookmarkStyle.SMALL_BUTTON}
           />
         </div>
         <div className="place-card__rating rating">
@@ -65,11 +92,7 @@ OfferCard.propTypes = {
     isBookmarked: PropTypes.bool.isRequired,
   }).isRequired,
   onMouseOver: PropTypes.func.isRequired,
-  cardStyle: PropTypes.shape({
-    article: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    info: PropTypes.string.isRequired,
-  }).isRequired,
+  cardType: PropTypes.string.isRequired,
   onMouseOut: PropTypes.func.isRequired,
 };
 

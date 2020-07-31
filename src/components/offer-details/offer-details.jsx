@@ -6,7 +6,7 @@ import Header from "../header/header.jsx";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
-import {OfferClassNamesForPageType, MapClass} from "../../const.js";
+import {MapClass} from "../../const.js";
 import {getOffersNearby, getCurrentOfferReviews, getReviewError, getOffer} from "../../reducer/offers/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -66,7 +66,7 @@ class OfferDetails extends PureComponent {
                   <BookmarkButton
                     offerId={id}
                     isBookmarked={isBookmarked}
-                    cardStyle={OfferClassNamesForPageType.details}
+                    buttonStyle={BookmarkStyle.BIG_BUTTON}
                   />
                 </div>
                 <div className="property__rating rating">
@@ -146,7 +146,7 @@ class OfferDetails extends PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <OffersList
                 offers={offersNearby}
-                cardStyle={OfferClassNamesForPageType.main}
+                cardType={OfferCardTypes.DETAILS}
                 onActiveCardChange={() => null}
               />
             </section>

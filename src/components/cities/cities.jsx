@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list.jsx";
 import Sort from "../sort/sort.jsx";
-import {OfferClassNamesForPageType} from "../../const.js";
+import {OfferCardTypes} from "../../const.js";
 import {connect} from "react-redux";
 import {getCurrentSortType, getSortedCityOffers, getCity} from "../../reducer/filters/selectors.js";
 import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
@@ -20,7 +20,7 @@ const Cities = (props) => {
         onSortTypeChange={onSortTypeChange}
       />
       <OffersList
-        cardStyle={OfferClassNamesForPageType.main}
+        cardType={OfferCardTypes.MAIN}
         onActiveCardChange={onActiveCardChange}
         offers={sortedCityOffers}
       />

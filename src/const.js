@@ -19,30 +19,20 @@ export const MapClass = {
   MAP_DETAILS: `property__map`,
 };
 
-export const OfferClassNamesForPageType = {
-  main: {
-    article: `cities__place-card`,
-    image: `cities__image-wrapper`,
-    list: `cities__places-list tabs__content`,
-    info: ``,
-  },
-  details: {
-    article: `near-places__card`,
-    image: `near-places__image-wrapper`,
-    list: `near-places__list`,
-    info: ``,
-  },
-  favorites: {
-    article: `favorites__card `,
-    image: `favorites__image-wrapper`,
-    list: ``,
-    info: `favorites__card-info`,
-  }
+export const BookmarkStyle = {
+  SMALL_BUTTON: `small`,
+  BIG_BUTTON: `big`,
 };
 
 export const KeyCodes = {
   ENTER: 13,
   SPACEBAR: 32,
+};
+
+export const OfferCardTypes = {
+  MAIN: `main`,
+  DETAILS: `details`,
+  FAVORITES: `favorites`,
 };
 
 export const SortTypes = {

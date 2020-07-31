@@ -2,11 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card.jsx";
 
+export const OfferListStylesByCardType = {
+  main: `cities__places-list tabs__content`,
+  details: `near-places__list`,
+  favorites: `favorites__places`,
+};
+
 const OffersList = (props) => {
-  const {offers, cardStyle, onActiveCardChange} = props;
+  const {offers, cardType, onActiveCardChange} = props;
+  const listStyle = OfferListStylesByCardType[cardType];
 
   return (
-    <div className={`${cardStyle.list} places__list`}>
+    <div className={`${listStyle} places__list`}>
       {offers.map((offer) => {
         return (
           <OfferCard
@@ -14,7 +21,7 @@ const OffersList = (props) => {
             offer={offer}
             onMouseOver={onActiveCardChange}
             onMouseOut={onActiveCardChange}
-            cardStyle={cardStyle}
+            cardType={cardType}
           />
         );
       })}
@@ -34,11 +41,7 @@ OffersList.propTypes = {
         isPremium: PropTypes.bool.isRequired,
       }).isRequired
   ).isRequired,
-  cardStyle: PropTypes.shape({
-    article: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    list: PropTypes.string.isRequired,
-  }).isRequired,
+  cardType: PropTypes.string.isRequired,
   onActiveCardChange: PropTypes.func.isRequired,
 };
 

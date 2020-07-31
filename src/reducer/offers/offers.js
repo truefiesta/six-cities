@@ -1,5 +1,5 @@
 import {extend} from "../../utils.js";
-import {getCities, getOffers, getBookmarkedOffers} from "./selectors.js";
+import {getCities, getOffers, getBookmarkedOffers, getOffersNearby} from "./selectors.js";
 import {createOffer, createReview} from "../../adapters/adapters.js";
 import {ActionCreator as FiltersActionCreator} from "../filters/filters.js";
 
@@ -143,6 +143,16 @@ const Operation = {
       }
 
       dispatch(ActionCreator.setAllOffers(offers));
+
+      const offersNearby = getOffersNearby(getState()).slice();
+      const offerNearbyIndex = offersNearby.findIndex((offer) => {
+        return offer.id === offerId;
+      });
+
+      if (offerNearbyIndex !== -1) {
+        offersNearby[offerNearbyIndex] = offerWithChangedBookmarkStatus;
+        dispatch(ActionCreator.changeCurrentOffersNearby(offersNearby));
+      }
 
       let bookmarkedOffers = getBookmarkedOffers(getState()).slice();
       const bookmarkedOfferIndex = bookmarkedOffers.findIndex((offer) => {
