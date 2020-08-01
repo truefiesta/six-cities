@@ -1,12 +1,11 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {EstateType} from "../../const.js";
+import {EstateType, MapType, BookmarkStyle, OfferCardType} from "../../const.js";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 import Header from "../header/header.jsx";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import OffersList from "../offers-list/offers-list.jsx";
-import {MapClass} from "../../const.js";
 import {getOffersNearby, getCurrentOfferReviews, getReviewError, getOffer} from "../../reducer/offers/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -15,7 +14,6 @@ import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {connect} from "react-redux";
 import ReviewForm from "../review-form/review-form.jsx";
 import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
-import {BookmarkStyle, OfferCardType} from "../../const.js";
 
 const MAX_PHOTOS = 6;
 
@@ -149,7 +147,7 @@ class OfferDetails extends PureComponent {
               offers={nearbyOffersWithCurrentOffer}
               city={city}
               activeCard={offer}
-              mapStyle={MapClass.MAP_DETAILS}
+              mapType={MapType.DETAILS}
             />
           </section>
           <div className="container">

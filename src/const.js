@@ -14,9 +14,9 @@ export const CityName = {
   PARIS: `Paris`,
 };
 
-export const MapClass = {
-  MAP_MAIN: `cities__map`,
-  MAP_DETAILS: `property__map`,
+export const MapType = {
+  MAIN: `main`,
+  DETAILS: `details`,
 };
 
 export const BookmarkStyle = {

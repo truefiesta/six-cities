@@ -7,10 +7,9 @@ import CitiesList from "../cities-list/cities-list.jsx";
 import Cities from "../cities/cities.jsx";
 import {connect} from "react-redux";
 import {getSortedCityOffers} from "../../reducer/filters/selectors.js";
-import {MapClass} from "../../const.js";
+import {MapType} from "../../const.js";
 
-const Main = (props) => {
-  const {sortedCityOffers} = props;
+const Main = ({sortedCityOffers}) => {
   const isNoOffers = sortedCityOffers.length === 0 ? true : false;
 
   return (
@@ -30,7 +29,7 @@ const Main = (props) => {
               <Cities/>
               <div className="cities__right-section">
                 <Map
-                  mapStyle={MapClass.MAP_MAIN}
+                  mapType={MapType.MAIN}
                   offers={sortedCityOffers}
                 />
               </div>

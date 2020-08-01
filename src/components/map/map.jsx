@@ -3,6 +3,7 @@ import leaflet from "leaflet";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getActiveOffer, getCity, getCityDetails} from "../../reducer/filters/selectors.js";
+import {MapType} from "../../const.js";
 
 const iconInactive = leaflet.icon({
   iconUrl: `/img/pin.svg`,
@@ -150,10 +151,17 @@ class Map extends Component {
   }
 
   render() {
-    const {mapStyle} = this.props;
+    const {mapType} = this.props;
+
+    let mapClass = ``;
+    if (mapType === MapType.MAIN) {
+      mapClass = `cities__map`;
+    } else if (mapType === MapType.DETAILS) {
+      mapClass = `property__map`;
+    }
 
     return (
-      <section className={`${mapStyle} map`}>
+      <section className={`${mapClass} map`}>
         <div id="map" style={{height: `100%`}} ref={this._mapRef}></div>
       </section>
     );
@@ -177,7 +185,7 @@ Map.propTypes = {
   activeCard: PropTypes.shape({
     id: PropTypes.number.isRequired,
   }),
-  mapStyle: PropTypes.string.isRequired,
+  mapType: PropTypes.string.isRequired,
   cityDetails: PropTypes.shape({
     coordinates: PropTypes.arrayOf(
         PropTypes.number.isRequired
