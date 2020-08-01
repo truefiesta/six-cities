@@ -8,6 +8,7 @@ import {getCity} from "../../reducer/filters/selectors.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AppRoute} from "../../const.js";
+import CityLink from "../city-link/city-link.jsx";
 
 const LoginScreen = (props) => {
   const {city, onUserLogIn, authorizationStatus} = props;
@@ -25,9 +26,9 @@ const LoginScreen = (props) => {
           />
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>{city}</span>
-              </a>
+              <CityLink
+                city={city}
+              />
             </div>
           </section>
         </div>
@@ -50,7 +51,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onUserLogIn(userCredentials) {
     dispatch(UserOperation.logIn(userCredentials));
-  }
+  },
 });
 
 export {LoginScreen};

@@ -8,6 +8,7 @@ import {getBookmarkedOffers, getBookmarkedCitites} from "../../reducer/offers/se
 import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {Link} from "react-router-dom";
 import {OfferCardTypes} from "../../const.js";
+import CityLink from "../city-link/city-link.jsx";
 
 class FavoritesScreen extends PureComponent {
   componentDidMount() {
@@ -40,9 +41,9 @@ class FavoritesScreen extends PureComponent {
                       <li key={city} className="favorites__locations-items">
                         <div className="favorites__locations locations locations--current">
                           <div className="locations__item">
-                            <a className="locations__item-link" href="#">
-                              <span>{city}</span>
-                            </a>
+                            <CityLink
+                              city={city}
+                            />
                           </div>
                         </div>
                         <div className="favorites__places">

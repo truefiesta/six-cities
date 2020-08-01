@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
 import {getCities} from "../../reducer/offers/selectors.js";
 import {getCity} from "../../reducer/filters/selectors.js";
+import CityLink from "../city-link/city-link.jsx";
 
-const CitiesList = ({city, cities, onCityClick}) => {
+const CitiesList = ({city, cities}) => {
   const sixCities = cities.slice(0, 6);
 
   if (!city) {
@@ -17,16 +17,11 @@ const CitiesList = ({city, cities, onCityClick}) => {
       {sixCities.map((it) => {
         return (
           <li key={it} className="locations__item">
-            <a
-              onClick={(evt) => {
-                evt.preventDefault();
-                onCityClick(it);
-              }}
-              className={`locations__item-link tabs__item ${city === it ? `tabs__item--active` : `` }`}
-              href="#"
-            >
-              <span>{it}</span>
-            </a>
+            <CityLink
+              city={it}
+              isActive={city === it}
+              isTab={true}
+            />
           </li>
         );
       })}
@@ -37,7 +32,6 @@ const CitiesList = ({city, cities, onCityClick}) => {
 CitiesList.propTypes = {
   city: PropTypes.string.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -45,11 +39,5 @@ const mapStateToProps = (state) => ({
   cities: getCities(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onCityClick(city) {
-    dispatch(FiltersActionCreator.changeCity(city));
-  }
-});
-
 export {CitiesList};
-export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);
+export default connect(mapStateToProps)(CitiesList);
