@@ -106,7 +106,7 @@ const Operation = {
     });
   },
 
-  addReview: (review, offerId, onSuccess) => (dispatch, getState, api) => {
+  addReview: (review, offerId, onSuccess, onError) => (dispatch, getState, api) => {
     return api.post(`/comments/${offerId}`, {
       comment: review.comment,
       rating: review.rating,
@@ -121,6 +121,7 @@ const Operation = {
     })
     .catch((err) => {
       dispatch(ActionCreator.setReviewError(err.message));
+      onError();
     });
   },
 

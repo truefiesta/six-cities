@@ -21,13 +21,23 @@ const ratingOptions = [
   RatingStarTitle.FIVE_STARS,
 ];
 
+const errorStyle = {
+  backgroundColor: `#e23939`,
+  marginBottom: `10px`,
+  padding: `5px`,
+  color: `#fff`,
+  textAlign: `center`,
+  lineHeight: `15px`,
+  fontSize: `15px`,
+  borderRadius: `2px`,
+};
+
 const ReviewForm = (props) => {
-  const {reviewError, review, rating, isEnabled, minReviewLength, maxReviewLength, onRatingChange, onReviewChange, onReviewSubmit} = props;
+  const {reviewError, review, rating, isEnabled, isBlocked, minReviewLength, maxReviewLength, onRatingChange, onReviewChange, onReviewSubmit} = props;
 
   return (
     <form
       className="reviews__form form"
-      action=""
       method="post"
       onSubmit={(evt) => {
         evt.preventDefault();
@@ -35,12 +45,13 @@ const ReviewForm = (props) => {
       }}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      {reviewError && <span style={{backgroundColor: `red`}}>{reviewError}</span>}
+      {reviewError && <div style={errorStyle}>{reviewError}</div>}
       <Stars
         setName={RATING}
         setOptions={ratingOptions}
         selectedOption={rating}
         onSelectedOptionChange={onRatingChange}
+        isBlocked={isBlocked}
       />
       <textarea
         className="reviews__textarea form__textarea"
@@ -53,6 +64,7 @@ const ReviewForm = (props) => {
         onChange={(evt) => {
           onReviewChange(evt.target.value);
         }}
+        disabled={isBlocked}
       />
 
       <div className="reviews__button-wrapper">
@@ -62,7 +74,7 @@ const ReviewForm = (props) => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!isEnabled}
+          disabled={isBlocked ? isBlocked : !isEnabled}
         >
           Submit
         </button>
@@ -76,6 +88,7 @@ ReviewForm.propTypes = {
   review: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   isEnabled: PropTypes.bool.isRequired,
+  isBlocked: PropTypes.bool.isRequired,
   minReviewLength: PropTypes.number.isRequired,
   maxReviewLength: PropTypes.number.isRequired,
   onRatingChange: PropTypes.func.isRequired,

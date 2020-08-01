@@ -12,6 +12,7 @@ const withReview = (Component) => {
       this.state = {
         message: ``,
         rating: 0,
+        isBlocked: false,
       };
 
       this._handleReviewSubmit = this._handleReviewSubmit.bind(this);
@@ -24,22 +25,34 @@ const withReview = (Component) => {
         return;
       }
 
+      this.setState({
+        isBlocked: true
+      });
+
       const {onSubmit, offerId} = this.props;
 
       const onSubmitSuccess = () => {
         this._clearReview();
       };
 
+      const onSubmitError = () => {
+        console.log(`onError: isBlocked: false`);
+        this.setState({
+          isBlocked: false,
+        });
+      };
+
       onSubmit({
         comment: this.state.message,
         rating: this.state.rating,
-      }, offerId, onSubmitSuccess);
+      }, offerId, onSubmitSuccess, onSubmitError);
     }
 
     _clearReview() {
       this.setState({
         message: ``,
         rating: 0,
+        isBlocked: false,
       });
     }
 
@@ -59,7 +72,7 @@ const withReview = (Component) => {
     }
 
     render() {
-      const {message, rating} = this.state;
+      const {message, rating, isBlocked} = this.state;
 
       return (
         <Component
@@ -67,6 +80,7 @@ const withReview = (Component) => {
           review={message}
           rating={rating}
           isEnabled={this._validateReview()}
+          isBlocked={isBlocked}
           minReviewLength={MIN_LENGTH}
           maxReviewLength={MAX_LENGTH}
           onRatingChange={this._handleRatingChange}

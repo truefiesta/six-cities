@@ -224,8 +224,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onReviewSubmit(review, offerId, onSuccess) {
-    dispatch(OffersOperation.addReview(review, offerId, onSuccess));
+  onReviewSubmit(review, offerId, onSuccess, onError) {
+    dispatch(OffersOperation.addReview(review, offerId, onSuccess, onError));
   },
   onLoad(offerId) {
     dispatch(OffersOperation.loadOfferReviews(offerId));

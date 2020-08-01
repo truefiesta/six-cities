@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Stars = (props) => {
-  const {setName, setOptions, selectedOption, onSelectedOptionChange} = props;
+  const {setName, setOptions, selectedOption, onSelectedOptionChange, isBlocked} = props;
   const reversedOptions = setOptions.slice().reverse();
 
   return (
@@ -25,6 +25,7 @@ const Stars = (props) => {
                 const formattedRating = parseInt(evt.target.value, 10);
                 onSelectedOptionChange(formattedRating);
               }}
+              disabled={isBlocked}
             />
             <label htmlFor={`${id}-stars`} className="reviews__rating-label form__rating-label" title={option}>
               <svg className="form__star-image" width="37" height="33">
@@ -44,6 +45,7 @@ Stars.propTypes = {
       PropTypes.string.isRequired
   ).isRequired,
   selectedOption: PropTypes.number.isRequired,
+  isBlocked: PropTypes.bool.isRequired,
   onSelectedOptionChange: PropTypes.func.isRequired,
 };
 
