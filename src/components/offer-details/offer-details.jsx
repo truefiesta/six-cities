@@ -49,6 +49,7 @@ class OfferDetails extends PureComponent {
     const guestsText = guests > 1 ? `Max ${guests} adults` : `Max ${guests} adult`;
     const nearbyOffersWithCurrentOffer = offersNearby.concat(offer);
     const isUserAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+    const proStatus = host.status ? `property__avatar-wrapper--pro` : ``;
 
     return (
       <div className="page">
@@ -116,7 +117,7 @@ class OfferDetails extends PureComponent {
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
-                    <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
+                    <div className={`property__avatar-wrapper ${proStatus} user__avatar-wrapper`}>
                       <img className="property__avatar user__avatar" src={`/${host.avatar}`} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
