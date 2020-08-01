@@ -9,29 +9,26 @@ import ErrorBanner from "../error-banner/error-banner.jsx";
 import {AppRoute} from "../../const.js";
 import history from "../../history.js";
 
-class App extends PureComponent {
-  render() {
-
-    return (
-      <Router history={history}>
-        <ErrorBanner/>
-        <Switch>
-          <Route exact path={AppRoute.ROOT} component={Main}/>
-          <Route path={AppRoute.LOGIN} component={LoginScreen}/>
-          <Route path={AppRoute.ROOM} component={OfferDetails}/>
-          <PrivateRoute
-            exact
-            path={AppRoute.FAVORITE}
-            render={() => {
-              return (
-                <FavoritesScreen/>
-              );
-            }}
-          />
-        </Switch>
-      </Router>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Router history={history}>
+      <ErrorBanner/>
+      <Switch>
+        <Route exact path={AppRoute.ROOT} component={Main}/>
+        <Route path={AppRoute.LOGIN} component={LoginScreen}/>
+        <Route path={AppRoute.ROOM} component={OfferDetails}/>
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVORITE}
+          render={() => {
+            return (
+              <FavoritesScreen/>
+            );
+          }}
+        />
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;
