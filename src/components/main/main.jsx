@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getSortedCityOffers} from "../../reducer/filters/selectors.js";
+import {MapType} from "../../const.js";
 import Header from "../header/header.jsx";
 import Map from "../map/map.jsx";
 import NoOffers from "../no-offers/no-offers.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
 import Cities from "../cities/cities.jsx";
-import {connect} from "react-redux";
-import {getSortedCityOffers} from "../../reducer/filters/selectors.js";
-import {MapType} from "../../const.js";
 
 const Main = ({sortedCityOffers}) => {
   const isNoOffers = sortedCityOffers.length === 0 ? true : false;

@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import OffersList from "../offers-list/offers-list.jsx";
-import Sort from "../sort/sort.jsx";
 import {OfferCardType} from "../../const.js";
 import {connect} from "react-redux";
 import {getCurrentSortType, getSortedCityOffers, getCity} from "../../reducer/filters/selectors.js";
 import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
+import OffersList from "../offers-list/offers-list.jsx";
+import Sort from "../sort/sort.jsx";
 
 const Cities = (props) => {
   const {city, currentSortType, sortedCityOffers, onSortTypeChange, onActiveCardChange} = props;

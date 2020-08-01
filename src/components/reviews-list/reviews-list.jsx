@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Review from "../review/review.jsx";
 import moment from "moment";
+import Review from "../review/review.jsx";
 
 const sortReviewsByDate = (reviews) => {
   return reviews.sort((reviewA, reviewB) => {

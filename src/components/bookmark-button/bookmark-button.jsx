@@ -41,4 +41,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {BookmarkButton};
 export default connect(null, mapDispatchToProps)(BookmarkButton);
