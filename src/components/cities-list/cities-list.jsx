@@ -6,11 +6,11 @@ import {getCity} from "../../reducer/filters/selectors.js";
 import CityLink from "../city-link/city-link.jsx";
 
 const CitiesList = ({city, cities}) => {
-  const sixCities = cities.slice(0, 6);
-
   if (!city) {
     return null;
   }
+
+  const sixCities = cities.slice(0, 6);
 
   return (
     <ul className="locations__list tabs__list">
@@ -31,7 +31,9 @@ const CitiesList = ({city, cities}) => {
 
 CitiesList.propTypes = {
   city: PropTypes.string.isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  cities: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({

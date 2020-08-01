@@ -14,8 +14,7 @@ const sortReviewsByDate = (reviews) => {
   });
 };
 
-const ReviewsList = (props) => {
-  const {reviews} = props;
+const ReviewsList = ({reviews}) => {
   const reviewsToShow = sortReviewsByDate(reviews).slice(0, 10);
 
   return (

@@ -15,7 +15,11 @@ const BookmarkButton = (props) => {
   const title = isBookmarked ? `In bookmarks` : `To bookmarks`;
 
   return (
-    <button onClick={() => onBookmarkStatusChange(offerId, newBookmarkStatus)} className={`${buttonClass}__bookmark-button ${activeBookmark} button`} type="button">
+    <button
+      onClick={() => onBookmarkStatusChange(offerId, newBookmarkStatus)}
+      className={`${buttonClass}__bookmark-button ${activeBookmark} button`}
+      type="button"
+    >
       <svg className="place-card__bookmark-icon" width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>

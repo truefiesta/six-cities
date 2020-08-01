@@ -16,8 +16,7 @@ const errorStyle = {
   zIndex: 1,
 };
 
-const ErrorBanner = (props) => {
-  const {errorMessage} = props;
+const ErrorBanner = ({errorMessage}) => {
   const isError = errorMessage !== ``;
 
   return (

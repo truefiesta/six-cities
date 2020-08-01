@@ -11,8 +11,8 @@ const SortTypeTitles = {
 };
 
 const Sort = (props) => {
-  const sortTypes = Object.values(SortType);
   const {isOpen, onOpenStateToggle, onClose, currentSortType, onSortTypeChange} = props;
+  const sortTypes = Object.values(SortType);
 
   return (
     <form className="places__sorting" action="#" method="get">

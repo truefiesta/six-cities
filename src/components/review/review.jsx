@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {convertStarRatingToWidthPercent, formatDate} from "../../utils.js";
 
-const Review = (props) => {
-  const {review} = props;
+const Review = ({review}) => {
   const {text, rating, user, date} = review;
 
   return (

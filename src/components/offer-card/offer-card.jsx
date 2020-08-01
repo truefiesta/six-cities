@@ -32,7 +32,6 @@ export const CardStylesByCardType = {
 const OfferCard = (props) => {
   const {offer, onMouseOver, cardType, onMouseOut} = props;
   const cardStyle = CardStylesByCardType[cardType];
-
   const {id, image, price, name, type, rating, isPremium, isBookmarked} = offer;
   const premiumTag = isPremium
     ? (<div className="place-card__mark"><span>Premium</span></div>)
