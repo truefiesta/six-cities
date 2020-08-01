@@ -3,24 +3,24 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
 import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
-import {BookmarkStyle, OfferCardTypes} from "../../const.js";
+import {BookmarkStyle, OfferCardType} from "../../const.js";
 
 export const CardStylesByCardType = {
-  [OfferCardTypes.MAIN]: {
+  [OfferCardType.MAIN]: {
     article: `cities__place-card`,
     image: `cities__image-wrapper`,
     info: ``,
     imageWidth: 260,
     imageHeight: 200,
   },
-  [OfferCardTypes.DETAILS]: {
+  [OfferCardType.DETAILS]: {
     article: `near-places__card`,
     image: `near-places__image-wrapper`,
     info: ``,
     imageWidth: 260,
     imageHeight: 200,
   },
-  [OfferCardTypes.FAVORITES]: {
+  [OfferCardType.FAVORITES]: {
     article: `favorites__card `,
     image: `favorites__image-wrapper`,
     info: `favorites__card-info`,

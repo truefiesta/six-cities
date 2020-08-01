@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter as Router} from "react-router-dom";
 import Cities from "./cities.jsx";
-import {CityName, SortTypes} from "../../const.js";
+import {CityName, SortType} from "../../const.js";
 import {Provider} from "react-redux";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
@@ -13,7 +13,7 @@ const mockStore = configureStore([]);
 const store = mockStore({
   [NameSpace.FILTERS]: {
     city: CityName.AMSTERDAM,
-    sortType: SortTypes.POPULAR,
+    sortType: SortType.POPULAR,
     activeCard: null,
   },
   [NameSpace.OFFERS]: {

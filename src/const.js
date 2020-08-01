@@ -24,18 +24,18 @@ export const BookmarkStyle = {
   BIG_BUTTON: `big`,
 };
 
-export const KeyCodes = {
+export const KeyCode = {
   ENTER: 13,
   SPACEBAR: 32,
 };
 
-export const OfferCardTypes = {
+export const OfferCardType = {
   MAIN: `main`,
   DETAILS: `details`,
   FAVORITES: `favorites`,
 };
 
-export const SortTypes = {
+export const SortType = {
   POPULAR: 1,
   PRICE_LOW_TO_HIGH: 2,
   PRICE_HIGH_TO_LOW: 3,

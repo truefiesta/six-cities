@@ -1,5 +1,5 @@
 import {reducer, ActionCreator, ActionType, initialState} from "./filters.js";
-import {CityName, SortTypes} from "../../const.js";
+import {CityName, SortType} from "../../const.js";
 
 describe(`Action creators`, () => {
   describe(`action changeCity`, () => {
@@ -15,7 +15,7 @@ describe(`Action creators`, () => {
 
   describe(`action changeSortType`, () => {
     it(`returns correct type and payload`, () => {
-      const sortType = SortTypes.TOP_RATED_FIRST;
+      const sortType = SortType.TOP_RATED_FIRST;
 
       expect(ActionCreator.changeSortType(sortType)).toEqual({
         type: ActionType.CHANGE_SORT_TYPE,
@@ -55,8 +55,8 @@ describe(`Reducer`, () => {
 
   describe(`action changeSortType`, () => {
     it(`sets new sort type`, () => {
-      const originalState = Object.assign({}, initialState, {sortType: SortTypes.POPULAR});
-      const newSortType = SortTypes.TOP_RATED_FIRST;
+      const originalState = Object.assign({}, initialState, {sortType: SortType.POPULAR});
+      const newSortType = SortType.TOP_RATED_FIRST;
       const expectedState = Object.assign({}, originalState, {sortType: newSortType});
 
       expect(

@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import App from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {CityName, SortTypes} from "../../const.js";
+import {CityName, SortType} from "../../const.js";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -22,7 +22,7 @@ describe(`src/App.jsx`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
           city: CityName.AMSTERDAM,
-          sortType: SortTypes.POPULAR,
+          sortType: SortType.POPULAR,
           activeCard: null,
         },
         [NameSpace.OFFERS]: {
@@ -52,7 +52,7 @@ describe(`src/App.jsx`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
           city: ``,
-          sortType: SortTypes.POPULAR,
+          sortType: SortType.POPULAR,
           activeCard: null,
         },
         [NameSpace.OFFERS]: {

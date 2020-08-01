@@ -15,7 +15,7 @@ import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {connect} from "react-redux";
 import ReviewForm from "../review-form/review-form.jsx";
 import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
-import {BookmarkStyle, OfferCardTypes} from "../../const.js";
+import {BookmarkStyle, OfferCardType} from "../../const.js";
 
 const MAX_PHOTOS = 6;
 
@@ -157,7 +157,7 @@ class OfferDetails extends PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <OffersList
                 offers={offersNearby}
-                cardType={OfferCardTypes.DETAILS}
+                cardType={OfferCardType.DETAILS}
                 onActiveCardChange={() => null}
               />
             </section>

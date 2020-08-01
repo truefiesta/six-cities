@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {SortTypes, KeyCodes} from "../../const.js";
+import {SortType, KeyCode} from "../../const.js";
 import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
 
 const SortTypeTitles = {
-  [SortTypes.POPULAR]: `Popular`,
-  [SortTypes.PRICE_LOW_TO_HIGH]: `Price: low to high`,
-  [SortTypes.PRICE_HIGH_TO_LOW]: `Price: high to low`,
-  [SortTypes.TOP_RATED_FIRST]: `Top rated first`,
+  [SortType.POPULAR]: `Popular`,
+  [SortType.PRICE_LOW_TO_HIGH]: `Price: low to high`,
+  [SortType.PRICE_HIGH_TO_LOW]: `Price: high to low`,
+  [SortType.TOP_RATED_FIRST]: `Top rated first`,
 };
 
 const Sort = (props) => {
-  const sortTypes = Object.values(SortTypes);
+  const sortTypes = Object.values(SortType);
   const {isOpen, onOpenStateToggle, onClose, currentSortType, onSortTypeChange} = props;
 
   return (
@@ -22,7 +22,7 @@ const Sort = (props) => {
         tabIndex={0}
         onClick={onOpenStateToggle}
         onKeyDown={(evt) => {
-          if (evt.keyCode === KeyCodes.SPACEBAR) {
+          if (evt.keyCode === KeyCode.SPACEBAR) {
             onOpenStateToggle();
           }
         }}
@@ -47,7 +47,7 @@ const Sort = (props) => {
                 onClose();
               }}
               onKeyDown={(evt) => {
-                if (evt.keyCode === KeyCodes.ENTER) {
+                if (evt.keyCode === KeyCode.ENTER) {
                   onSortTypeChange(sortType);
                   onClose();
                 }
@@ -71,5 +71,5 @@ Sort.propTypes = {
   onSortTypeChange: PropTypes.func.isRequired,
 };
 
-export {SortTypes, Sort};
+export {Sort};
 export default withOpenFlag(Sort);

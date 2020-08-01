@@ -1,9 +1,9 @@
 import {extend} from "../../utils.js";
-import {SortTypes} from "../../const.js";
+import {SortType} from "../../const.js";
 
 const initialState = {
   city: ``,
-  sortType: SortTypes.POPULAR,
+  sortType: SortType.POPULAR,
   activeCard: null,
 };
 

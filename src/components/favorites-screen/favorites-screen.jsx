@@ -7,7 +7,7 @@ import {AppRoute} from "../../const.js";
 import {getBookmarkedOffers, getBookmarkedCitites} from "../../reducer/offers/selectors.js";
 import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
 import {Link} from "react-router-dom";
-import {OfferCardTypes} from "../../const.js";
+import {OfferCardType} from "../../const.js";
 import CityLink from "../city-link/city-link.jsx";
 
 class FavoritesScreen extends PureComponent {
@@ -52,7 +52,7 @@ class FavoritesScreen extends PureComponent {
                               <OfferCard
                                 key={offer.id}
                                 offer={offer}
-                                cardType={OfferCardTypes.FAVORITES}
+                                cardType={OfferCardType.FAVORITES}
                                 onMouseOver={() => null}
                                 onMouseOut={() => null}
                                 onBookmarkStatusChange={onBookmarkStatusChange}

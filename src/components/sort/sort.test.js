@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Sort} from "./sort.jsx";
-import {SortTypes} from "../../const.js";
+import {SortType} from "../../const.js";
 
 describe(`Sort`, () => {
   describe(`when the offers is not empty array`, () => {
@@ -9,7 +9,7 @@ describe(`Sort`, () => {
       const tree = renderer.create(
           <Sort
             isOpen={false}
-            currentSortType={SortTypes.POPULAR}
+            currentSortType={SortType.POPULAR}
             onSortTypeChange={() => null}
             onOpenStateToggle={() => null}
             onClose={() => null}
