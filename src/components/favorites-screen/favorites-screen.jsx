@@ -80,8 +80,15 @@ class FavoritesScreen extends PureComponent {
 }
 
 FavoritesScreen.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+  })).isRequired,
+  cities: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+  ).isRequired,
   onBookmarkStatusChange: PropTypes.func.isRequired,
   onBookmarkedOffersLoad: PropTypes.func.isRequired,
 };
