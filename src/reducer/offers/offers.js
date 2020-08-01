@@ -67,7 +67,8 @@ const Operation = {
           const city = cities[0];
           dispatch(FiltersActionCreator.changeCity(city));
         }
-      });
+      })
+      .catch(() => {});
   },
 
   loadOfferReviews: (offerId) => (dispatch, getState, api) => {
@@ -79,7 +80,8 @@ const Operation = {
         });
 
         dispatch(ActionCreator.changeCurrentOfferReviews(reviews));
-      });
+      })
+      .catch(() => {});
   },
 
   loadOffersNearby: (offerId) => (dispatch, getState, api) => {
@@ -91,7 +93,8 @@ const Operation = {
         });
 
         dispatch(ActionCreator.changeCurrentOffersNearby(offersNearby));
-      });
+      })
+      .catch(() => {});
   },
 
   loadBookmarkedOffers: () => (dispatch, getState, api) => {
@@ -103,7 +106,8 @@ const Operation = {
       });
 
       dispatch(ActionCreator.changeCurrentBookmarkedOffers(bookmarkedOffers));
-    });
+    })
+    .catch(() => {});
   },
 
   addReview: (review, offerId, onSuccess, onError) => (dispatch, getState, api) => {
@@ -167,7 +171,8 @@ const Operation = {
       }
 
       dispatch(ActionCreator.changeCurrentBookmarkedOffers(bookmarkedOffers));
-    });
+    })
+    .catch(() => {});
   },
 };
 

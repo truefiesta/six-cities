@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const Error = {
-  BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
 };
 
-const createApi = (onUnauthorized) => {
+const createApi = (onUnauthorized, onError) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/six-cities`,
     timeout: 5000,
@@ -22,8 +21,8 @@ const createApi = (onUnauthorized) => {
     if (response) {
       if (response.status === Error.UNAUTHORIZED && response.config.method === `post`) {
         onUnauthorized();
-      } else if (response.status === Error.BAD_REQUEST) {
-        // TODO:
+      } else if (response.status !== Error.UNAUTHORIZED) {
+        onError(err.message);
       }
     }
 

@@ -36,7 +36,6 @@ const withReview = (Component) => {
       };
 
       const onSubmitError = () => {
-        console.log(`onError: isBlocked: false`);
         this.setState({
           isBlocked: false,
         });
