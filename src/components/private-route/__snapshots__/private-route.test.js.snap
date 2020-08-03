@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrivateRoute snapshot should not render MockComponent 1`] = `null`;
+
+exports[`PrivateRoute snapshot should render MockComponent 1`] = `<div />`;
