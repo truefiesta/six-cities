@@ -1,16 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {BrowserRouter as Router} from "react-router-dom";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
 import {Header} from "./header.jsx";
-import {BrowserRouter as Router} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
 const store = mockStore({});
 
-describe(`Header`, () => {
+describe(`Header snapshot`, () => {
   describe(`when the user is not authorized`, () => {
     it(`should render with Sign in`, () => {
       const tree = renderer.create(

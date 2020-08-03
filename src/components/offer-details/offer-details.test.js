@@ -37,30 +37,28 @@ jest.mock(`../map/map.jsx`, () => () => {
   );
 });
 
-describe(`src/offers-details.jsx`, () => {
-  describe(`when the offers is a non-empty array`, () => {
-    it(`should render with data`, () => {
-      const tree = renderer.create(
-          <Provider store={store}>
-            <Router>
-              <OfferDetails
-                offer={offer}
-                match={{params: {id: `1`}, isExact: true, path: ``, url: ``}}
-                currentOfferReviews={reviews}
-                offersNearby={offersNearby}
-                onLoad={() => null}
-                reviewError={``}
-                city={CityName.AMSTERDAM}
-                authorizationStatus={AuthorizationStatus.NO_AUTH}
-                onReviewSubmit={() => null}
-                onBookmarkStatusChange={() => null}
-              />
-            </Router>
-          </Provider>
-      )
-      .toJSON();
+describe(`OffersDetails snapshot`, () => {
+  it(`should render with data`, () => {
+    const tree = renderer.create(
+        <Provider store={store}>
+          <Router>
+            <OfferDetails
+              offer={offer}
+              match={{params: {id: `1`}, isExact: true, path: ``, url: ``}}
+              currentOfferReviews={reviews}
+              offersNearby={offersNearby}
+              onLoad={() => null}
+              reviewError={``}
+              city={CityName.AMSTERDAM}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              onReviewSubmit={() => null}
+              onBookmarkStatusChange={() => null}
+            />
+          </Router>
+        </Provider>
+    )
+    .toJSON();
 
-      expect(tree).toMatchSnapshot();
-    });
+    expect(tree).toMatchSnapshot();
   });
 });

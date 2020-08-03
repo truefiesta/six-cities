@@ -19,8 +19,8 @@ const cityOffers = offers.slice(0, 4);
 
 const mockStore = configureStore([]);
 
-describe(`src/Main.jsx`, () => {
-  describe(`when the city is chosen and offers is non-empty array`, () => {
+describe(`Main snapshot`, () => {
+  describe(`when the city is chosen, offers is non-empty array and user is authorized`, () => {
     it(`should render with data`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
@@ -34,8 +34,8 @@ describe(`src/Main.jsx`, () => {
           currentOffersNearby: offersNearby,
         },
         [NameSpace.USER]: {
-          authorizationStatus: AuthorizationStatus.NO_AUTH,
-          email: ``,
+          authorizationStatus: AuthorizationStatus.AUTH,
+          email: `bla@gmail.com`,
         }
       });
 
@@ -54,7 +54,7 @@ describe(`src/Main.jsx`, () => {
     });
   });
 
-  describe(`when the offers is an empty array`, () => {
+  describe(`when there is no data`, () => {
     it(`should render with no data`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {

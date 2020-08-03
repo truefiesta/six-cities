@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/NoOffers.jsx when offers is an empty array should render 1`] = `
+exports[`NoOffers snapshot when offers is an empty array should render 1`] = `
 <div
   className="cities__places-container cities__places-container--empty container"
 >

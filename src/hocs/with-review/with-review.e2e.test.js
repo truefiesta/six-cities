@@ -93,6 +93,7 @@ describe(`withReview`, () => {
             rating: newRating
           },
           offerId,
+          expect.anything(),
           expect.anything()
       );
     });

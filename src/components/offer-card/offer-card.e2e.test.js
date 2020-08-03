@@ -1,8 +1,9 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import OfferCard from "./offer-card.jsx";
 import {offers} from "../../test-mocks/test-mocks.js";
+import {OfferCardType} from "../../const.js";
+import OfferCard from "./offer-card.jsx";
 
 const offer = offers[0];
 
@@ -10,28 +11,18 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const cardStyle = {
-  main: {
-    article: `cities__place-card`,
-    image: `cities__image-wrapper`,
-    list: `cities__places-list tabs__content`,
-    info: ``,
-  },
-};
-
 describe(`OfferCard`, () => {
-  it(`Handler gets offer id on mouse over`, () => {
+  it(`triggers mouse over and mouse out callbacks`, () => {
     const onMouseOver = jest.fn();
     const onMouseOut = jest.fn();
-    const onBookmarkStatusChange = jest.fn();
 
     const offerCard = shallow(
         <OfferCard
           offer={offer}
           onMouseOver={onMouseOver}
           onMouseOut={onMouseOut}
-          cardStyle={cardStyle.main}
-          onBookmarkStatusChange={onBookmarkStatusChange}
+          cardType={OfferCardType.MAIN}
+          onBookmarkStatusChange={() => null}
         />
     );
 
@@ -44,4 +35,3 @@ describe(`OfferCard`, () => {
     expect(onMouseOver).toHaveBeenCalledTimes(1);
   });
 });
-

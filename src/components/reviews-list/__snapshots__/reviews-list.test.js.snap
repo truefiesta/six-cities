@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/reviews-list.jsx when the reviews is a non-empty array should render with data 1`] = `
+exports[`ReviewsList snapshot should render 1`] = `
 <ul
   className="reviews__list"
 >
@@ -59,7 +59,7 @@ exports[`src/reviews-list.jsx when the reviews is a non-empty array should rende
         className="reviews__time"
         dateTime="2019-06-25"
       >
-        June 25, 2019
+        June 2019
       </time>
     </div>
   </li>
@@ -118,7 +118,7 @@ exports[`src/reviews-list.jsx when the reviews is a non-empty array should rende
         className="reviews__time"
         dateTime="2019-04-24"
       >
-        April 24, 2019
+        April 2019
       </time>
     </div>
   </li>

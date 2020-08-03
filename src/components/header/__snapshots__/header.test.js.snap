@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header when the user is authorized should render with email 1`] = `
+exports[`Header snapshot when the user is authorized should render with email 1`] = `
 <header
   className="header"
 >
@@ -15,6 +15,8 @@ exports[`Header when the user is authorized should render with email 1`] = `
       >
         <a
           className="header__logo-link header__logo-link--active"
+          href="/"
+          onClick={[Function]}
         >
           <img
             alt="6 cities logo"
@@ -56,7 +58,7 @@ exports[`Header when the user is authorized should render with email 1`] = `
 </header>
 `;
 
-exports[`Header when the user is not authorized should render with Sign in 1`] = `
+exports[`Header snapshot when the user is not authorized should render with Sign in 1`] = `
 <header
   className="header"
 >
@@ -71,6 +73,8 @@ exports[`Header when the user is not authorized should render with Sign in 1`] =
       >
         <a
           className="header__logo-link header__logo-link--active"
+          href="/"
+          onClick={[Function]}
         >
           <img
             alt="6 cities logo"

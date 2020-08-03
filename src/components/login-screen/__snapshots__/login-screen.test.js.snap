@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginScreen when city is Amsterdam should render correctly 1`] = `
+exports[`LoginScreen snapshot should render correctly 1`] = `
 <div
   className="page page--gray page--login"
 >
@@ -18,6 +18,8 @@ exports[`LoginScreen when city is Amsterdam should render correctly 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -90,7 +92,7 @@ exports[`LoginScreen when city is Amsterdam should render correctly 1`] = `
               className="login__input form__input"
               name="email"
               placeholder="Email"
-              required=""
+              required={true}
               type="email"
             />
           </div>
@@ -107,7 +109,7 @@ exports[`LoginScreen when city is Amsterdam should render correctly 1`] = `
               className="login__input form__input"
               name="password"
               placeholder="Password"
-              required=""
+              required={true}
               type="password"
             />
           </div>
@@ -126,8 +128,9 @@ exports[`LoginScreen when city is Amsterdam should render correctly 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link"
-            href="#"
+            className="locations__item-link  "
+            href="/"
+            onClick={[Function]}
           >
             <span>
               Amsterdam

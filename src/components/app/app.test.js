@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
-import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 import {CityName, SortType} from "../../const.js";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import App from "./app.jsx";
 
 const mockStore = configureStore([]);
 
@@ -16,8 +16,8 @@ jest.mock(`../map/map.jsx`, () => () => {
   );
 });
 
-describe(`src/App.jsx`, () => {
-  describe(`when the city is chosen and there are offers`, () => {
+describe(`App snapshot`, () => {
+  describe(`when there is data`, () => {
     it(`should render with data`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
@@ -33,6 +33,9 @@ describe(`src/App.jsx`, () => {
         [NameSpace.USER]: {
           authorizationStatus: AuthorizationStatus.NO_AUTH,
           email: ``,
+        },
+        [NameSpace.ERROR]: {
+          errorMessage: ``,
         }
       });
 
@@ -47,7 +50,7 @@ describe(`src/App.jsx`, () => {
     });
   });
 
-  describe(`when there are no offers`, () => {
+  describe(`when there is no data`, () => {
     it(`should render with no data`, () => {
       const store = mockStore({
         [NameSpace.FILTERS]: {
@@ -63,6 +66,9 @@ describe(`src/App.jsx`, () => {
         [NameSpace.USER]: {
           authorizationStatus: AuthorizationStatus.NO_AUTH,
           email: ``,
+        },
+        [NameSpace.ERROR]: {
+          errorMessage: ``,
         }
       });
 

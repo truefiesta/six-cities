@@ -29,17 +29,15 @@ const reviews = [
   },
 ];
 
-describe(`src/reviews-list.jsx`, () => {
-  describe(`when the reviews is a non-empty array`, () => {
-    it(`should render with data`, () => {
-      const tree = renderer.create(
-          <ReviewsList
-            reviews={reviews}
-          />
-      )
-      .toJSON();
+describe(`ReviewsList snapshot`, () => {
+  it(`should render`, () => {
+    const tree = renderer.create(
+        <ReviewsList
+          reviews={reviews}
+        />
+    )
+    .toJSON();
 
-      expect(tree).toMatchSnapshot();
-    });
+    expect(tree).toMatchSnapshot();
   });
 });

@@ -1,11 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {CitiesList} from "./cities-list.jsx";
+import configureStore from "redux-mock-store";
+import {BrowserRouter as Router} from "react-router-dom";
 import {CityName, SortType} from "../../const.js";
 import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
+import {CitiesList} from "./cities-list.jsx";
 
 const mockStore = configureStore([]);
 const store = mockStore({
@@ -23,21 +24,21 @@ const store = mockStore({
 
 const cities = Object.values(CityName);
 
-describe(`src/CitiesList.jsx`, () => {
-  describe(`when the city is chosen and offers is non-empty array`, () => {
-    it(`should render with data`, () => {
-      const tree = renderer.create(
-          <Provider store={store}>
+describe(`CitiesList snapshot`, () => {
+  it(`should render with data`, () => {
+    const tree = renderer.create(
+        <Provider store={store}>
+          <Router>
             <CitiesList
               city={CityName.AMSTERDAM}
               cities={cities}
               onCityClick={() => null}
             />
-          </Provider>
-      )
-      .toJSON();
+          </Router>
+        </Provider>
+    )
+    .toJSON();
 
-      expect(tree).toMatchSnapshot();
-    });
+    expect(tree).toMatchSnapshot();
   });
 });

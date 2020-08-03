@@ -1,9 +1,9 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {Map} from "./map.jsx";
 import {offers} from "../../test-mocks/test-mocks.js";
-import {CityName, MapClass} from "../../const.js";
+import {CityName, MapType} from "../../const.js";
+import {Map} from "./map.jsx";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -15,10 +15,9 @@ const cityDetails = {
   zoom: 10,
 };
 
-describe(`src/Map.jsx`, () => {
-  describe(`when offers is a non-empty array`, () => {
-    it(`should render with markers`, () => {
-
+describe(`Map snapshot`, () => {
+  describe(`map is on the main page`, () => {
+    it(`should render with a correct class`, () => {
       const div = global.document.createElement(`div`);
       global.document.body.appendChild(div);
 
@@ -27,7 +26,27 @@ describe(`src/Map.jsx`, () => {
             city={CityName.AMSTERDAM}
             offers={offers}
             activeCard={offers[0]}
-            mapStyle={MapClass.MAP_MAIN}
+            mapType={MapType.MAIN}
+            cityDetails={cityDetails}
+          />,
+          {attachTo: div}
+      );
+
+      expect(tree.getDOMNode()).toMatchSnapshot();
+    });
+  });
+
+  describe(`map is on the offer details page`, () => {
+    it(`should render with a correct class`, () => {
+      const div = global.document.createElement(`div`);
+      global.document.body.appendChild(div);
+
+      const tree = mount(
+          <Map
+            city={CityName.AMSTERDAM}
+            offers={offers}
+            activeCard={offers[0]}
+            mapType={MapType.DETAILS}
             cityDetails={cityDetails}
           />,
           {attachTo: div}

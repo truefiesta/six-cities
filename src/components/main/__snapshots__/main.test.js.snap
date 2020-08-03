@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/Main.jsx when the city is chosen and offers is non-empty array should render with data 1`] = `
+exports[`Main snapshot when the city is chosen, offers is non-empty array and user is authorized should render with data 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -18,6 +18,8 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -39,7 +41,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/login"
+                href="/favorite"
                 onClick={[Function]}
               >
                 <div
@@ -48,7 +50,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 <span
                   className="header__user-name user__name"
                 >
-                  Sign in
+                  Bla@gmail.com
                 </span>
               </a>
             </li>
@@ -79,7 +81,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="#"
+              href="/"
               onClick={[Function]}
             >
               <span>
@@ -201,14 +203,15 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/1"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="img/room.jpg"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
@@ -301,14 +304,15 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/2"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="img/apartment-02.jpg"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
@@ -350,7 +354,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                     <span
                       className="visually-hidden"
                     >
-                      To bookmarks
+                      In bookmarks
                     </span>
                   </button>
                 </div>
@@ -401,14 +405,15 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/3"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="img/apartment-03.jpg"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
@@ -508,14 +513,15 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/4"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="img/apartment-01.jpg"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
@@ -598,7 +604,6 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
                 </p>
               </div>
             </article>
-            ;
           </div>
         </section>
         <div
@@ -614,7 +619,7 @@ exports[`src/Main.jsx when the city is chosen and offers is non-empty array shou
 </div>
 `;
 
-exports[`src/Main.jsx when the offers is an empty array should render with no data 1`] = `
+exports[`Main snapshot when there is no data should render with no data 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -632,6 +637,8 @@ exports[`src/Main.jsx when the offers is an empty array should render with no da
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"

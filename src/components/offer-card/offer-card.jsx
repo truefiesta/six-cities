@@ -90,8 +90,8 @@ OfferCard.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isBookmarked: PropTypes.bool.isRequired,
   }).isRequired,
-  onMouseOver: PropTypes.func.isRequired,
   cardType: PropTypes.string.isRequired,
+  onMouseOver: PropTypes.func.isRequired,
   onMouseOut: PropTypes.func.isRequired,
 };
 

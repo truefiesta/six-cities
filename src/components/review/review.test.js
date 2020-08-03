@@ -15,8 +15,8 @@ const review = {
   date: `2019-04-24`,
 };
 
-describe(`src/review.jsx`, () => {
-  describe(`when the reviews is a non-empty array`, () => {
+describe(`Review snapshot`, () => {
+  describe(`when there is data`, () => {
     it(`should render with data`, () => {
       const tree = renderer.create(
           <Review

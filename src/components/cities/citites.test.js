@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
 import {BrowserRouter as Router} from "react-router-dom";
-import Cities from "./cities.jsx";
 import {CityName, SortType} from "../../const.js";
 import {Provider} from "react-redux";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
 import {NameSpace} from "../../reducer/name-space.js";
-import configureStore from "redux-mock-store";
+import Cities from "./cities.jsx";
 
 const mockStore = configureStore([]);
 
@@ -25,7 +25,7 @@ const store = mockStore({
 
 describe(`Cities`, () => {
   describe(`when the offers is not empty array`, () => {
-    it(`should render with correctly`, () => {
+    it(`should render`, () => {
       const tree = renderer.create(
           <Router>
             <Provider store={store}>
