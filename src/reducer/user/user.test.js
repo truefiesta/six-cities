@@ -86,7 +86,7 @@ describe(`Operation checkAuth`, () => {
   });
 });
 
-describe(`Operation work correctly`, () => {
+describe(`Operation logIn`, () => {
   it(`makes a correct API call to /login and dispatches correct actions`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
