@@ -65,9 +65,9 @@ const Sort = (props) => {
 
 Sort.propTypes = {
   isOpen: PropTypes.bool.isRequired,
+  currentSortType: PropTypes.number.isRequired,
   onOpenStateToggle: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  currentSortType: PropTypes.number.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
 };
 
