@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignIn when the user is not authorized should render 1`] = `
+exports[`SignIn snapshot should render 1`] = `
 <section
   className="login"
 >
@@ -28,7 +28,7 @@ exports[`SignIn when the user is not authorized should render 1`] = `
         className="login__input form__input"
         name="email"
         placeholder="Email"
-        required=""
+        required={true}
         type="email"
       />
     </div>
@@ -45,7 +45,7 @@ exports[`SignIn when the user is not authorized should render 1`] = `
         className="login__input form__input"
         name="password"
         placeholder="Password"
-        required=""
+        required={true}
         type="password"
       />
     </div>
