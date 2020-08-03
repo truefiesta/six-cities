@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CityLink snapshot should render 1`] = `
+<a
+  className="locations__item-link  "
+  href="/"
+  onClick={[Function]}
+>
+  <span>
+    Amsterdam
+  </span>
+</a>
+`;
+
+exports[`CityLink snapshot should render with tabs class 1`] = `
+<a
+  className="locations__item-link tabs__item tabs__item--active"
+  href="/"
+  onClick={[Function]}
+>
+  <span>
+    Amsterdam
+  </span>
+</a>
+`;
