@@ -18,20 +18,19 @@ const ratingOptions = [
   RatingStarTitle.FIVE_STARS,
 ];
 
-describe(`Stars`, () => {
-  describe(`when the offers is not empty array`, () => {
-    it(`should render with correctly`, () => {
-      const tree = renderer.create(
-          <Stars
-            setName={`Rating`}
-            setOptions={ratingOptions}
-            selectedOption={1}
-            onSelectedOptionChange={() => null}
-          />
-      )
-      .toJSON();
+describe(`Stars snapshot`, () => {
+  it(`should render`, () => {
+    const tree = renderer.create(
+        <Stars
+          setName={`Rating`}
+          setOptions={ratingOptions}
+          selectedOption={1}
+          isBlocked={false}
+          onSelectedOptionChange={() => null}
+        />
+    )
+    .toJSON();
 
-      expect(tree).toMatchSnapshot();
-    });
+    expect(tree).toMatchSnapshot();
   });
 });

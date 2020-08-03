@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Stars when the offers is not empty array should render with correctly 1`] = `
+exports[`Stars snapshot should render 1`] = `
 <div
   className="reviews__rating-form form__rating"
 >
   <input
     checked={false}
     className="form__rating-input visually-hidden"
+    disabled={false}
     id="5-stars"
     name="Rating"
     onChange={[Function]}
@@ -31,6 +32,7 @@ exports[`Stars when the offers is not empty array should render with correctly 1
   <input
     checked={false}
     className="form__rating-input visually-hidden"
+    disabled={false}
     id="4-stars"
     name="Rating"
     onChange={[Function]}
@@ -55,6 +57,7 @@ exports[`Stars when the offers is not empty array should render with correctly 1
   <input
     checked={false}
     className="form__rating-input visually-hidden"
+    disabled={false}
     id="3-stars"
     name="Rating"
     onChange={[Function]}
@@ -79,6 +82,7 @@ exports[`Stars when the offers is not empty array should render with correctly 1
   <input
     checked={false}
     className="form__rating-input visually-hidden"
+    disabled={false}
     id="2-stars"
     name="Rating"
     onChange={[Function]}
@@ -103,6 +107,7 @@ exports[`Stars when the offers is not empty array should render with correctly 1
   <input
     checked={true}
     className="form__rating-input visually-hidden"
+    disabled={false}
     id="1-stars"
     name="Rating"
     onChange={[Function]}
