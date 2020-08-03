@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReviewForm when the offers is not empty array should render with correctly 1`] = `
+exports[`ReviewForm snapshot should render 1`] = `
 <form
-  action=""
   className="reviews__form form"
   method="post"
   onSubmit={[Function]}
@@ -20,6 +19,7 @@ exports[`ReviewForm when the offers is not empty array should render with correc
     <input
       checked={false}
       className="form__rating-input visually-hidden"
+      disabled={false}
       id="5-stars"
       name="rating"
       onChange={[Function]}
@@ -44,6 +44,7 @@ exports[`ReviewForm when the offers is not empty array should render with correc
     <input
       checked={true}
       className="form__rating-input visually-hidden"
+      disabled={false}
       id="4-stars"
       name="rating"
       onChange={[Function]}
@@ -68,6 +69,7 @@ exports[`ReviewForm when the offers is not empty array should render with correc
     <input
       checked={false}
       className="form__rating-input visually-hidden"
+      disabled={false}
       id="3-stars"
       name="rating"
       onChange={[Function]}
@@ -92,6 +94,7 @@ exports[`ReviewForm when the offers is not empty array should render with correc
     <input
       checked={false}
       className="form__rating-input visually-hidden"
+      disabled={false}
       id="2-stars"
       name="rating"
       onChange={[Function]}
@@ -116,6 +119,7 @@ exports[`ReviewForm when the offers is not empty array should render with correc
     <input
       checked={false}
       className="form__rating-input visually-hidden"
+      disabled={false}
       id="1-stars"
       name="rating"
       onChange={[Function]}
@@ -140,6 +144,7 @@ exports[`ReviewForm when the offers is not empty array should render with correc
   </div>
   <textarea
     className="reviews__textarea form__textarea"
+    disabled={false}
     id="review"
     maxLength={300}
     minLength={50}
