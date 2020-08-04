@@ -1,8 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-const MIN_LENGTH = 50;
-const MAX_LENGTH = 300;
+const ReviewTextLength = {
+  MIN: 50,
+  MAX: 300,
+};
 
 const withReview = (Component) => {
   class WithReview extends PureComponent {
@@ -66,7 +68,7 @@ const withReview = (Component) => {
     _validateReview() {
       const {rating, message} = this.state;
       return (
-        rating > 0 && message.length >= MIN_LENGTH && message.length <= MAX_LENGTH
+        rating > 0 && message.length >= ReviewTextLength.MIN && message.length <= ReviewTextLength.MAX
       );
     }
 
@@ -80,8 +82,8 @@ const withReview = (Component) => {
           rating={rating}
           isEnabled={this._validateReview()}
           isBlocked={isBlocked}
-          minReviewLength={MIN_LENGTH}
-          maxReviewLength={MAX_LENGTH}
+          minReviewLength={ReviewTextLength.MIN}
+          maxReviewLength={ReviewTextLength.MAX}
           onRatingChange={this._handleRatingChange}
           onReviewChange={this._handleReviewChange}
           onReviewSubmit={this._handleReviewSubmit}
