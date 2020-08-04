@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {SortType, KeyCode} from "../../const.js";
 import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
 
-const SortTypeTitles = {
+const SortTypeTitle = {
   [SortType.POPULAR]: `Popular`,
   [SortType.PRICE_LOW_TO_HIGH]: `Price: low to high`,
   [SortType.PRICE_HIGH_TO_LOW]: `Price: high to low`,
@@ -28,7 +28,7 @@ const Sort = (props) => {
         }}
         role="button"
       >
-        &nbsp;{SortTypeTitles[currentSortType]}
+        &nbsp;{SortTypeTitle[currentSortType]}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -54,7 +54,7 @@ const Sort = (props) => {
               }}
               role="button"
             >
-              {SortTypeTitles[sortType]}
+              {SortTypeTitle[sortType]}
             </li>
           );
         })}
