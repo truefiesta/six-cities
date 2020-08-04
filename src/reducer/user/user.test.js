@@ -35,7 +35,6 @@ describe(`Reducer`, () => {
   describe(`action changeAuthStatus`, () => {
     it(`sets new authorization status`, () => {
       const originalState = Object.assign({}, initialState, {authorizationStatus: AuthorizationStatus.AUTH});
-
       const newAuthStatus = AuthorizationStatus.NO_AUTH;
       const expectedState = Object.assign({}, originalState, {authorizationStatus: newAuthStatus});
 

@@ -334,6 +334,8 @@ describe(`Operation addReview`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1,
             ActionCreator.setReviewError(`Network Error`)
         );
+        expect(onSuccess).toHaveBeenCalledTimes(0);
+        expect(onError).toHaveBeenCalledTimes(1);
       });
   });
 });
@@ -357,7 +359,7 @@ describe(`Operation changeOfferBookmarkStatus`, () => {
         ]
       }
     });
-    const offerId = 1;
+    const offerId = hotel1.id;
     const bookmarkStatus = true;
     const newHotel1 = Object.assign({}, hotel1, {"is_favorite": true});
 
