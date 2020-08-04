@@ -24,6 +24,60 @@ class Map extends Component {
     this._mapRef = createRef();
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.city !== nextProps.city) {
+      return true;
+    }
+
+    if (!this.props.activeCard && nextProps.activeCard) {
+      return true;
+    }
+
+    if (this.props.activeCard && !nextProps.activeCard) {
+      return true;
+    }
+
+    if (this.props.activeCard && nextProps.activeCard) {
+      if (this.props.activeCard.id !== nextProps.activeCard.id) {
+        return true;
+      }
+    }
+
+    const currentOffers = this.props.offers;
+    const newOffers = nextProps.offers;
+
+    if (currentOffers.length !== newOffers.length) {
+      return true;
+    } else {
+      for (let index = 0; index < currentOffers.length; index++) {
+        if (currentOffers[index].id !== newOffers[index].id) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  componentDidMount() {
+    this._createMap(this._mapRef.current);
+    this._setMapView();
+    this._addTileLayer();
+    this._addMarkers();
+  }
+
+  componentDidUpdate(prevProps) {
+    this._createMap(this._mapRef.current);
+    if (prevProps.city !== this.props.city) {
+      this._clearMarkers();
+      this._setMapView();
+      this._addMarkers();
+    } else {
+      this._clearMarkers();
+      this._addMarkers();
+    }
+  }
+
   _addMarkers() {
     if (!this._map) {
       return;
@@ -94,60 +148,6 @@ class Map extends Component {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this._map);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    if (this.props.city !== nextProps.city) {
-      return true;
-    }
-
-    if (!this.props.activeCard && nextProps.activeCard) {
-      return true;
-    }
-
-    if (this.props.activeCard && !nextProps.activeCard) {
-      return true;
-    }
-
-    if (this.props.activeCard && nextProps.activeCard) {
-      if (this.props.activeCard.id !== nextProps.activeCard.id) {
-        return true;
-      }
-    }
-
-    const currentOffers = this.props.offers;
-    const newOffers = nextProps.offers;
-
-    if (currentOffers.length !== newOffers.length) {
-      return true;
-    } else {
-      for (let index = 0; index < currentOffers.length; index++) {
-        if (currentOffers[index].id !== newOffers[index].id) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  componentDidMount() {
-    this._createMap(this._mapRef.current);
-    this._setMapView();
-    this._addTileLayer();
-    this._addMarkers();
-  }
-
-  componentDidUpdate(prevProps) {
-    this._createMap(this._mapRef.current);
-    if (prevProps.city !== this.props.city) {
-      this._clearMarkers();
-      this._setMapView();
-      this._addMarkers();
-    } else {
-      this._clearMarkers();
-      this._addMarkers();
-    }
   }
 
   render() {
