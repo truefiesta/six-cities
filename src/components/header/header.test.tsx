@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {BrowserRouter as Router} from "react-router-dom";
 import {AuthorizationStatus} from "../../reducer/user/user.js";

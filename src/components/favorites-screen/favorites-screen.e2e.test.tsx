@@ -1,14 +1,14 @@
-import React from "react";
-import Enzyme, {mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as React from "react";
+import * as Adapter from "enzyme-adapter-react-16";
 import configureStore from "redux-mock-store";
+import {configure, mount} from "enzyme";
 import {Provider} from "react-redux";
 import {BrowserRouter as Router} from "react-router-dom";
 import {NameSpace} from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {FavoritesScreen} from "./favorites-screen.jsx";
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 

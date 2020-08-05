@@ -1,10 +1,10 @@
-import React from "react";
-import Enzyme, {shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as React from "react";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
 import {Sort} from "./sort.jsx";
 import {SortType, KeyCode} from "../../const.js";
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 

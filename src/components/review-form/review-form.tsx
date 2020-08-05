@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import Stars from "../stars/stars.jsx";
 import withReview from "../../hocs/with-review/with-review.js";

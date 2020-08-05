@@ -1,5 +1,5 @@
-import renderer from "react-test-renderer";
-import React from "react";
+import * as renderer from "react-test-renderer";
+import * as React from "react";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter as Router} from "react-router";

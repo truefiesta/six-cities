@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import {Sort} from "./sort.jsx";
 import {SortType} from "../../const.js";
 
