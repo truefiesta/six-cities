@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import PropTypes from "prop-types";
-import withOpenFlag from "./with-open-flag.js";
+import withOpenFlag from "./with-open-flag";
 
 const MockComponent = (props) => {
   const {isOpen} = props;

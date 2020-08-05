@@ -4,9 +4,9 @@ import configureStore from "redux-mock-store";
 import {configure, mount} from "enzyme";
 import {Provider} from "react-redux";
 import {BrowserRouter as Router} from "react-router-dom";
-import {NameSpace} from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {FavoritesScreen} from "./favorites-screen.jsx";
+import {NameSpace} from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {FavoritesScreen} from "./favorites-screen";
 
 configure({
   adapter: new Adapter(),

@@ -1,9 +1,9 @@
-import React, {Component, createRef} from "react";
+import * as React from "react";
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getActiveOffer, getCity, getCityDetails} from "../../reducer/filters/selectors.js";
-import {MapType} from "../../const.js";
+import {getActiveOffer, getCity, getCityDetails} from "../../reducer/filters/selectors";
+import {MapType} from "../../const";
 
 const iconInactive = leaflet.icon({
   iconUrl: `/img/pin.svg`,

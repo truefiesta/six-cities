@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import {configure, mount} from "enzyme";
-import {offers} from "../../test-mocks/test-mocks.js";
-import {CityName, MapType} from "../../const.js";
-import {Map} from "./map.jsx";
+import {offers} from "../../test-mocks/test-mocks";
+import {CityName, MapType} from "../../const";
+import {Map} from "./map";
 
 configure({
   adapter: new Adapter(),

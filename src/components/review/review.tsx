@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import {convertStarRatingToWidthPercent, formatDate} from "../../utils.js";
+import {convertStarRatingToWidthPercent, formatDate} from "../../utils";
 
 const Review = ({review}) => {
   const {text, rating, user, date} = review;

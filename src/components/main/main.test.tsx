@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {Main} from "./main.jsx";
-import {CityName, SortType} from "../../const.js";
+import {Main} from "./main";
+import {CityName, SortType} from "../../const";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
-import {NameSpace} from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks";
+import {NameSpace} from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {BrowserRouter as Router} from "react-router-dom";
 
 jest.mock(`../map/map.jsx`, () => () => {

@@ -1,6 +1,6 @@
 import * as renderer from "react-test-renderer";
 import * as React from "react";
-import Stars from "./stars.jsx";
+import Stars from "./stars";
 
 const RatingStarTitle = {
   ONE_STAR: `terribly`,

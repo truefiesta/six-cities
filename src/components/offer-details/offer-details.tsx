@@ -1,19 +1,19 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {getOffersNearby, getCurrentOfferReviews, getReviewError, getOffer} from "../../reducer/offers/selectors.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {getCity} from "../../reducer/filters/selectors.js";
-import {EstateType, MapType, BookmarkStyle, OfferCardType} from "../../const.js";
-import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
-import Header from "../header/header.jsx";
-import ReviewsList from "../reviews-list/reviews-list.jsx";
-import Map from "../map/map.jsx";
-import OffersList from "../offers-list/offers-list.jsx";
-import ReviewForm from "../review-form/review-form.jsx";
-import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
+import {Operation as OffersOperation} from "../../reducer/offers/offers";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {getOffersNearby, getCurrentOfferReviews, getReviewError, getOffer} from "../../reducer/offers/selectors";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {getCity} from "../../reducer/filters/selectors";
+import {EstateType, MapType, BookmarkStyle, OfferCardType} from "../../const";
+import {convertStarRatingToWidthPercent, capitalize} from "../../utils";
+import Header from "../header/header";
+import ReviewsList from "../reviews-list/reviews-list";
+import Map from "../map/map";
+import OffersList from "../offers-list/offers-list";
+import ReviewForm from "../review-form/review-form";
+import BookmarkButton from "../bookmark-button/bookmark-button";
 
 const MAX_PHOTOS = 6;
 

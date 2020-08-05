@@ -3,8 +3,8 @@ import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {BrowserRouter as Router} from "react-router-dom";
-import {OfferCardType} from "../../const.js";
-import OfferCard from "./offer-card.jsx";
+import {OfferCardType} from "../../const";
+import OfferCard from "./offer-card";
 
 const offer = {
   id: 1,

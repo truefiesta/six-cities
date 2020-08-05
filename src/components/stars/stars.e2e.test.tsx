@@ -1,7 +1,7 @@
 import * as React from "react";
-import {configure, mount} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
-import Stars from "./stars.jsx";
+import {configure, mount} from "enzyme";
+import Stars from "./stars";
 
 configure({
   adapter: new Adapter(),

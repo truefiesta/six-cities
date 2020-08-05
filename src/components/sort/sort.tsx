@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import {SortType, KeyCode} from "../../const.js";
-import withOpenFlag from "../../hocs/with-open-flag/with-open-flag.js";
+import {SortType, KeyCode} from "../../const";
+import withOpenFlag from "../../hocs/with-open-flag/with-open-flag";
 
 const SortTypeTitle = {
   [SortType.POPULAR]: `Popular`,

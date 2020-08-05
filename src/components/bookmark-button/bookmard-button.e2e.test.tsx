@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import {configure, mount} from "enzyme";
-import {BookmarkButton} from "./bookmark-button.jsx";
+import {BookmarkButton} from "./bookmark-button";
 
 configure({
   adapter: new Adapter(),

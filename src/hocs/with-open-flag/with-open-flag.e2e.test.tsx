@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import PropTypes from "prop-types";
 import {configure, mount} from "enzyme";
-import withOpenFlag from "./with-open-flag.js";
+import withOpenFlag from "./with-open-flag";
 
 configure({
   adapter: new Adapter(),

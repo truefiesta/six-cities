@@ -1,13 +1,13 @@
 import * as React from "react";
 import {Switch, Route, Router} from "react-router-dom";
-import {AppRoute} from "../../const.js";
-import history from "../../history.js";
-import Main from "../main/main.jsx";
-import OfferDetails from "../offer-details/offer-details.jsx";
-import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
-import LoginScreen from "../login-screen/login-screen.jsx";
-import PrivateRoute from "../private-route/private-route.jsx";
-import ErrorBanner from "../error-banner/error-banner.jsx";
+import {AppRoute} from "../../const";
+import history from "../../history";
+import Main from "../main/main";
+import OfferDetails from "../offer-details/offer-details";
+import FavoritesScreen from "../favorites-screen/favorites-screen";
+import LoginScreen from "../login-screen/login-screen";
+import PrivateRoute from "../private-route/private-route";
+import ErrorBanner from "../error-banner/error-banner";
 
 const App = () => {
   return (

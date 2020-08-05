@@ -1,10 +1,9 @@
-
 import * as React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters.js";
+import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const.js";
+import {AppRoute} from "../../const";
 
 const CityLink = ({city, isActive = false, isTab = false, onCityClick}) => {
   const tabClass = isTab ? `tabs__item` : ``;

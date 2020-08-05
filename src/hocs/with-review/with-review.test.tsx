@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import PropTypes from "prop-types";
-import withReview from "./with-review.js";
+import withReview from "./with-review";
 
 const MockComponent = (props) => {
   const {reviewError, review, rating, isEnabled, minReviewLength, maxReviewLength, onRatingChange, onReviewChange, onReviewSubmit} = props;

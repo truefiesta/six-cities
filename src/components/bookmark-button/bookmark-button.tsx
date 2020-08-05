@@ -1,8 +1,7 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
-import {BookmarkStyle} from "../../const.js";
+import {Operation as OffersOperation} from "../../reducer/offers/offers";
+import {BookmarkStyle} from "../../const";
 
 const BookmarkButton = (props) => {
   const {onBookmarkStatusChange, isBookmarked, offerId, buttonStyle} = props;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {ReviewForm} from "./review-form.jsx";
+import {ReviewForm} from "./review-form";
 
 describe(`ReviewForm snapshot`, () => {
   it(`should render`, () => {

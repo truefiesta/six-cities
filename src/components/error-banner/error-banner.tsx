@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getErrorMessage} from "../../reducer/error/selectors.js";
+import {getErrorMessage} from "../../reducer/error/selectors";
 
 const errorStyle = {
   backgroundColor: `#e23939`,

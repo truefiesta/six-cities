@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import {configure, shallow} from "enzyme";
-import {OfferDetails} from "./offer-details.jsx";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {OfferDetails} from "./offer-details";
+import {AuthorizationStatus} from "../../reducer/user/user";
 
 configure({
   adapter: new Adapter(),

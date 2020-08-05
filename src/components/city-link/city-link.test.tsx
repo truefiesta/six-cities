@@ -3,8 +3,8 @@ import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {BrowserRouter as Router} from "react-router-dom";
-import {CityName} from "../../const.js";
-import CityLink from "./city-link.jsx";
+import {CityName} from "../../const";
+import CityLink from "./city-link";
 
 const mockStore = configureStore([]);
 const store = mockStore({});

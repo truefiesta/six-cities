@@ -1,11 +1,11 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getAuthorizationStatus, getUserEmail} from "../../reducer/user/selectors.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {getAuthorizationStatus, getUserEmail} from "../../reducer/user/selectors";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const.js";
-import {capitalize} from "../../utils.js";
+import {AppRoute} from "../../const";
+import {capitalize} from "../../utils";
 
 const UNAUTHORIZED_USER = `Sign in`;
 

@@ -2,13 +2,13 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {getCity} from "../../reducer/filters/selectors.js";
-import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {AppRoute} from "../../const.js";
-import Header from "../header/header.jsx";
-import SignIn from "../sign-in/sign-in.jsx";
-import CityLink from "../city-link/city-link.jsx";
+import {getCity} from "../../reducer/filters/selectors";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {AppRoute} from "../../const";
+import Header from "../header/header";
+import SignIn from "../sign-in/sign-in";
+import CityLink from "../city-link/city-link";
 
 const LoginScreen = (props) => {
   const {city, onUserLogIn, authorizationStatus} = props;

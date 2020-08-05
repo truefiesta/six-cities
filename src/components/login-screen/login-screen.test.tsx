@@ -3,10 +3,10 @@ import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {BrowserRouter as Router} from "react-router-dom";
-import {CityName} from "../../const.js";
-import {NameSpace} from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import LoginScreen from "./login-screen.jsx";
+import {CityName} from "../../const";
+import {NameSpace} from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import LoginScreen from "./login-screen";
 
 const mockStore = configureStore([]);
 

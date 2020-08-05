@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import NoOffers from "./no-offers.jsx";
+import NoOffers from "./no-offers";
 
 describe(`NoOffers snapshot`, () => {
   describe(`when offers is an empty array`, () => {

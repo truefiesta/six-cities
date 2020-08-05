@@ -2,9 +2,9 @@ import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import {configure, mount} from "enzyme";
 import {MemoryRouter as Router} from "react-router";
-import {AppRoute} from "../../const.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {PrivateRoute} from "./private-route.jsx";
+import {AppRoute} from "../../const";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {PrivateRoute} from "./private-route";
 
 configure({
   adapter: new Adapter(),

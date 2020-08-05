@@ -1,14 +1,13 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getBookmarkedOffers, getBookmarkedCitites} from "../../reducer/offers/selectors.js";
-import {Operation as OffersOperation} from "../../reducer/offers/offers.js";
+import {getBookmarkedOffers, getBookmarkedCitites} from "../../reducer/offers/selectors";
+import {Operation as OffersOperation} from "../../reducer/offers/offers";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const.js";
-import {OfferCardType} from "../../const.js";
-import Header from "../header/header.jsx";
-import OfferCard from "../offer-card/offer-card.jsx";
-import CityLink from "../city-link/city-link.jsx";
+import {AppRoute, OfferCardType} from "../../const";
+import Header from "../header/header";
+import OfferCard from "../offer-card/offer-card";
+import CityLink from "../city-link/city-link";
 
 class FavoritesScreen extends PureComponent {
   componentDidMount() {

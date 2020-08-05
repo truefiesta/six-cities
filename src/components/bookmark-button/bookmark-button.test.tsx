@@ -2,8 +2,8 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {BookmarkStyle} from "../../const.js";
-import BookmarkButton from "./bookmark-button.jsx";
+import {BookmarkStyle} from "../../const";
+import BookmarkButton from "./bookmark-button";
 
 const mockStore = configureStore([]);
 const store = mockStore({});

@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import OfferCard from "../offer-card/offer-card.jsx";
+import OfferCard from "../offer-card/offer-card";
 
 export const OfferListStylesByCardType = {
   main: `cities__places-list tabs__content`,

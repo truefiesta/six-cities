@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 
 const withOpenFlag = (Component) => {
   class WithOpenFlag extends PureComponent {

@@ -3,10 +3,10 @@ import * as React from "react";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter as Router} from "react-router";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {AppRoute} from "../../const.js";
-import {NameSpace} from "../../reducer/name-space.js";
-import PrivateRoute from "./private-route.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {AppRoute} from "../../const";
+import {NameSpace} from "../../reducer/name-space";
+import PrivateRoute from "./private-route";
 
 const MockComponent = () => <div />;
 const mockStore = configureStore([]);

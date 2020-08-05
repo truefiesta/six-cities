@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import {configure, shallow} from "enzyme";
-import {offers} from "../../test-mocks/test-mocks.js";
-import {OfferCardType} from "../../const.js";
-import OfferCard from "./offer-card.jsx";
+import {offers} from "../../test-mocks/test-mocks";
+import {OfferCardType} from "../../const";
+import OfferCard from "./offer-card";
 
 const offer = offers[0];
 

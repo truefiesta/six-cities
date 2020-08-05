@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import PropTypes from "prop-types";
 import {configure, mount} from "enzyme";
-import withReview from "./with-review.js";
+import withReview from "./with-review";
 
 configure({
   adapter: new Adapter(),

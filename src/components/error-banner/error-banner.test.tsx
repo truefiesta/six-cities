@@ -2,8 +2,8 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {NameSpace} from "../../reducer/name-space.js";
-import ErrorBanner from "./error-banner.jsx";
+import {NameSpace} from "../../reducer/name-space";
+import ErrorBanner from "./error-banner";
 
 const mockStore = configureStore([]);
 

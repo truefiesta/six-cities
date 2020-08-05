@@ -1,9 +1,9 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getCities} from "../../reducer/offers/selectors.js";
-import {getCity} from "../../reducer/filters/selectors.js";
-import CityLink from "../city-link/city-link.jsx";
+import {getCities} from "../../reducer/offers/selectors";
+import {getCity} from "../../reducer/filters/selectors";
+import CityLink from "../city-link/city-link";
 
 const CitiesList = ({city, cities}) => {
   if (!city) {

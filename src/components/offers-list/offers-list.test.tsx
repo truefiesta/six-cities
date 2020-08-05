@@ -3,9 +3,9 @@ import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {BrowserRouter as Router} from "react-router-dom";
-import {offers} from "../../test-mocks/test-mocks.js";
-import {OfferCardType} from "../../const.js";
-import OffersList from "./offers-list.jsx";
+import {offers} from "../../test-mocks/test-mocks";
+import {OfferCardType} from "../../const";
+import OffersList from "./offers-list";
 
 const cityOffers = offers.slice(0, 4);
 const mockStore = configureStore([]);

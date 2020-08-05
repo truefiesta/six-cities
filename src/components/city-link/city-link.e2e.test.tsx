@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import {configure, shallow} from "enzyme";
-import {CityName} from "../../const.js";
-import {CityLink} from "./city-link.jsx";
+import {CityName} from "../../const";
+import {CityLink} from "./city-link";
 
 configure({
   adapter: new Adapter(),

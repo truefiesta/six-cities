@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import SignIn from "./sign-in.jsx";
+import SignIn from "./sign-in";
 
 describe(`SignIn snapshot`, () => {
   it(`should render`, () => {

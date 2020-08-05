@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-16";
 import {configure, mount} from "enzyme";
-import SignIn from "./sign-in.jsx";
+import SignIn from "./sign-in";
 
 configure({
   adapter: new Adapter(),

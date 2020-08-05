@@ -1,9 +1,9 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {convertStarRatingToWidthPercent, capitalize} from "../../utils.js";
-import {BookmarkStyle, OfferCardType} from "../../const.js";
-import BookmarkButton from "../bookmark-button/bookmark-button.jsx";
+import {convertStarRatingToWidthPercent, capitalize} from "../../utils";
+import {BookmarkStyle, OfferCardType} from "../../const";
+import BookmarkButton from "../bookmark-button/bookmark-button";
 
 export const CardStylesByCardType = {
   [OfferCardType.MAIN]: {

@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {OfferDetails} from "./offer-details.jsx";
-import {CityName, SortType} from "../../const.js";
+import {OfferDetails} from "./offer-details";
+import {CityName, SortType} from "../../const";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
-import {NameSpace} from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks";
+import {NameSpace} from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {BrowserRouter as Router} from "react-router-dom";
 
 const mockStore = configureStore([]);

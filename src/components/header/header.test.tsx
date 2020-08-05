@@ -2,9 +2,9 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {BrowserRouter as Router} from "react-router-dom";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {Provider} from "react-redux";
-import {Header} from "./header.jsx";
+import {Header} from "./header";
 
 const mockStore = configureStore([]);
 

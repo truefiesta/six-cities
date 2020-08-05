@@ -2,11 +2,11 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {BrowserRouter as Router} from "react-router-dom";
-import {CityName, SortType} from "../../const.js";
+import {CityName, SortType} from "../../const";
 import {Provider} from "react-redux";
-import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks.js";
-import {NameSpace} from "../../reducer/name-space.js";
-import Cities from "./cities.jsx";
+import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks";
+import {NameSpace} from "../../reducer/name-space";
+import Cities from "./cities";
 
 const mockStore = configureStore([]);
 
