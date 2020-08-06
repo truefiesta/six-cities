@@ -2,7 +2,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import App from "./components/app/app";
 import {Provider} from "react-redux";
-import {createStore, applyMiddleware, compose} from "redux";
+import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import reducer from "./reducer/reducer";
 import {Operation as OffersOperation} from "./reducer/offers/offers";
 import {Operation as UserOperation, ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user";
@@ -26,10 +27,9 @@ const api = createApi(onUnauthorized, onError);
 
 const store = createStore(
     reducer,
-    compose(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
-    )
+    composeWithDevTools(
+      applyMiddleware(thunk.withExtraArgument(api))
+  )
 );
 
 store.dispatch(OffersOperation.loadOffers());
