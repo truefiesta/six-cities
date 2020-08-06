@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookmarkButton snapshot should render with big button and with "In bookmarks" text 1`] = `
+<button
+  className="property__bookmark-button property__bookmark-button--active button"
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    className="place-card__bookmark-icon"
+    height="33"
+    width="31"
+  >
+    <use
+      xlinkHref="#icon-bookmark"
+    />
+  </svg>
+  <span
+    className="visually-hidden"
+  >
+    In bookmarks
+  </span>
+</button>
+`;
+
+exports[`BookmarkButton snapshot should render with small button and with "To bookmarks" text 1`] = `
+<button
+  className="place-card__bookmark-button  button"
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    className="place-card__bookmark-icon"
+    height="19"
+    width="18"
+  >
+    <use
+      xlinkHref="#icon-bookmark"
+    />
+  </svg>
+  <span
+    className="visually-hidden"
+  >
+    To bookmarks
+  </span>
+</button>
+`;

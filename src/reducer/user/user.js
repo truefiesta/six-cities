@@ -37,9 +37,7 @@ const Operation = {
         dispatch(ActionCreator.changeAuthStatus(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setEmail(response.data.email));
       })
-    .catch(() => {
-      // TODO: throw err;
-    });
+      .catch(() => {});
   },
 
   logIn: (userCredentials) => (dispatch, getState, api) => {
@@ -50,7 +48,8 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.changeAuthStatus(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setEmail(response.data.email));
-      });
+      })
+      .catch(() => {});
   },
 };
 

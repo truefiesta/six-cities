@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn snapshot should render 1`] = `
+<section
+  className="login"
+>
+  <h1
+    className="login__title"
+  >
+    Sign in
+  </h1>
+  <form
+    action="#"
+    className="login__form form"
+    method="post"
+    onSubmit={[Function]}
+  >
+    <div
+      className="login__input-wrapper form__input-wrapper"
+    >
+      <label
+        className="visually-hidden"
+        htmlFor="email"
+      >
+        E-mail
+      </label>
+      <input
+        className="login__input form__input"
+        name="email"
+        placeholder="Email"
+        required={true}
+        type="email"
+      />
+    </div>
+    <div
+      className="login__input-wrapper form__input-wrapper"
+    >
+      <label
+        className="visually-hidden"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="login__input form__input"
+        name="password"
+        placeholder="Password"
+        required={true}
+        type="password"
+      />
+    </div>
+    <button
+      className="login__submit form__submit button"
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</section>
+`;

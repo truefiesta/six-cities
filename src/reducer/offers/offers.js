@@ -1,5 +1,5 @@
 import {extend} from "../../utils.js";
-import {getCities, getOffers, getBookmarkedOffers} from "./selectors.js";
+import {getCities, getOffers, getBookmarkedOffers, getOffersNearby} from "./selectors.js";
 import {createOffer, createReview} from "../../adapters/adapters.js";
 import {ActionCreator as FiltersActionCreator} from "../filters/filters.js";
 
@@ -67,7 +67,8 @@ const Operation = {
           const city = cities[0];
           dispatch(FiltersActionCreator.changeCity(city));
         }
-      });
+      })
+      .catch(() => {});
   },
 
   loadOfferReviews: (offerId) => (dispatch, getState, api) => {
@@ -79,7 +80,8 @@ const Operation = {
         });
 
         dispatch(ActionCreator.changeCurrentOfferReviews(reviews));
-      });
+      })
+      .catch(() => {});
   },
 
   loadOffersNearby: (offerId) => (dispatch, getState, api) => {
@@ -91,7 +93,8 @@ const Operation = {
         });
 
         dispatch(ActionCreator.changeCurrentOffersNearby(offersNearby));
-      });
+      })
+      .catch(() => {});
   },
 
   loadBookmarkedOffers: () => (dispatch, getState, api) => {
@@ -103,10 +106,11 @@ const Operation = {
       });
 
       dispatch(ActionCreator.changeCurrentBookmarkedOffers(bookmarkedOffers));
-    });
+    })
+    .catch(() => {});
   },
 
-  addReview: (review, offerId, onSuccess) => (dispatch, getState, api) => {
+  addReview: (review, offerId, onSuccess, onError) => (dispatch, getState, api) => {
     return api.post(`/comments/${offerId}`, {
       comment: review.comment,
       rating: review.rating,
@@ -121,6 +125,7 @@ const Operation = {
     })
     .catch((err) => {
       dispatch(ActionCreator.setReviewError(err.message));
+      onError();
     });
   },
 
@@ -144,6 +149,16 @@ const Operation = {
 
       dispatch(ActionCreator.setAllOffers(offers));
 
+      const offersNearby = getOffersNearby(getState()).slice();
+      const offerNearbyIndex = offersNearby.findIndex((offer) => {
+        return offer.id === offerId;
+      });
+
+      if (offerNearbyIndex !== -1) {
+        offersNearby[offerNearbyIndex] = offerWithChangedBookmarkStatus;
+        dispatch(ActionCreator.changeCurrentOffersNearby(offersNearby));
+      }
+
       let bookmarkedOffers = getBookmarkedOffers(getState()).slice();
       const bookmarkedOfferIndex = bookmarkedOffers.findIndex((offer) => {
         return offer.id === offerId;
@@ -156,7 +171,8 @@ const Operation = {
       }
 
       dispatch(ActionCreator.changeCurrentBookmarkedOffers(bookmarkedOffers));
-    });
+    })
+    .catch(() => {});
   },
 };
 

@@ -35,7 +35,6 @@ describe(`Reducer`, () => {
   describe(`action changeAuthStatus`, () => {
     it(`sets new authorization status`, () => {
       const originalState = Object.assign({}, initialState, {authorizationStatus: AuthorizationStatus.AUTH});
-
       const newAuthStatus = AuthorizationStatus.NO_AUTH;
       const expectedState = Object.assign({}, originalState, {authorizationStatus: newAuthStatus});
 
@@ -86,7 +85,7 @@ describe(`Operation checkAuth`, () => {
   });
 });
 
-describe(`Operation work correctly`, () => {
+describe(`Operation logIn`, () => {
   it(`makes a correct API call to /login and dispatches correct actions`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();

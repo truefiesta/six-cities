@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CitiesList snapshot should render with data 1`] = `
+<ul
+  className="locations__list tabs__list"
+>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item tabs__item--active"
+      href="/"
+      onClick={[Function]}
+    >
+      <span>
+        Amsterdam
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      href="/"
+      onClick={[Function]}
+    >
+      <span>
+        Brussels
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      href="/"
+      onClick={[Function]}
+    >
+      <span>
+        Cologne
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      href="/"
+      onClick={[Function]}
+    >
+      <span>
+        Dusseldorf
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      href="/"
+      onClick={[Function]}
+    >
+      <span>
+        Hamburg
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      href="/"
+      onClick={[Function]}
+    >
+      <span>
+        Paris
+      </span>
+    </a>
+  </li>
+</ul>
+`;

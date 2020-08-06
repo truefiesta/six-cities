@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorBanner snapshot should not render 1`] = `null`;
+
+exports[`ErrorBanner snapshot should render 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#e23939",
+      "boxShadow": "0px 2px 14px 0px rgba(0,0,0,0.34)",
+      "color": "#fff",
+      "fontSize": "15px",
+      "lineHeight": "15px",
+      "padding": "5px",
+      "position": "fixed",
+      "textAlign": "center",
+      "width": "100%",
+      "zIndex": 1,
+    }
+  }
+>
+  New Error Text
+</div>
+`;

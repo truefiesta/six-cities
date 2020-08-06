@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stars snapshot should render 1`] = `
+<div
+  className="reviews__rating-form form__rating"
+>
+  <input
+    checked={false}
+    className="form__rating-input visually-hidden"
+    disabled={false}
+    id="5-stars"
+    name="Rating"
+    onChange={[Function]}
+    type="radio"
+    value={5}
+  />
+  <label
+    className="reviews__rating-label form__rating-label"
+    htmlFor="5-stars"
+    title="perfect"
+  >
+    <svg
+      className="form__star-image"
+      height="33"
+      width="37"
+    >
+      <use
+        xlinkHref="#icon-star"
+      />
+    </svg>
+  </label>
+  <input
+    checked={false}
+    className="form__rating-input visually-hidden"
+    disabled={false}
+    id="4-stars"
+    name="Rating"
+    onChange={[Function]}
+    type="radio"
+    value={4}
+  />
+  <label
+    className="reviews__rating-label form__rating-label"
+    htmlFor="4-stars"
+    title="good"
+  >
+    <svg
+      className="form__star-image"
+      height="33"
+      width="37"
+    >
+      <use
+        xlinkHref="#icon-star"
+      />
+    </svg>
+  </label>
+  <input
+    checked={false}
+    className="form__rating-input visually-hidden"
+    disabled={false}
+    id="3-stars"
+    name="Rating"
+    onChange={[Function]}
+    type="radio"
+    value={3}
+  />
+  <label
+    className="reviews__rating-label form__rating-label"
+    htmlFor="3-stars"
+    title="not bad"
+  >
+    <svg
+      className="form__star-image"
+      height="33"
+      width="37"
+    >
+      <use
+        xlinkHref="#icon-star"
+      />
+    </svg>
+  </label>
+  <input
+    checked={false}
+    className="form__rating-input visually-hidden"
+    disabled={false}
+    id="2-stars"
+    name="Rating"
+    onChange={[Function]}
+    type="radio"
+    value={2}
+  />
+  <label
+    className="reviews__rating-label form__rating-label"
+    htmlFor="2-stars"
+    title="badly"
+  >
+    <svg
+      className="form__star-image"
+      height="33"
+      width="37"
+    >
+      <use
+        xlinkHref="#icon-star"
+      />
+    </svg>
+  </label>
+  <input
+    checked={true}
+    className="form__rating-input visually-hidden"
+    disabled={false}
+    id="1-stars"
+    name="Rating"
+    onChange={[Function]}
+    type="radio"
+    value={1}
+  />
+  <label
+    className="reviews__rating-label form__rating-label"
+    htmlFor="1-stars"
+    title="terribly"
+  >
+    <svg
+      className="form__star-image"
+      height="33"
+      width="37"
+    >
+      <use
+        xlinkHref="#icon-star"
+      />
+    </svg>
+  </label>
+</div>
+`;

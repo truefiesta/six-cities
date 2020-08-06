@@ -14,38 +14,28 @@ export const CityName = {
   PARIS: `Paris`,
 };
 
-export const MapClass = {
-  MAP_MAIN: `cities__map`,
-  MAP_DETAILS: `property__map`,
+export const MapType = {
+  MAIN: `main`,
+  DETAILS: `details`,
 };
 
-export const OfferClassNamesForPageType = {
-  main: {
-    article: `cities__place-card`,
-    image: `cities__image-wrapper`,
-    list: `cities__places-list tabs__content`,
-    info: ``,
-  },
-  details: {
-    article: `near-places__card`,
-    image: `near-places__image-wrapper`,
-    list: `near-places__list`,
-    info: ``,
-  },
-  favorites: {
-    article: `favorites__card `,
-    image: `favorites__image-wrapper`,
-    list: ``,
-    info: `favorites__card-info`,
-  }
+export const BookmarkStyle = {
+  SMALL_BUTTON: `small`,
+  BIG_BUTTON: `big`,
 };
 
-export const KeyCodes = {
+export const KeyCode = {
   ENTER: 13,
   SPACEBAR: 32,
 };
 
-export const SortTypes = {
+export const OfferCardType = {
+  MAIN: `main`,
+  DETAILS: `details`,
+  FAVORITES: `favorites`,
+};
+
+export const SortType = {
   POPULAR: 1,
   PRICE_LOW_TO_HIGH: 2,
   PRICE_HIGH_TO_LOW: 3,

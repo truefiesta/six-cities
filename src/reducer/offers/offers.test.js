@@ -62,8 +62,8 @@ const hotel2 = {
   },
   "id": 2,
   "images": [`img/1.png`, `img/2.png`],
-  "is_favorite": false,
-  "is_premium": false,
+  "is_favorite": true,
+  "is_premium": true,
   "location": {
     "latitude": 52.35514938496378,
     "longitude": 4.673877537499948,
@@ -144,6 +144,17 @@ describe(`Action creators`, () => {
       expect(ActionCreator.changeCurrentOffersNearby(offersNearby)).toEqual({
         type: ActionType.CHANGE_CURRENT_OFFERS_NEARBY,
         payload: offersNearby,
+      });
+    });
+  });
+
+  describe(`Action changeCurrentBookmarkedOffers`, () => {
+    it(`returns correct type and payload`, () => {
+      const bookmarkedOffers = [{id: 1}, {id: 2}, {id: 3}];
+
+      expect(ActionCreator.changeCurrentBookmarkedOffers(bookmarkedOffers)).toEqual({
+        type: ActionType.CHANGE_CURRENT_BOOKMARKED_OFFERS,
+        payload: bookmarkedOffers,
       });
     });
   });
@@ -231,12 +242,36 @@ describe(`Operation loadOffersNearby`, () => {
   });
 });
 
+describe(`Operation loadBookmarkedOffers`, () => {
+  it(`Should make a correct API call to /favorite`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const loadBookmarkedOffers = Operation.loadBookmarkedOffers();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [
+        hotel1,
+        hotel2
+      ]);
+
+    return loadBookmarkedOffers(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1,
+            ActionCreator.changeCurrentBookmarkedOffers([createOffer(hotel1), createOffer(hotel2)])
+        );
+      });
+  });
+});
+
 describe(`Operation addReview`, () => {
   it(`makes a correct API call to /comments/123 and dispatches correct actions`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offerId = 123;
     const onSuccess = jest.fn();
+    const onError = jest.fn();
     const review = {
       comment: `A new quiet cozy and picturesque that hides behind a a river.`,
       rating: 4,
@@ -253,7 +288,7 @@ describe(`Operation addReview`, () => {
         "name": `Ivy`
       }
     };
-    const addReview = Operation.addReview(review, offerId, onSuccess);
+    const addReview = Operation.addReview(review, offerId, onSuccess, onError);
 
     apiMock
       .onPost(`/comments/${offerId}`, review)
@@ -273,6 +308,7 @@ describe(`Operation addReview`, () => {
             ActionCreator.setReviewError(``)
         );
         expect(onSuccess).toHaveBeenCalledTimes(1);
+        expect(onError).toHaveBeenCalledTimes(0);
       });
   });
 
@@ -281,11 +317,12 @@ describe(`Operation addReview`, () => {
     const dispatch = jest.fn();
     const offerId = 123;
     const onSuccess = jest.fn();
+    const onError = jest.fn();
     const review = {
       comment: `A new quiet cozy and picturesque that hides behind a a river.`,
       rating: 4,
     };
-    const addReview = Operation.addReview(review, offerId, onSuccess);
+    const addReview = Operation.addReview(review, offerId, onSuccess, onError);
 
     apiMock
       .onPost(`/comments/${offerId}`, review)
@@ -296,6 +333,53 @@ describe(`Operation addReview`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1,
             ActionCreator.setReviewError(`Network Error`)
+        );
+        expect(onSuccess).toHaveBeenCalledTimes(0);
+        expect(onError).toHaveBeenCalledTimes(1);
+      });
+  });
+});
+
+describe(`Operation changeOfferBookmarkStatus`, () => {
+  it(`makes a correct API call to /favorite/123/1 and dispatches correct actions`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offer1 = Object.assign({}, createOffer(hotel1), {isBookmarked: false});
+    const offer2 = Object.assign({}, createOffer(hotel2), {isBookmarked: true});
+    const getState = () =>({
+      [NameSpace.OFFERS]: {
+        offers: [
+          offer1, offer2
+        ],
+        currentOffersNearby: [
+          offer1, offer2,
+        ],
+        currentBookmarkedOffers: [
+          offer2,
+        ]
+      }
+    });
+    const offerId = hotel1.id;
+    const bookmarkStatus = true;
+    const newHotel1 = Object.assign({}, hotel1, {"is_favorite": true});
+
+    const changeOfferBookmarkStatus = Operation.changeOfferBookmarkStatus(offerId, bookmarkStatus);
+
+    apiMock
+      .onPost(`/favorite/${offerId}/1`)
+      .reply(200, newHotel1);
+
+    return changeOfferBookmarkStatus(dispatch, getState, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenNthCalledWith(1,
+            ActionCreator.setAllOffers([createOffer(newHotel1), createOffer(hotel2)])
+        );
+        expect(dispatch).toHaveBeenNthCalledWith(2,
+            ActionCreator.changeCurrentOffersNearby([createOffer(newHotel1), createOffer(hotel2)])
+        );
+        expect(dispatch).toHaveBeenNthCalledWith(3,
+            ActionCreator.changeCurrentBookmarkedOffers([createOffer(hotel2), createOffer(newHotel1)])
         );
       });
   });
@@ -354,6 +438,16 @@ describe(`Reducer`, () => {
       const expectedState = Object.assign({}, initialState, {currentOffersNearby: newOffersNearby});
       expect(
           reducer(undefined, ActionCreator.changeCurrentOffersNearby(newOffersNearby))
+      ).toEqual(expectedState);
+    });
+  });
+
+  describe(`action changeCurrentBookmarkedOffers`, () => {
+    it(`sets bookmarked offers`, () => {
+      const newBookmarkedOffers = [{offerId: 1}, {offerId: 2}];
+      const expectedState = Object.assign({}, initialState, {currentBookmarkedOffers: newBookmarkedOffers});
+      expect(
+          reducer(undefined, ActionCreator.changeCurrentBookmarkedOffers(newBookmarkedOffers))
       ).toEqual(expectedState);
     });
   });
