@@ -19,12 +19,12 @@ const CitiesList: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <ul className="locations__list tabs__list">
-      {sixCities.map((it) => {
+      {sixCities.map((cityName) => {
         return (
-          <li key={it} className="locations__item">
+          <li key={cityName} className="locations__item">
             <CityLink
-              city={it}
-              isActive={city === it}
+              city={cityName}
+              isActive={city === cityName}
               isTab={true}
             />
           </li>
