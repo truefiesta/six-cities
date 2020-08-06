@@ -28,8 +28,8 @@ const api = createApi(onUnauthorized, onError);
 const store = createStore(
     reducer,
     composeWithDevTools(
-      applyMiddleware(thunk.withExtraArgument(api))
-  )
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 store.dispatch(OffersOperation.loadOffers());

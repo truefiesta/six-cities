@@ -22,7 +22,6 @@ describe(`OfferCard`, () => {
           onMouseOver={onMouseOver}
           onMouseOut={onMouseOut}
           cardType={OfferCardType.MAIN}
-          onBookmarkStatusChange={() => null}
         />
     );
 

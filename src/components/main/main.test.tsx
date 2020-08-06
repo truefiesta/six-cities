@@ -1,19 +1,15 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {Main} from "./main";
-import {CityName, SortType} from "../../const";
-import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {BrowserRouter as Router} from "react-router-dom";
+import {CityName, SortType} from "../../const";
 import {offers, reviews, offersNearby} from "../../test-mocks/test-mocks";
 import {NameSpace} from "../../reducer/name-space";
 import {AuthorizationStatus} from "../../reducer/user/user";
-import {BrowserRouter as Router} from "react-router-dom";
+import Main from "./main";
 
-jest.mock(`../map/map.jsx`, () => () => {
-  return (
-    <div id="map"></div>
-  );
-});
+jest.mock(`../map/map`);
 
 const cityOffers = offers.slice(0, 4);
 

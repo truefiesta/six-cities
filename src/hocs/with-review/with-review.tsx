@@ -126,4 +126,5 @@ const withReview = (Component) => {
   return WithReview;
 };
 
+export {ReviewTextLength};
 export default withReview;

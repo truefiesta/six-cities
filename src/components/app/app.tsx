@@ -9,7 +9,7 @@ import LoginScreen from "../login-screen/login-screen";
 import PrivateRoute from "../private-route/private-route";
 import ErrorBanner from "../error-banner/error-banner";
 
-const App = () => {
+const App: React.FunctionComponent = () => {
   return (
     <Router history={history}>
       <ErrorBanner/>

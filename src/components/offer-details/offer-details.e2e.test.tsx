@@ -42,7 +42,7 @@ describe(`OfferDetails`, () => {
 
     const offerDetails = shallow(
         <OfferDetails
-          match={{params: {id: (offer.id).toString()}}}
+          match={offer.id.toString()}
           city={`Amsterdam`}
           offer={offer}
           offersNearby={[]}

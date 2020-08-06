@@ -47,7 +47,7 @@ const OfferCard: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <article
       onMouseOver={() => onMouseOver(offer)}
-      onMouseOut={() => onMouseOut(null)}
+      onMouseOut={() => onMouseOut()}
       className={`${cardStyle.article} place-card`}
       id={`offer-${id}`}
     >

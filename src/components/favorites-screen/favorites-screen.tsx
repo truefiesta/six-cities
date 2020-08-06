@@ -12,7 +12,6 @@ import CityLink from "../city-link/city-link";
 interface Props {
   offers: Offer[];
   cities: Array<string>;
-  onBookmarkStatusChange: () => void;
   onBookmarkedOffersLoad: () => void;
 }
 
@@ -22,7 +21,7 @@ class FavoritesScreen extends React.PureComponent<Props, null> {
   }
 
   render() {
-    const {offers, cities, onBookmarkStatusChange} = this.props;
+    const {offers, cities} = this.props;
     const isEmpty = offers.length === 0;
 
     return (
@@ -61,7 +60,6 @@ class FavoritesScreen extends React.PureComponent<Props, null> {
                                 cardType={OfferCardType.FAVORITES}
                                 onMouseOver={() => null}
                                 onMouseOut={() => null}
-                                onBookmarkStatusChange={onBookmarkStatusChange}
                               />
                             );
                           })}
@@ -91,9 +89,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onBookmarkStatusChange(offerId, status) {
-    dispatch(OffersOperation.changeOfferBookmarkStatus(offerId, status));
-  },
   onBookmarkedOffersLoad() {
     dispatch(OffersOperation.loadBookmarkedOffers());
   }

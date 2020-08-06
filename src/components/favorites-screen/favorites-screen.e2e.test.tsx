@@ -91,7 +91,6 @@ describe(`FavoritesScreen`, () => {
             <FavoritesScreen
               offers={offers}
               cities={[offers[0].city.name, offers[1].city.name]}
-              onBookmarkStatusChange={() => null}
               onBookmarkedOffersLoad={onBookmarkedOffersLoad}
             />
           </Router>

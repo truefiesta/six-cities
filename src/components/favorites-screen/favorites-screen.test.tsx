@@ -84,7 +84,6 @@ describe(`FavoritesScreen snapshot`, () => {
             <FavoritesScreen
               offers={offers}
               cities={[offers[0].city.name, offers[1].city.name]}
-              onBookmarkStatusChange={() => null}
               onBookmarkedOffersLoad={() => null}
             />
           </Router>
@@ -102,7 +101,6 @@ describe(`FavoritesScreen snapshot`, () => {
             <FavoritesScreen
               offers={[]}
               cities={[]}
-              onBookmarkStatusChange={() => null}
               onBookmarkedOffersLoad={() => null}
             />
           </Router>

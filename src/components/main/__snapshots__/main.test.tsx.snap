@@ -608,11 +608,7 @@ exports[`Main snapshot when the city is chosen, offers is non-empty array and us
         </section>
         <div
           className="cities__right-section"
-        >
-          <div
-            id="map"
-          />
-        </div>
+        />
       </div>
     </div>
   </main>

@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`withOpenFlag renders correctly when isOpen is false 1`] = `
-<ul
-  className="class-close"
-/>
-`;

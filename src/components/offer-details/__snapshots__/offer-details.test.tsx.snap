@@ -930,9 +930,6 @@ exports[`OffersDetails snapshot should render with data 1`] = `
           </section>
         </div>
       </div>
-      <div
-        id="map"
-      />
     </section>
     <div
       className="container"

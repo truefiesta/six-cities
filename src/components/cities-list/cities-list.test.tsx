@@ -22,7 +22,7 @@ const store = mockStore({
   },
 });
 
-const cities = Object.values(CityName);
+const cities: string[] = Object.values(CityName);
 
 describe(`CitiesList snapshot`, () => {
   it(`should render with data`, () => {
@@ -32,7 +32,6 @@ describe(`CitiesList snapshot`, () => {
             <CitiesList
               city={CityName.AMSTERDAM}
               cities={cities}
-              onCityClick={() => null}
             />
           </Router>
         </Provider>

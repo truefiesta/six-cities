@@ -10,11 +10,7 @@ import App from "./app";
 
 const mockStore = configureStore([]);
 
-jest.mock(`../map/map.jsx`, () => () => {
-  return (
-    <div id="map"></div>
-  );
-});
+jest.mock(`../map/map`);
 
 describe(`App snapshot`, () => {
   describe(`when there is data`, () => {
