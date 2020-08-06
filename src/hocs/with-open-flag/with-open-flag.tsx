@@ -1,7 +1,21 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface State {
+  isOpen: boolean;
+}
+
+interface InjectedProps {
+  isOpen: boolean;
+  onOpenStateToggle: () => void;
+  onClose: () => void;
+}
 
 const withOpenFlag = (Component) => {
-  class WithOpenFlag extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithOpenFlag extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

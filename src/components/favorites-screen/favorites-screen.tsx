@@ -1,15 +1,22 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getBookmarkedOffers, getBookmarkedCitites} from "../../reducer/offers/selectors";
 import {Operation as OffersOperation} from "../../reducer/offers/offers";
 import {Link} from "react-router-dom";
 import {AppRoute, OfferCardType} from "../../const";
+import {Offer} from "../../types";
 import Header from "../header/header";
 import OfferCard from "../offer-card/offer-card";
 import CityLink from "../city-link/city-link";
 
-class FavoritesScreen extends PureComponent {
+interface Props {
+  offers: Offer[];
+  cities: Array<string>;
+  onBookmarkStatusChange: () => void;
+  onBookmarkedOffersLoad: () => void;
+}
+
+class FavoritesScreen extends React.PureComponent<Props, null> {
   componentDidMount() {
     this.props.onBookmarkedOffersLoad();
   }
@@ -77,20 +84,6 @@ class FavoritesScreen extends PureComponent {
     );
   }
 }
-
-FavoritesScreen.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    city: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-  })).isRequired,
-  cities: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired,
-  onBookmarkStatusChange: PropTypes.func.isRequired,
-  onBookmarkedOffersLoad: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   offers: getBookmarkedOffers(state),

@@ -1,8 +1,13 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {convertStarRatingToWidthPercent, formatDate} from "../../utils";
+import {Review as ReviewType} from "../../types";
 
-const Review = ({review}) => {
+interface Props {
+  review: ReviewType;
+}
+
+const Review: React.FunctionComponent<Props> = (props: Props) => {
+  const {review} = props;
   const {text, rating, user, date} = review;
 
   return (
@@ -29,20 +34,6 @@ const Review = ({review}) => {
       </div>
     </li>
   );
-};
-
-Review.propTypes = {
-  review: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
-    }).isRequired,
-    date: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 export default Review;

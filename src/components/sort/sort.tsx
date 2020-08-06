@@ -1,7 +1,14 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {SortType, KeyCode} from "../../const";
 import withOpenFlag from "../../hocs/with-open-flag/with-open-flag";
+
+interface Props {
+  isOpen: boolean;
+  currentSortType: number;
+  onOpenStateToggle: () => void;
+  onClose: () => void;
+  onSortTypeChange: (sortType: number) => void;
+}
 
 const SortTypeTitle = {
   [SortType.POPULAR]: `Popular`,
@@ -10,9 +17,9 @@ const SortTypeTitle = {
   [SortType.TOP_RATED_FIRST]: `Top rated first`,
 };
 
-const Sort = (props) => {
+const Sort: React.FunctionComponent<Props> = (props: Props) => {
   const {isOpen, onOpenStateToggle, onClose, currentSortType, onSortTypeChange} = props;
-  const sortTypes = Object.values(SortType);
+  const sortTypes: number[] = Object.values(SortType);
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -61,14 +68,6 @@ const Sort = (props) => {
       </ul>
     </form>
   );
-};
-
-Sort.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  currentSortType: PropTypes.number.isRequired,
-  onOpenStateToggle: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onSortTypeChange: PropTypes.func.isRequired,
 };
 
 export {Sort};

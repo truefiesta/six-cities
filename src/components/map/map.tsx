@@ -1,9 +1,17 @@
 import * as React from "react";
-import leaflet from "leaflet";
-import PropTypes from "prop-types";
+import * as leaflet from "leaflet";
 import {connect} from "react-redux";
 import {getActiveOffer, getCity, getCityDetails} from "../../reducer/filters/selectors";
 import {MapType} from "../../const";
+import {Offer, CityDetails} from "../../types";
+
+interface Props {
+  city: string;
+  offers: Offer[];
+  activeCard: Offer;
+  mapType: string;
+  cityDetails: CityDetails;
+}
 
 const iconInactive = leaflet.icon({
   iconUrl: `/img/pin.svg`,
@@ -15,13 +23,15 @@ const iconActive = leaflet.icon({
   iconSize: [27, 39],
 });
 
-class Map extends Component {
+class Map extends React.Component<Props> {
+  private _mapRef: React.RefObject<HTMLDivElement>;
+  private _map = leaflet.Map;
+  private _markers = leaflet.LayerGroup;
+
   constructor(props) {
     super(props);
 
-    this._map = null;
-    this._markers = null;
-    this._mapRef = createRef();
+    this._mapRef = React.createRef();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -167,32 +177,6 @@ class Map extends Component {
     );
   }
 }
-
-Map.propTypes = {
-  city: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        city: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-        }),
-        coordinates: PropTypes.arrayOf(
-            PropTypes.number
-        ).isRequired,
-      }).isRequired
-  ).isRequired,
-  activeCard: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  }),
-  mapType: PropTypes.string.isRequired,
-  cityDetails: PropTypes.shape({
-    coordinates: PropTypes.arrayOf(
-        PropTypes.number.isRequired
-    ).isRequired,
-    zoom: PropTypes.number.isRequired,
-  })
-};
 
 const mapStateToProps = (state, ownProps) => ({
   city: getCity(state),

@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {getCity} from "../../reducer/filters/selectors";
@@ -10,7 +9,13 @@ import Header from "../header/header";
 import SignIn from "../sign-in/sign-in";
 import CityLink from "../city-link/city-link";
 
-const LoginScreen = (props) => {
+interface Props {
+  city: string;
+  authorizationStatus: string;
+  onUserLogIn: () => void;
+}
+
+const LoginScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {city, onUserLogIn, authorizationStatus} = props;
   if (authorizationStatus === AuthorizationStatus.AUTH) {
     return <Redirect to={AppRoute.ROOT} />;
@@ -35,12 +40,6 @@ const LoginScreen = (props) => {
       </main>
     </div>
   );
-};
-
-LoginScreen.propTypes = {
-  city: PropTypes.string.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  onUserLogIn: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

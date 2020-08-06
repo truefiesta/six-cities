@@ -1,13 +1,13 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation as OffersOperation} from "../../reducer/offers/offers";
 import {AuthorizationStatus} from "../../reducer/user/user";
 import {getOffersNearby, getCurrentOfferReviews, getReviewError, getOffer} from "../../reducer/offers/selectors";
 import {getAuthorizationStatus} from "../../reducer/user/selectors";
 import {getCity} from "../../reducer/filters/selectors";
-import {EstateType, MapType, BookmarkStyle, OfferCardType} from "../../const";
+import {MapType, BookmarkStyle, OfferCardType} from "../../const";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils";
+import {Offer, Review} from "../../types";
 import Header from "../header/header";
 import ReviewsList from "../reviews-list/reviews-list";
 import Map from "../map/map";
@@ -15,9 +15,21 @@ import OffersList from "../offers-list/offers-list";
 import ReviewForm from "../review-form/review-form";
 import BookmarkButton from "../bookmark-button/bookmark-button";
 
+interface Props {
+  match: string;
+  city: string;
+  offersNearby: Offer[];
+  offer: Offer;
+  currentOfferReviews: Review[];
+  authorizationStatus: string;
+  onReviewSubmit: () => void;
+  reviewError: string;
+  onLoad: (id: number) => void;
+}
+
 const MAX_PHOTOS = 6;
 
-class OfferDetails extends PureComponent {
+class OfferDetails extends React.PureComponent<Props> {
   componentDidMount() {
     if (this.props.offer) {
       this.props.onLoad(this.props.offer.id);
@@ -165,53 +177,6 @@ class OfferDetails extends PureComponent {
     );
   }
 }
-
-OfferDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    })
-  }).isRequired,
-  city: PropTypes.string.isRequired,
-  offersNearby: PropTypes.array.isRequired,
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    photos: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([EstateType.APARTMENT, EstateType.ROOM, EstateType.HOTEL, EstateType.HOUSE]).isRequired,
-    rating: PropTypes.number.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    guests: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    equipment: PropTypes.arrayOf(PropTypes.string).isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      status: PropTypes.bool.isRequired,
-    }).isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isBookmarked: PropTypes.bool.isRequired,
-  }),
-  currentOfferReviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        user: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-        }).isRequired,
-        date: PropTypes.string.isRequired,
-      })
-  ).isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  onReviewSubmit: PropTypes.func.isRequired,
-  reviewError: PropTypes.string.isRequired,
-  onLoad: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => ({
   offer: getOffer(state, parseInt(ownProps.match.params.id, 10)),

@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getAuthorizationStatus, getUserEmail} from "../../reducer/user/selectors";
 import {AuthorizationStatus} from "../../reducer/user/user";
@@ -7,9 +6,14 @@ import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 import {capitalize} from "../../utils";
 
+interface Props {
+  authorizationStatus: string;
+  email: string;
+}
+
 const UNAUTHORIZED_USER = `Sign in`;
 
-const Header = (props) => {
+const Header: React.FunctionComponent<Props> = (props: Props) => {
   const {authorizationStatus, email} = props;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
   const userName = isAuthorized ? capitalize(email) : UNAUTHORIZED_USER;
@@ -45,11 +49,6 @@ const Header = (props) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

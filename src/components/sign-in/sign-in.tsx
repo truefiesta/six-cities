@@ -1,12 +1,18 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-class SignIn extends PureComponent {
+interface Props {
+  onSubmit: (obj: {login: string; password: string}) => void;
+}
+
+class SignIn extends React.PureComponent<Props, {}> {
+  private _loginRef: React.RefObject<HTMLInputElement>;
+  private _passwordRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
-    this._loginRef = createRef();
-    this._passwordRef = createRef();
+    this._loginRef = React.createRef();
+    this._passwordRef = React.createRef();
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
@@ -58,9 +64,5 @@ class SignIn extends PureComponent {
     );
   }
 }
-
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default SignIn;

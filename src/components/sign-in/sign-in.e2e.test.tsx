@@ -23,7 +23,7 @@ describe(`SignIn`, () => {
     const form = signInComponent.find(`form`);
     expect(form).toHaveLength(1);
 
-    form.simulate(`submit`, {preventDefault() {}});
+    form.simulate(`submit`, {preventDefault: jest.fn()});
     expect(onSubmit).toHaveBeenCalledWith({login: _loginRef.current.value, password: _passwordRef.current.value});
   });
 });

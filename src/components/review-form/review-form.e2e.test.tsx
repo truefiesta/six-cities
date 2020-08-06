@@ -29,7 +29,7 @@ describe(`ReviewForm`, () => {
     const reviewForm = reviewFormComponent.find(`form`);
     expect(reviewForm).toHaveLength(1);
 
-    reviewForm.simulate(`submit`, {preventDefault() {}});
+    reviewForm.simulate(`submit`, {preventDefault: jest.fn()});
     expect(onReviewSubmit).toHaveBeenCalledTimes(1);
   });
 

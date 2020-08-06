@@ -1,11 +1,18 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 
-const CityLink = ({city, isActive = false, isTab = false, onCityClick}) => {
+interface Props {
+  city: string;
+  isActive: boolean;
+  isTab: boolean;
+  onCityClick: (city: string) => void;
+}
+
+const CityLink: React.FunctionComponent<Props> = (props: Props) => {
+  const {city, isActive = false, isTab = false, onCityClick} = props;
   const tabClass = isTab ? `tabs__item` : ``;
   const activeCityClass = isActive ? `tabs__item--active` : ``;
 
@@ -20,13 +27,6 @@ const CityLink = ({city, isActive = false, isTab = false, onCityClick}) => {
       <span>{city}</span>
     </Link>
   );
-};
-
-CityLink.propTypes = {
-  city: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
-  isTab: PropTypes.bool,
-  onCityClick: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

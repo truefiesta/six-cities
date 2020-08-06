@@ -1,5 +1,33 @@
 import * as React from "react";
-import PropTypes from "prop-types";
+import {Subtract} from "utility-types";
+
+interface State {
+  message: string;
+  rating: number;
+  isBlocked: boolean;
+}
+
+interface SubmitDetails {
+  comment: string;
+  rating: number;
+}
+
+interface Props {
+  onSubmit: (SubmitDetails: SubmitDetails, offerId: number, onSubmitSuccess: () => void, onSubmitError: () => void) => void;
+  offerId: number;
+}
+
+interface InjectedProps {
+  review: string;
+  rating: number;
+  isEnabled: boolean;
+  isBlocked: boolean;
+  minReviewLength: number;
+  maxReviewLength: number;
+  onRatingChange: (ratingValue: number) => void;
+  onReviewChange: (reviewValue: string) => void;
+  onReviewSubmit: () => void;
+}
 
 const ReviewTextLength = {
   MIN: 50,
@@ -7,7 +35,10 @@ const ReviewTextLength = {
 };
 
 const withReview = (Component) => {
-  class WithReview extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectedProps>;
+
+  class WithReview extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -91,11 +122,6 @@ const withReview = (Component) => {
       );
     }
   }
-
-  WithReview.propTypes = {
-    offerId: PropTypes.number.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-  };
 
   return WithReview;
 };

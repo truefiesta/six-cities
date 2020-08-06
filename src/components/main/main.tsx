@@ -1,15 +1,20 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getSortedCityOffers} from "../../reducer/filters/selectors";
 import {MapType} from "../../const";
+import {Offer} from "../../types";
 import Header from "../header/header";
 import Map from "../map/map";
 import NoOffers from "../no-offers/no-offers";
 import CitiesList from "../cities-list/cities-list";
 import Cities from "../cities/cities";
 
-const Main = ({sortedCityOffers}) => {
+interface Props {
+  sortedCityOffers: Offer[];
+}
+
+const Main: React.FunctionComponent<Props> = (props: Props) => {
+  const {sortedCityOffers} = props;
   const isNoOffers = sortedCityOffers.length === 0 ? true : false;
 
   return (
@@ -39,10 +44,6 @@ const Main = ({sortedCityOffers}) => {
       </main>
     </div>
   );
-};
-
-Main.propTypes = {
-  sortedCityOffers: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,9 +1,16 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {convertStarRatingToWidthPercent, capitalize} from "../../utils";
 import {BookmarkStyle, OfferCardType} from "../../const";
 import BookmarkButton from "../bookmark-button/bookmark-button";
+import {Offer} from "../../types";
+
+interface Props {
+  offer: Offer;
+  cardType: string;
+  onMouseOver: (offer: Offer) => void;
+  onMouseOut: () => void;
+}
 
 export const CardStylesByCardType = {
   [OfferCardType.MAIN]: {
@@ -29,7 +36,7 @@ export const CardStylesByCardType = {
   },
 };
 
-const OfferCard = (props) => {
+const OfferCard: React.FunctionComponent<Props> = (props: Props) => {
   const {offer, onMouseOver, cardType, onMouseOut} = props;
   const cardStyle = CardStylesByCardType[cardType];
   const {id, image, price, name, type, rating, isPremium, isBookmarked} = offer;
@@ -77,22 +84,6 @@ const OfferCard = (props) => {
       </div>
     </article>
   );
-};
-
-OfferCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isBookmarked: PropTypes.bool.isRequired,
-  }).isRequired,
-  cardType: PropTypes.string.isRequired,
-  onMouseOver: PropTypes.func.isRequired,
-  onMouseOut: PropTypes.func.isRequired,
 };
 
 export default OfferCard;

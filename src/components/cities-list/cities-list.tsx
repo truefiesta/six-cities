@@ -1,11 +1,16 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getCities} from "../../reducer/offers/selectors";
 import {getCity} from "../../reducer/filters/selectors";
 import CityLink from "../city-link/city-link";
 
-const CitiesList = ({city, cities}) => {
+interface Props {
+  city: string;
+  cities: Array<string>;
+}
+
+const CitiesList: React.FunctionComponent<Props> = (props: Props) => {
+  const {city, cities} = props;
   if (!city) {
     return null;
   }
@@ -27,13 +32,6 @@ const CitiesList = ({city, cities}) => {
       })}
     </ul>
   );
-};
-
-CitiesList.propTypes = {
-  city: PropTypes.string.isRequired,
-  cities: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({

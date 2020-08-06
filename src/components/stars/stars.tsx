@@ -1,7 +1,14 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 
-const Stars = (props) => {
+interface Props {
+  setName: string;
+  setOptions: Array<string>;
+  selectedOption: number;
+  isBlocked: boolean;
+  onSelectedOptionChange: (formattedRating: number) => void;
+}
+
+const Stars: React.FunctionComponent<Props> = (props: Props) => {
   const {setName, setOptions, selectedOption, onSelectedOptionChange, isBlocked} = props;
   const reversedOptions = setOptions.slice().reverse();
 
@@ -37,16 +44,6 @@ const Stars = (props) => {
       })}
     </div>
   );
-};
-
-Stars.propTypes = {
-  setName: PropTypes.string.isRequired,
-  setOptions: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired,
-  selectedOption: PropTypes.number.isRequired,
-  isBlocked: PropTypes.bool.isRequired,
-  onSelectedOptionChange: PropTypes.func.isRequired,
 };
 
 export default Stars;

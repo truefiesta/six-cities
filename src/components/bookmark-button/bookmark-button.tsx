@@ -3,7 +3,14 @@ import {connect} from "react-redux";
 import {Operation as OffersOperation} from "../../reducer/offers/offers";
 import {BookmarkStyle} from "../../const";
 
-const BookmarkButton = (props) => {
+interface Props {
+  offerId: number;
+  isBookmarked: boolean;
+  buttonStyle: string;
+  onBookmarkStatusChange: (offerId: number, newBookmarkStatus: boolean) => void;
+}
+
+const BookmarkButton: React.FunctionComponent<Props> = (props: Props) => {
   const {onBookmarkStatusChange, isBookmarked, offerId, buttonStyle} = props;
   const isSmallButton = buttonStyle === BookmarkStyle.SMALL_BUTTON;
   const buttonClass = isSmallButton ? `place-card` : `property`;
@@ -25,13 +32,6 @@ const BookmarkButton = (props) => {
       <span className="visually-hidden">{title}</span>
     </button>
   );
-};
-
-BookmarkButton.propTypes = {
-  offerId: PropTypes.number.isRequired,
-  isBookmarked: PropTypes.bool.isRequired,
-  buttonStyle: PropTypes.string.isRequired,
-  onBookmarkStatusChange: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

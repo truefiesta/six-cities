@@ -1,7 +1,19 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Stars from "../stars/stars";
 import withReview from "../../hocs/with-review/with-review";
+
+interface Props {
+  reviewError: string;
+  review: string;
+  rating: number;
+  isEnabled: boolean;
+  isBlocked: boolean;
+  minReviewLength: number;
+  maxReviewLength: number;
+  onRatingChange: () => void;
+  onReviewChange: (reviewText: string) => void;
+  onReviewSubmit: () => void;
+}
 
 const RATING = `rating`;
 
@@ -21,7 +33,7 @@ const ratingOptions = [
   RatingStarTitle.FIVE_STARS,
 ];
 
-const errorStyle = {
+const errorStyle: React.CSSProperties = {
   backgroundColor: `#e23939`,
   marginBottom: `10px`,
   padding: `5px`,
@@ -32,7 +44,7 @@ const errorStyle = {
   borderRadius: `2px`,
 };
 
-const ReviewForm = (props) => {
+const ReviewForm: React.FunctionComponent<Props> = (props: Props) => {
   const {reviewError, review, rating, isEnabled, isBlocked, minReviewLength, maxReviewLength, onRatingChange, onReviewChange, onReviewSubmit} = props;
 
   return (
@@ -62,7 +74,8 @@ const ReviewForm = (props) => {
         maxLength={maxReviewLength}
         value={review}
         onChange={(evt) => {
-          onReviewChange(evt.target.value);
+          const reviewText = evt.target.value;
+          onReviewChange(reviewText);
         }}
         disabled={isBlocked}
       />
@@ -81,19 +94,6 @@ const ReviewForm = (props) => {
       </div>
     </form>
   );
-};
-
-ReviewForm.propTypes = {
-  reviewError: PropTypes.string.isRequired,
-  review: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  isEnabled: PropTypes.bool.isRequired,
-  isBlocked: PropTypes.bool.isRequired,
-  minReviewLength: PropTypes.number.isRequired,
-  maxReviewLength: PropTypes.number.isRequired,
-  onRatingChange: PropTypes.func.isRequired,
-  onReviewChange: PropTypes.func.isRequired,
-  onReviewSubmit: PropTypes.func.isRequired,
 };
 
 export {ReviewForm};

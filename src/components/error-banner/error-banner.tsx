@@ -1,9 +1,12 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getErrorMessage} from "../../reducer/error/selectors";
 
-const errorStyle = {
+interface Props {
+  errorMessage: string;
+}
+
+const errorStyle: React.CSSProperties = {
   backgroundColor: `#e23939`,
   width: `100%`,
   padding: `5px`,
@@ -16,16 +19,13 @@ const errorStyle = {
   zIndex: 1,
 };
 
-const ErrorBanner = ({errorMessage}) => {
+const ErrorBanner: React.FunctionComponent<Props> = (props: Props) => {
+  const {errorMessage} = props;
   const isError = errorMessage !== ``;
 
   return (
     isError && <div style={errorStyle}>{errorMessage}</div>
   );
-};
-
-ErrorBanner.propTypes = {
-  errorMessage: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,13 +1,21 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {OfferCardType} from "../../const";
 import {connect} from "react-redux";
 import {getCurrentSortType, getSortedCityOffers, getCity} from "../../reducer/filters/selectors";
 import {ActionCreator as FiltersActionCreator} from "../../reducer/filters/filters";
+import {Offer} from "../../types";
 import OffersList from "../offers-list/offers-list";
 import Sort from "../sort/sort";
 
-const Cities = (props) => {
+interface Props {
+  city: string;
+  currentSortType: number;
+  sortedCityOffers: Offer[];
+  onSortTypeChange: () => void;
+  onActiveCardChange: () => void;
+}
+
+const Cities: React.FunctionComponent<Props> = (props: Props) => {
   const {city, currentSortType, sortedCityOffers, onSortTypeChange, onActiveCardChange} = props;
   const offersCount = sortedCityOffers.length;
 
@@ -26,14 +34,6 @@ const Cities = (props) => {
       />
     </section>
   );
-};
-
-Cities.propTypes = {
-  city: PropTypes.string.isRequired,
-  currentSortType: PropTypes.number.isRequired,
-  sortedCityOffers: PropTypes.array.isRequired,
-  onSortTypeChange: PropTypes.func.isRequired,
-  onActiveCardChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

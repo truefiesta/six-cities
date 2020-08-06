@@ -1,6 +1,12 @@
 import * as React from "react";
-import PropTypes from "prop-types";
+import {Offer} from "../../types";
 import OfferCard from "../offer-card/offer-card";
+
+interface Props {
+  offers: Offer[];
+  cardType: string;
+  onActiveCardChange: () => void;
+}
 
 export const OfferListStylesByCardType = {
   main: `cities__places-list tabs__content`,
@@ -8,7 +14,7 @@ export const OfferListStylesByCardType = {
   favorites: `favorites__places`,
 };
 
-const OffersList = (props) => {
+const OffersList: React.FunctionComponent<Props> = (props: Props) => {
   const {offers, cardType, onActiveCardChange} = props;
   const listStyle = OfferListStylesByCardType[cardType];
 
@@ -27,22 +33,6 @@ const OffersList = (props) => {
       })}
     </div>
   );
-};
-
-OffersList.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        isPremium: PropTypes.bool.isRequired,
-      }).isRequired
-  ).isRequired,
-  cardType: PropTypes.string.isRequired,
-  onActiveCardChange: PropTypes.func.isRequired,
 };
 
 export default OffersList;
