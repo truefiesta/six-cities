@@ -23,7 +23,7 @@ const iconActive = leaflet.icon({
   iconSize: [27, 39],
 });
 
-class Map extends React.Component<Props> {
+class Map extends React.Component<Props, {}> {
   private _mapRef: React.RefObject<HTMLDivElement>;
   private _map = leaflet.Map;
   private _markers = leaflet.LayerGroup;
@@ -32,6 +32,8 @@ class Map extends React.Component<Props> {
     super(props);
 
     this._mapRef = React.createRef();
+    this._map = null;
+    this._markers = null;
   }
 
   shouldComponentUpdate(nextProps) {
