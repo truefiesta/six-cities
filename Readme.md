@@ -3,12 +3,12 @@
 * Студент: [Yulia Karpova](https://up.htmlacademy.ru/react/4/user/34438).
 * Наставник: [`Алексей Елисеев`](https://htmlacademy.ru/profile/id60200).
 
----
+----
 
 _Не удаляйте и не изменяйте папки и файлы:_
 _`.editorconfig`, `.gitattributes`, `.gitignore`, `.travis.yml`, `package.json`._
 
----
+----
 
 ### Памятка
 
