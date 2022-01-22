@@ -50,7 +50,7 @@
     "leaflet": "1.6.0",
     "moment": "2.27.0",
     "moment-locales-webpack-plugin": "1.2.0",
-    "nanoid": "3.1.10",
+    "nanoid": "3.1.31",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
